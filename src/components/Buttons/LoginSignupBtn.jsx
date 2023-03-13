@@ -1,5 +1,6 @@
 import { AudioOutlined } from '@ant-design/icons';
 import {Button, Space } from 'antd';
+import keycloak from "../keycloak/keycloak";
 
 const suffix = (
   <AudioOutlined
@@ -11,9 +12,21 @@ const suffix = (
 );
 const LoginSignupBtn = () => (
   <Space className="site-button-ghost-wrapper" wrap>
-   <Button className='btnLogin' type="primary" ghost>Log In</Button>
-   <Button className='btnSignup' type="primary" ghost>Sign Up</Button>
+   {!keycloak.authenticated && (
+                 <>
+                    <Button className='btnSignup' type="primary" ghost onClick={() => keycloak.login()}>
+                        Login
+                    </Button>
+
+                    <Button className='btnLogin' type="primary" ghost onClick={() => keycloak.register()}>
+                        Register
+                    </Button>
+
+                    
+                </>
+   )}
   </Space> 
+
   
 
  );

@@ -1,10 +1,12 @@
 //Libraries
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom"
 import logo from "../../assets/img/logo.png"
 //Components
 import SearchBar from "../Search/SearchBar";
 import LoginSignupBtn from "../Buttons/LoginSignupBtn";
+import keycloak from "../keycloak/keycloak";
+import { Button } from 'antd';
 const NavBar = ()=>{
 
   //Hooks
@@ -19,6 +21,32 @@ const NavBar = ()=>{
       </div>
       <SearchBar/>
       <LoginSignupBtn/>
+      <nav>
+            <ul>
+                {keycloak.authenticated && (
+                <li>
+                    <NavLink to="/">Home</NavLink>
+                </li>
+                )}
+              
+                {keycloak.authenticated && (
+                <li>
+                    <NavLink to="/profile">Profile</NavLink>
+                </li>
+                )}
+           
+                </ul>
+                
+                {keycloak.authenticated && (
+                
+                <Button danger onClick={() => {
+                    keycloak.logout();
+                    navigate("/");
+                }}>Logout </Button>
+        
+             
+          )}
+        </nav>
     </div>
  
   )
