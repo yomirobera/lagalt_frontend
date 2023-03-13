@@ -1,9 +1,9 @@
-import Login from "../components/LogIn/LogIn"
+import LogIn from "../components/logIn/LogIn"
 const LoginView = () => {
     return (
         <>
-            <h1></h1>
-            <Login/>    
+            <h1>Login</h1>
+            <LogIn/>    
         </>
     )
         
