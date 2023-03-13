@@ -1,13 +1,90 @@
-body {
+*{
+  padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
+  font-family: Helvetica, Verdana,sans-serif;
+}
+body {
+
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.navBar{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 2%;
+  padding-right: 7%;
+  background-color: rgb(235, 236, 243);
+}
+
+.navLogo{
+ display:flex;
+ align-items: center;
+ width:15%;
+}
+
+.navBar h2{
+  color: #535333;
+  font-family:Georgia, 'Times New Roman', Times, serif;
+  font-size: 20px;
+  padding-left: 10px;
+  margin-right:10px;
+}
+.navBar .logoText{
+  color: #ea1538;
+  font-family:Georgia, 'Times New Roman', Times, serif;
+  font-size: 32px;
+  font-style: oblique;
+}
+
+.searchbtn .ant-btn-primary{
+  position:absolute;
+  bottom: 1px;
+  right: 10px;
+  background-color:transparent;
+  border: none;
+  color: black;
+}
+
+.searchbtn .ant-btn-primary:hover{
+  background-color: transparent;
+  border: none;
+ }
+.searchbtn .ant-btn-primary .anticon svg{
+  padding-top: 8px;
+ width: 2em;
+ height: 2em;
+ color:rgb(176, 171, 171);
+}
+.navBar .ant-input{
+  width:700px;
+  height: 35px;
+  box-sizing: border-box;
+  border-radius: 20px;
+}
+.navBar .ant-input-group >.ant-input:first-child{
+  border-start-end-radius: 20px;
+  border-end-end-radius: 20px;
+  }
+
+.navBar .ant-btn{
+  width: 75px;
+  height: 32px ;
+  padding: 2px 11px;
+  box-sizing: border-box;
+  border-color:rgb(112, 136, 243);
+  border-radius: 25px;
+  font-family:Arial,serif;
+  font-size: 14px;
+  font-style:normal;
+  font-weight:700;
+  line-height: 17px;
+  text-transform: unset;
+  letter-spacing:unset;
+}
+
+.navBar .ant-btn-primary.ant-btn-background-ghost{
+  background-color:rgb(219, 219, 247);
 }
