@@ -1,8 +1,10 @@
-import { NavLink } from "react-router-dom"
+import { NavLink, useNavigate } from "react-router-dom"
 import keycloak from "../keycloak/keycloak";
 import { Button } from 'antd';
 
 const NavBar = () => {
+
+    const navigate = useNavigate();
 
     //Hide the navigation if user is not logged in
     // const { user } = useUser()
@@ -10,15 +12,18 @@ const NavBar = () => {
     return (
         <nav>
             <ul>
+                {keycloak.authenticated && (
                 <li>
                     <NavLink to="/">Home</NavLink>
                 </li>
+                )}
                 <li>
                 {!keycloak.authenticated && (
                  <>
-                    <Button type="primary" onClick={() => keycloak.login()}>
+                    <Button  onClick={() => keycloak.login()}>
                         Login
                     </Button>
+
                     <Button type="primary" onClick={() => keycloak.register()}>
                         Register
                     </Button>
@@ -26,14 +31,22 @@ const NavBar = () => {
                     )}
                 </li>
                 
+                {keycloak.authenticated && (
                 <li>
-                    <NavLink to="/Profile">Profile</NavLink>
-                </li>               
-            </ul>
-            {keycloak.authenticated && (
-            <ul>
+                    <NavLink to="/profile">Profile</NavLink>
+                </li>
+                )}
+           
+                </ul>
+                
+                {keycloak.authenticated && (
+                <ul>
               <li>
-                <Button onClick={() => keycloak.logout()}>Logout</Button>
+                <Button danger onClick={() => {
+                    keycloak.logout();
+                    navigate("/");
+                }}>Logout </Button>
+        
               </li>
             </ul>
           )}
