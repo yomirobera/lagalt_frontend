@@ -1,6 +1,7 @@
 import React from 'react';
 import { Card } from "antd";
 import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { API_URL } from '../../api/projects';
 
 const ProjectList = () => {
@@ -8,6 +9,9 @@ const ProjectList = () => {
   const [error, setError] = useState(null); 
   const [isLoaded, setIsLoaded] = useState(false); 
   const [project, setItems] = useState([]); 
+  const isSearching = useSelector(state => state.projectData.isSearching);
+  const result = useSelector(state => state.projectData.data);
+  console.log('result', result)
 
   useEffect(() => {
     fetch(API_URL) // make a GET request to the API
@@ -30,7 +34,8 @@ const ProjectList = () => {
     return <div>Loading...</div>;
   } else { 
     return (
-      <Card>
+      !isSearching ?
+      (<Card>
         {project.map(project => ( 
           <div key={project.id}>
             <h2>{project.id}</h2>
@@ -41,7 +46,19 @@ const ProjectList = () => {
             <p>{project.img_url}</p>
           </div>
         ))}
-      </Card>
+      </Card>) :
+(<Card>
+{result.map(project => ( 
+  <div key={project.id}>
+    <h2>{project.id}</h2>
+    <h3>{project.title}</h3>
+    <p>{project.description}</p>
+    <p>{project.status}</p>
+    <p>{project.owner}</p>
+    <p>{project.img_url}</p>
+  </div>
+))}
+</Card>)
     );
   }
 };

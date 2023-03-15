@@ -3,8 +3,7 @@ import { Input, Space } from 'antd';
 
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import projectsReducer from '../../redux/projectsReducer';
-import { setSearchQuery} from'../../redux/projectsReducer';
+
 
 const { Search } = Input;
 const suffix = (
@@ -16,16 +15,12 @@ const suffix = (
   />
 );
 
-const onSearch = (value) => {
-  value.preventDefault();
-  dispatch(setSearchQuery(query));
-};
-
-
 const SearchBar = () => {
- 
   const dispatch = useDispatch();
   const [query, setQuery] = React.useState('');
+  const onSearch = (value) => {
+      dispatch({type: 'SET_SEARCH_QUERY', payload: value});
+  };
 
   return (
       <Space direction="vertical">
