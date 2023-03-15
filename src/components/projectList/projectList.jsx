@@ -43,6 +43,7 @@ const ProjectList = () => {
             <p>{project.description}</p>
             <p>Status: {project.status}</p>
             <p>Owner: {project.owner}</p>
+            <p>creative field: {project.category} </p>
             <Button type="primary">comments</Button>
           </Card>
         ))}

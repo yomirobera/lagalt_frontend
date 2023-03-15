@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Form, Input, Button, Upload } from 'antd';
+import { Form, Input, Button, Upload, Select } from 'antd';
 
 import withAuth from '../../hoc/withAuth';
 import { addProject } from '../../api/projects';
@@ -80,6 +80,15 @@ const CreateProject = () => {
       >
         <Input.TextArea />
       </Form.Item>
+
+      <Form.Item label="Creative field:" name="category">
+          <Select>
+            <Select.Option value="MUSIC">Music</Select.Option>
+            <Select.Option value="FILM">Film</Select.Option>
+            <Select.Option value="GAME_DEVELOPMENT">Game Development</Select.Option>
+            <Select.Option value="WEB_DEVELOPMENT">Web Development</Select.Option>
+          </Select>
+        </Form.Item>
 
       <Form.Item label="Image">
         <Upload
