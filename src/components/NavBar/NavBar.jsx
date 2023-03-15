@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import logo from "../../assets/img/logo.png";
-import {  Menu } from "antd";
+import { Menu } from "antd";
 import {
   HomeOutlined,
   UserOutlined,
