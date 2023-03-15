@@ -1,8 +1,8 @@
-import { combineReducers } from "redux";
-import projectsReducer from "./projectsReducer";
+import { configureStore } from "@reduxjs/toolkit";
+import projectReducer from "./projectsReducer";
 
-const rootReducers = combineReducers({
-    projectData : projectsReducer
+export default configureStore({
+    reducer: {
+        projects: projectReducer
+    }
 });
-
-export default rootReducers;

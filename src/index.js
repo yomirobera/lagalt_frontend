@@ -2,13 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import { legacy_createStore } from 'redux';
-import rootReducers from './redux/store';
+import store from './redux/store';
 import { Provider } from 'react-redux';
 import { initialize } from './components/keycloak/keycloak';
 import Loading from "./components/loading/Loading";
-
-const store = legacy_createStore(rootReducers)
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
