@@ -5,8 +5,7 @@ import ProjectList from "../components/projectList/ProjectList"
 const LandingView = () => {
     return (
         <>
-            <h2>Welcome</h2>  
-            <Filtering/>
+            <h2></h2>  
             <ProjectList/>
             
         </>
