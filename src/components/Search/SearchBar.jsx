@@ -1,5 +1,9 @@
 import { AudioOutlined } from '@ant-design/icons';
 import { Input, Space } from 'antd';
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { searchProjects } from '../../redux/projectsReducer';
+
 const { Search } = Input;
 const suffix = (
   <AudioOutlined
@@ -9,12 +13,18 @@ const suffix = (
     }}
   />
 );
-const onSearch = (value) => console.log(value);
-const SearchBar = () => (
-  <Space direction="vertical">
-   <Search placeholder="input search text" className='searchbtn' onSearch={onSearch} enterButton />
-  </Space> 
-  
 
- );
+const SearchBar = () => {
+  const dispatch = useDispatch();
+  const onSearch = (value) => {
+      dispatch(searchProjects(value));
+  };
+
+  return (
+      <Space direction="vertical">
+      <Input.Search placeholder="input search text" className='searchbtn' onSearch={onSearch} enterButton />
+      </Space> 
+    );
+};
+
 export default SearchBar;
