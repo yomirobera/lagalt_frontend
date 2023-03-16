@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Form, Input, Button, Upload } from 'antd';
+import { Form, Input, Button, Upload, Select } from 'antd';
 
 import withAuth from '../../hoc/withAuth';
 import { addProject } from '../../api/projects';
@@ -31,10 +31,10 @@ const CreateProject = () => {
         ...values,
         status: 'done', // default status
         owner: 1, // replace with actual owner ID
-        img_url: imageUrl, // base64-encoded image string
+        img_url: imageUrl
       });
-      form.resetFields(); //Reset the form feilds
-      alert('Project added successfully');
+      form.resetFields(); //Reset the form fields
+      alert(`Project added successfully. Image: ${imageUrl}`);
     } catch (error) {
       console.error(error); //Logs any errors to the console
       alert(`Error adding project: ${error.message}`);
@@ -49,13 +49,16 @@ const CreateProject = () => {
   };
 
   //Defining a function for handling image changes when an image is uploaded
+
   const handleImageChange = (info) => {
-    const reader = new FileReader(); //Creates a new filereader instance
+    const reader = new FileReader(); // creates a new filereader instance
     reader.onload = () => {
-      setImageUrl(reader.result);
+      const base64Url = reader.result;
+      setImageUrl(base64Url);
     };
-    reader.readAsDataURL(info.file); //Reads the contents of the uplaoded file as a base64-encoded URL
+    reader.readAsDataURL(info.file.originFileObj); // reads the contents of the uploaded file as a binary data array
   };
+  
 
   return (
     <Form
@@ -79,6 +82,15 @@ const CreateProject = () => {
         rules={[{ required: true, message: 'Please input project description!' }]}
       >
         <Input.TextArea />
+      </Form.Item>
+
+      <Form.Item label="Creative field:" name="category">
+        <Select>
+          <Select.Option value="Musikk">Musikk</Select.Option>
+          <Select.Option value="Film">Film</Select.Option>
+          <Select.Option value="Spillutvikling">Spillutvikling</Select.Option>
+          <Select.Option value="Webutvikling">Webutvikling</Select.Option>
+        </Select>
       </Form.Item>
 
       <Form.Item label="Image">

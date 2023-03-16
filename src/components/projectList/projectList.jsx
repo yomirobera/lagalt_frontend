@@ -9,6 +9,11 @@ const ProjectList = () => {
   const [isLoaded, setIsLoaded] = useState(false); 
   const [project, setItems] = useState([]); 
 
+  const handleCommentsClick = () => {
+    alert(`Comments button clicked.`);
+    <p>Status2: {project.status}</p>
+  };
+
   useEffect(() => {
     fetch(API_URL) // make a GET request to the API
       .then(res => res.json()) 
@@ -34,7 +39,7 @@ const ProjectList = () => {
       <Col xs={24} sm={16} md={12} lg={8}> 
         {project.map(project => (
           <Card
-          extra={<a href='#'>View more details</a>}
+          
             key={project.id}
             style={{ marginBottom: 20 }}
             cover={<img alt="project cover" src={project.img_url} />}
@@ -43,7 +48,10 @@ const ProjectList = () => {
             <p>{project.description}</p>
             <p>Status: {project.status}</p>
             <p>Owner: {project.owner}</p>
-            <Button type="primary">comments</Button>
+            <p>creative field: {project.category} </p>
+            <Button type="primary" onClick={handleCommentsClick}>
+              comments
+            </Button>
           </Card>
         ))}
       </Col>
