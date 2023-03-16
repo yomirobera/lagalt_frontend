@@ -49,6 +49,7 @@ const ProjectList = () => {
             <p>Status: {project.status}</p>
             <p>Owner: {project.owner}</p>
             <p>creative field: {project.category} </p>
+
             <Button type="primary" onClick={handleCommentsClick}>
               comments
             </Button>
