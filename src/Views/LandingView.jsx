@@ -6,6 +6,7 @@ const LandingView = () => {
     return (
         <>
             <h2></h2>  
+            <Filtering/>
             <ProjectList/>
             
         </>

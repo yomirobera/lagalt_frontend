@@ -13,7 +13,6 @@ const { data, isSearching } = useSelector(state => state.projects);
 
   const handleCommentsClick = () => {
     alert(`Comments button clicked.`);
-    <p>Status2: {project.status}</p>
   };
 
   useEffect(() => {
@@ -22,7 +21,7 @@ const { data, isSearching } = useSelector(state => state.projects);
 
   if (error) { // display an error message
     return <div>Error: {error.message}</div>;
-  } else if (!isSearching) { // display a loading message, if it loading 
+  } else if (isSearching) { // display a loading message, if it loading 
     return <div>Loading...</div>;
   } else { 
     return (
