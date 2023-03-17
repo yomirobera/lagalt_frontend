@@ -15,6 +15,7 @@ const Profile = () => (
     <p>Username: { keycloak.tokenParsed.preferred_username}</p>
     
     <p>Sub: { keycloak.tokenParsed.sub }</p>
+    <p>token: { keycloak.token }</p>
     <Button>Edit</Button>
   </Card>
 );

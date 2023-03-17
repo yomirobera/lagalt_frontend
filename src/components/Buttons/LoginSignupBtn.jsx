@@ -1,33 +1,27 @@
-import { AudioOutlined } from '@ant-design/icons';
-import {Button, Space } from 'antd';
+import { Button } from "antd";
+import { LoginOutlined, UserAddOutlined } from "@ant-design/icons";
 import keycloak from "../keycloak/keycloak";
 
-const suffix = (
-  <AudioOutlined
-    style={{
-      fontSize: 16,
-      color: '#1890ff',
-    }}
-  />
-);
-const LoginSignupBtn = () => (
-  <Space className="site-button-ghost-wrapper" wrap>
-   {!keycloak.authenticated && (
-                 <>
-                    <Button className='btnSignup'  type="primary" ghost onClick={() => keycloak.login()}>
-                        Login
-                    </Button>
+import '../../css/LoginButton.css'
 
-                    <Button className='btnLogin' type="primary" ghost onClick={() => keycloak.register()}>
-                        Register
-                    </Button>
 
-                    
-                </>
-   )}
-  </Space> 
+const LoginSignupBtn = () => {
+  return (
+    <div>
+      {!keycloak.authenticated && (
+        <Button className="btnFunction" icon={<LoginOutlined />} 
+          onClick={() => keycloak.login()}>
+          Login
+        </Button>
+      )}
 
-  
-
- );
-export default LoginSignupBtn;
+      {!keycloak.authenticated && (
+        <Button className="btnFunction" icon={<UserAddOutlined />} 
+          onClick={() => keycloak.register()}>
+          Signup
+        </Button>
+      )}
+    </div>
+    
+  );
+}; export default LoginSignupBtn;
