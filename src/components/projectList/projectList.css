@@ -1,0 +1,15 @@
+.ant-card {
+ width: 100%;
+  overflow-x: hidden;
+}
+.ant-card .ant-card-body {
+    position:relative;
+    padding-top: 60px;
+    left: 20%;
+    right:20%;
+    background-color: #f8f4f4;
+    display: flex;
+    max-width: 100%;
+    flex-direction: column;
+    justify-items: center;
+}

@@ -22,7 +22,7 @@ const SearchBar = () => {
 
   return (
       <Space direction="vertical">
-      <Input.Search placeholder="input search text" className='searchbtn' onSearch={onSearch} enterButton />
+      <Input.Search placeholder="Søk..." className='searchbtn' onSearch={onSearch} enterButton />
       </Space> 
     );
 };

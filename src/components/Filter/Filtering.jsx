@@ -22,18 +22,12 @@ const Filtering = () => {
       <h2>Filter</h2>
       <Checkbox className='checkbox-item' onClick={fetchAllProjects}>
         <span>Vis populære</span>
-        <div className='populærItems'>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
       </Checkbox>
-      <Checkbox className='checkbox-item' onClick={() => filterSelectedproject('music')}>
+      <Checkbox className='checkbox-item' onClick={() => filterSelectedproject('MUSIC')}>
           <span>Musikk</span>
           <Icon icon="ph:music-notes-fill" className="catagory-icon" />
       </Checkbox>
-      <Checkbox className='checkbox-item' onClick={() => filterSelectedproject('Film')}>
+      <Checkbox className='checkbox-item' onClick={() => filterSelectedproject('FILM')}>
         <span>Film</span>
         <Icon icon="icon-park:film" className="catagory-icon" />
       </Checkbox>
@@ -55,16 +49,6 @@ const Filtering = () => {
     </div>
   ); 
   
-  /* return (
-    <div>
-      <h2>Filter By:</h2>
-      <button onClick={() => fetchAllProjects()}>Vis populære</button>
-      <button onClick={() => filterSelectedproject('music')}>Music</button>
-      <button onClick={() => filterSelectedproject('Film')}>Film</button>
-      <button onClick={() => filterSelectedproject('Sillutvikling')}>Spillutvikling</button>
-      <button onClick={() => filterSelectedproject('Webutvikling')}>Webutvikling</button>
-    </div>
-  ); */
 };
 
 export default Filtering;

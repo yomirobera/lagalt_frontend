@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Col, Row, Button } from 'antd';
+import { Card, Col, Row,Button } from 'antd';
 import './projectList.css'
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -26,28 +26,25 @@ const { data, isSearching } = useSelector(state => state.projects);
     return <div>Loading...</div>;
   } else { 
     return (
-      <Row justify="center" align="middle" style={{ minHeight: '100vh' }}>  
-      <Col xs={24} sm={16} md={12} lg={8}> 
-        {data.map(project => (
-          <Card
-          
-            key={project.id}
-            style={{ marginBottom: 20 }}
-            cover={<img alt="project cover" src={project.img_url} />}
-          >
-            <h3>{project.title}</h3>
-            <p>{project.description}</p>
-            <p>Status: {project.status}</p>
-            <p>Owner: {project.owner}</p>
-            <p>creative field: {project.category} </p>
-
-            <Button type="primary" onClick={handleCommentsClick}>
-              comments
-            </Button>
-          </Card>
-        ))}
-      </Col>
-    </Row>
+      <Card>
+        <h2>Populære prosjekter</h2>
+          {data.map(project => (
+             <React.Fragment key={project.id}>
+              <Row gutter={16} justify="center" align="middle" style={{ minHeight: '100vh' }}>
+                <Col xs={24} sm={16} md={12} lg={8}>
+                  <h3>{project.title}</h3>
+                  <p>{project.description}</p>
+                  <p>Status: {project.status}</p>
+                  <p>Owner: {project.owner}</p>
+                  <p>creative field: {project.category} </p>
+                </Col>
+                <Col xs={24} sm={12} style={{ marginBottom: 20 }}>
+                  <img alt="project cover" src={project.img_url} />
+                </Col>
+              </Row>
+            </React.Fragment>
+          ))}
+      </Card>
     );
   };
 };

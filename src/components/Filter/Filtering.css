@@ -9,6 +9,7 @@
     padding: 16px;
     display: flex;
     flex-direction: column;
+    z-index: 1000;
 }
 
 .checkboxAside span {

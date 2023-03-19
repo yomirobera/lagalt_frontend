@@ -14,12 +14,12 @@ const LoginSignupBtn = () => (
   <Space className="site-button-ghost-wrapper" wrap>
    {!keycloak.authenticated && (
                  <>
-                    <Button className='btnSignup'  type="primary" ghost onClick={() => keycloak.login()}>
-                        Login
+                    <Button className='btnLogin'  type="primary" ghost onClick={() => keycloak.login()}>
+                        LOG INN
                     </Button>
 
-                    <Button className='btnLogin' type="primary" ghost onClick={() => keycloak.register()}>
-                        Register
+                    <Button className='btnSignup' type="primary" ghost onClick={() => keycloak.register()}>
+                        NY BRUKER
                     </Button>
 
                     
