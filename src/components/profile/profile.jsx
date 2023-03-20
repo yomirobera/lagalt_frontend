@@ -1,36 +1,39 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { getUser } from '../../api/user';
 import withAuth from '../../hoc/withAuth';
 import keycloak from '../keycloak/keycloak';
+import { apiUrl } from '../../api/user';
+
 
 
 const Profile = () => {
   const [user, setUser] = useState(null);
 
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        // Update token and get user ID
-        await keycloak.updateToken(5);
-        const userId = keycloak.tokenParsed.sub;
+  const fetchUser = useCallback(async () => {
+    try {
+      // Update token and get user ID
+      await keycloak.updateToken(5);
+      const userId = keycloak.tokenParsed.sub;
 
-        // Fetch user data with token in Authorization header
-        const response = await fetch(`/api/v1/users/${userId}`, {
-          headers: {
-            'Authorization': `Bearer ${keycloak.token}`
-          }
-        });
-        /* console.log(response.type);
-        console.log(response.status);
-        console.log(await response.text()); */
-        const fetchedUser = await response.json();
-        setUser(fetchedUser);
-      } catch (error) {
-        console.error(error);
+      // Fetch user data with token in Authorization header
+      const response = await fetch(`${apiUrl}/${userId}`);
+
+      if (!response.ok) {
+        throw new Error(`Failed to fetch user. Status code: ${response.status}`);
       }
-    };
+
+      const fetchedUser = await response.json();
+      setUser(fetchedUser);
+    } catch (error) {
+      console.error(error);
+      console.log("FAIL")
+      // Handle error
+    }
+  }, [keycloak]);
+
+  useEffect(() => {
     fetchUser();
-  }, []);
+  }, [fetchUser]);
 
   return (
     <div>

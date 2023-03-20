@@ -15,3 +15,4 @@ export const getUser = async (userId, accessToken) => {
     return null;
   }
 };
+export {apiUrl}
