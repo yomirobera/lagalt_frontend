@@ -13,3 +13,20 @@
     flex-direction: column;
     justify-items: center;
 }
+
+.music{
+    background-color: greenyellow;
+}
+
+.film{
+    background-color: lightskyblue;
+}
+
+.web-development{
+    background-color: lightsalmon;
+
+}
+.spill-utvikling{
+    background-color: lightcoral;
+
+}
