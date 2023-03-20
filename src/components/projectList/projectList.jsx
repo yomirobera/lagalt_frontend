@@ -2,7 +2,6 @@ import React from 'react';
 import { Card, Col, Row, Button } from 'antd';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { API_URL } from '../../api/projects';
 import { fetchProjectList } from '../../redux/actions'
 
 const ProjectList = () => {

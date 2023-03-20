@@ -30,5 +30,21 @@ const getProjects = async () => {
       throw new Error(`Error adding project: ${error.message}`);
     }
   };
-    
-  export { getProjects, addProject, API_URL };
+
+  const updateProject = async (projectId, updatedProject) => {
+    try {
+      const response = await fetch(`${API_URL}/${projectId}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updatedProject),
+      });
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      throw new Error(`Error updating project: ${error.message}`);
+    }
+  };
+  
+  export { getProjects, addProject, updateProject, API_URL };

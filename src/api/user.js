@@ -1,16 +1,17 @@
-export const checkForUser = async (username) => {
-    try {
-        const response = await fetch('')
-        if (!await response.ok) {
-            throw new Error('Could not complete request.')
-        }
-        const data = await response.json()
-    }
-    catch(error) {
-        
-    }
-}
+const apiUrl = "http://localhost:8080/api/v1/users";
 
-export const createUser = () => {
-
-} 
+export const getUser = async (userId, accessToken) => {
+  try {
+    const response = await fetch(`${apiUrl}/${userId}`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        "Content-Type": "application/json",
+      },
+    });
+    const user = await response.json();
+    return user;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
