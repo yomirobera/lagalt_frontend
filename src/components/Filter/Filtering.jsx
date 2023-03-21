@@ -1,4 +1,7 @@
 import React from 'react';
+import { Checkbox } from 'antd';
+import { Icon } from '@iconify/react';
+import './Filtering.css';
 import { useDispatch } from 'react-redux';
 import { filterProjects } from '../../redux/projectsReducer';
 import { fetchProjectList } from '../../redux/actions'
@@ -14,17 +17,38 @@ const Filtering = () => {
   const fetchAllProjects = () => {
     dispatch(fetchProjectList())
   }
-
   return (
-    <div>
-      <h2>Filter By:</h2>
-      <button onClick={() => fetchAllProjects()}>Display All</button>
-      <button onClick={() => filterSelectedproject('books')}>Books</button>
-      <button onClick={() => filterSelectedproject('movies')}>Movies</button>
-      <button onClick={() => filterSelectedproject('music')}>Music</button>
-      <button onClick={() => filterSelectedproject('cloth')}>Cloth</button>
+    <div className='checkboxAside'>
+      <h2>Filter</h2>
+      <Checkbox className='checkbox-item' onClick={fetchAllProjects}>
+        <span>Vis populære</span>
+      </Checkbox>
+      <Checkbox className='checkbox-item' onClick={() => filterSelectedproject('MUSIC')}>
+          <span>Musikk</span>
+          <Icon icon="ph:music-notes-fill" className="catagory-icon" />
+      </Checkbox>
+      <Checkbox className='checkbox-item' onClick={() => filterSelectedproject('FILM')}>
+        <span>Film</span>
+        <Icon icon="icon-park:film" className="catagory-icon" />
+      </Checkbox>
+      <Checkbox className='checkbox-item' onClick={() => filterSelectedproject('Spillutvikling')}>
+        <span>Spillutvikling</span>
+        <Icon icon="fa-solid:headset" className="catagory-icon" />
+        </Checkbox>
+      <Checkbox className='checkbox-item' onClick={() => filterSelectedproject('Webutvikling')}>
+        <span>Webutvikling</span>
+        <Icon icon="mdi:code" className="catagory-icon"/>
+      </Checkbox>
+      <h3>Dette er lagAlt</h3>
+      <p>lagAlt er den enkleste måten å finne folk til dine kreative prosjekter. 
+       Det enste du trenger å gjøre for å komme i gang er å opprette et prosjekt med
+       beskrivelse og ønskede ferdighter, så er søke-prosessen etter kreative og flinke folk igangsatt.<br/>
+      <strong>Tjenesten er gratis og uforpliktende!</strong> 
+       
+       </p>
     </div>
-  );
+  ); 
+  
 };
 
 export default Filtering;
