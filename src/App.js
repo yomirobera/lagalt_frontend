@@ -2,7 +2,6 @@
 import './App.css';
 
 import {BrowserRouter,Routes,Route} from 'react-router-dom';
-
 import LandingView from './Views/LandingView';
 import CreateprojectView from './Views/CreateprojectView';
 import ProfileView from './Views/ProfileView';

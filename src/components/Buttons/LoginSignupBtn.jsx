@@ -1,16 +1,15 @@
-import { Button } from "antd";
+import { Button,Space,AudioOutlined } from "antd";
 import { LoginOutlined, UserAddOutlined } from "@ant-design/icons";
 import keycloak from "../keycloak/keycloak";
 
-<<<<<<< HEAD
-const suffix = (
+/* const suffix = (
   <AudioOutlined
     style={{
       fontSize: 16,
       color: '#1890ff',
     }}
   />
-);
+); */
 const LoginSignupBtn = () => (
   <Space className="site-button-ghost-wrapper" wrap>
    {!keycloak.authenticated && (
@@ -22,12 +21,8 @@ const LoginSignupBtn = () => (
                     <Button className='btnSignup' type="primary" ghost onClick={() => keycloak.register()}>
                         NY BRUKER
                     </Button>
-=======
-import '../../css/LoginButton.css'
-
->>>>>>> origin
-
-const LoginSignupBtn = () => {
+                  </>)}</Space>)
+/* const LoginSignupBtn = () => {
   return (
     <div>
       {!keycloak.authenticated && (
@@ -45,5 +40,5 @@ const LoginSignupBtn = () => {
       )}
     </div>
     
-  );
-}; export default LoginSignupBtn;
+  ); */
+ export default LoginSignupBtn;
