@@ -14,12 +14,21 @@ import keycloak from "../keycloak/keycloak";
 // Components
 import SearchBar from "../Search/SearchBar";
 import LoginSignupBtn from "../Buttons/LoginSignupBtn";
-import { addUsers } from "../../api/user";
+import { addUsers, getUser } from "../../api/user";
 
 const { SubMenu } = Menu;
 
 const NavBar = () => {
   const navigate = useNavigate();
+
+
+  if (keycloak.authenticated && !(getUser(keycloak.tokenParsed.sub))) {
+     addUsers();
+  } else {
+    // do nothing
+  }
+
+
 
   return (
     <div className="navBar">
@@ -45,7 +54,7 @@ const NavBar = () => {
         {keycloak.authenticated && (
           <SubMenu key="SubMenu" icon={<UserOutlined />} title="Profile">
             <Menu.Item key="profile" icon={<UserOutlined />}>
-              <NavLink to="/Profile" onClick={addUsers()}>Profile</NavLink>
+              <NavLink to="/Profile">Profile</NavLink>
             </Menu.Item>
 
             <Menu.Item key="create" icon={<PlusOutlined />}>

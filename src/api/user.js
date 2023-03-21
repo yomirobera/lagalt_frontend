@@ -2,27 +2,18 @@ import keycloak from "../components/keycloak/keycloak";
 
 const apiUrl = "http://localhost:8080/api/v1/users";
 
-export const getUser = async (userId, accessToken) => {
+export const getUser = async (userId) => {
   try {
-    const response = await fetch(`${apiUrl}/${userId}`, {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await fetch(`${apiUrl}/${userId}`);
     const user = await response.json();
     return user;
   } catch (error) {
-    console.error(error);
-    return null;
+    return false;
   }
 };
 
 const addUsers = async () => {
   
-  console.log("WAY1")
-
-  console.log("WAY")
   try {
     console.log("REGISTER")
     const response = await fetch(apiUrl, {
@@ -33,18 +24,14 @@ const addUsers = async () => {
       body: JSON.stringify({
       
         id: keycloak.tokenParsed.sub,
-        f_name: keycloak.f_name,
-        l_name: keycloak.l_name
+        f_name: keycloak.tokenParsed.given_name,
+        l_name: keycloak.tokenParsed.family_name
       }),
     });
-    console.log(response.text())
-    //const data = await response.json();
-    console.log("WORKS")
-    //return data;
+    const data = await response.json();
+    return data;
   } catch (error) {
     console.log(error)
-    console.log("FAIL")
-    alert("YIKES")
     throw new Error(`Error adding project: ${error.message}`);
   }
 };
