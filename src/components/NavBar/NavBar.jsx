@@ -7,6 +7,8 @@ import {
   UserOutlined,
   LogoutOutlined,
   PlusOutlined,
+  EditOutlined,
+
 } from "@ant-design/icons";
 import keycloak from "../keycloak/keycloak";
 // Components
@@ -33,33 +35,39 @@ const NavBar = () => {
         </h2> */}
       </div>
       <SearchBar />
-      <LoginSignupBtn />
-
       <Menu mode="horizontal" className="navMenu" theme="light">
+      {keycloak.authenticated && (
         <Menu.Item key="home" icon={<HomeOutlined />}>
           <NavLink to="/">Home</NavLink>
-        </Menu.Item>
-        {keycloak.authenticated && (
-          <Menu.Item key="create" icon={<PlusOutlined />}>
-            <NavLink to="/CreateProject">New project</NavLink>
-          </Menu.Item>
+       </Menu.Item>
         )}
-
         {keycloak.authenticated && (
           <SubMenu key="SubMenu" icon={<UserOutlined />} title="Profile">
-            <Menu.Item key="profile">
-              <NavLink to="/profile">Profile</NavLink>
+            <Menu.Item key="profile" icon={<UserOutlined />}>
+              <NavLink to="/Profile">Profile</NavLink>
             </Menu.Item>
-            
-            <Menu.Item key="logout" icon={<LogoutOutlined />} danger onClick={() => {
-              keycloak.logout();
-              navigate("/");
-            }}>
-              Logout
+
+            <Menu.Item key="create" icon={<PlusOutlined />}>
+              <NavLink to="/CreateProject">New project</NavLink>
+            </Menu.Item>
+
+            <Menu.Item key="edit" icon={<EditOutlined />}>
+              <NavLink to="/EditProject">Endre project</NavLink>
             </Menu.Item>
           </SubMenu>
         )}
+         {keycloak.authenticated && (
+            <Menu.Item key="logout" icon={<LogoutOutlined />} danger onClick={() => {
+            keycloak.logout();
+            navigate("/");
+          }}>
+            Logout
+          </Menu.Item>
+            )}
+            
       </Menu>
+      <LoginSignupBtn />
+
     </div>
   );
 };
