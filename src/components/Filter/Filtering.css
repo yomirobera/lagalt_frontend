@@ -91,41 +91,41 @@ strong{
   }
   
   .checkbox-item:nth-child(2)::after {
-    background-color: #F44336;
+    background-color: #a8e484;
     left: 80px;
   }
   
   .checkbox-item:nth-child(2):after:nth-child(2) {
-    background-color: #4CAF50;
+    background-color: #a8e484;
     left: 90px;
   }
   
   .checkbox-item:nth-child(2)::after:nth-child(3) {
-    background-color: #FFC107;
+    background-color: #a07ce4;
     left: 100px;
   }
   
   .checkbox-item:nth-child(2)::after:nth-child(4) {
-    background-color: #9C27B0;
+    background-color: #f8ac74;
     left: 110px;
   }
   
   .checkbox-item:nth-child(3)::after {
-    background-color: #4CAF50;
+    background-color: #a8e484;
     left: 70px;
   }
   
   .checkbox-item:nth-child(4)::after {
-    background-color: #FFC107;
+    background-color: #a07ce4;
     left: 60px;
   }
   
   .checkbox-item:nth-child(5)::after {
-    background-color: #9C27B0;
+    background-color: #f8ac74;
     left: 100px;
   }
   
   .checkbox-item:nth-child(6)::after {
-    background-color: #27b0b0;
+    background-color: #e87c7c;
     left: 100px;
   }
