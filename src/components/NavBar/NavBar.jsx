@@ -27,12 +27,12 @@ const NavBar = () => {
           src={logo}
           alt="Logo"
           className="logo"
-          style={{ width: "20%", height: "4%", cursor: "pointer" }}
+          style={{ width: "80%", height: "5%", cursor: "pointer" }}
           onClick={() => navigate("/")}
         />
-        <h2>
+       {/*  <h2>
           <span className="logoText">L</span>agalt
-        </h2>
+        </h2> */}
       </div>
       <SearchBar />
       <Menu mode="horizontal" className="navMenu" theme="light">
