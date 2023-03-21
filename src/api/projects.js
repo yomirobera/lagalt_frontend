@@ -34,7 +34,7 @@ const getProjects = async () => {
   const updateProject = async (projectId, updatedProject) => {
     try {
       const response = await fetch(`${API_URL}/${projectId}`, {
-        method: "PATCH",
+        method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },

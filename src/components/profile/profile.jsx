@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback } from 'react';
-import { getUser } from '../../api/user';
+
 import withAuth from '../../hoc/withAuth';
 import keycloak from '../keycloak/keycloak';
 import { apiUrl } from '../../api/user';
@@ -25,8 +25,7 @@ const Profile = () => {
       const fetchedUser = await response.json();
       setUser(fetchedUser);
     } catch (error) {
-      console.error(error);
-      console.log("FAIL")
+     
       // Handle error
     }
   }, [keycloak]);
@@ -43,6 +42,7 @@ const Profile = () => {
           <p>First Name: {user.f_name}</p>
           <p>Last Name: {user.l_name}</p>
           <p>Description: {user.description}</p>
+          <p>KEYCLOAK: {keycloak.token}</p>
         </div>
       ) : (
         <p>Loading...</p>
