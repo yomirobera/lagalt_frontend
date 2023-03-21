@@ -3,7 +3,6 @@ import { Card, Col, Row,Tag,Button } from 'antd';
 import './projectList.css'
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { API_URL } from '../../api/projects';
 import { fetchProjectList } from '../../redux/actions'
 import keycloak from '../keycloak/keycloak';
 import musicImg from "../../assets/img/musicImg.png";

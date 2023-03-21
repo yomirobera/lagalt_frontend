@@ -9,6 +9,7 @@ import NavBar from './components/NavBar/NavBar';
 import Filtering from './components/Filter/Filtering';
 import ProjectList from './components/projectList/ProjectList';
 import EditProjectView from './Views/EditProjectView';
+import ProjectView from './Views/ProjectView';
 
 
 
@@ -22,6 +23,7 @@ function App() {
               <Route path="/" element={ <LandingView />}/>
               <Route path="/CreateProject" element={ <CreateprojectView />}/>
               <Route path="/EditProject" element={ <EditProjectView />}/>
+              <Route path="/YourProject" element={ <ProjectView />}/>
               <Route path="/profile" element={ <ProfileView />}/>
             </Routes> }
         </div>

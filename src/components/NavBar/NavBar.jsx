@@ -14,6 +14,7 @@ import keycloak from "../keycloak/keycloak";
 // Components
 import SearchBar from "../Search/SearchBar";
 import LoginSignupBtn from "../Buttons/LoginSignupBtn";
+import { addUsers } from "../../api/user";
 
 const { SubMenu } = Menu;
 
@@ -44,7 +45,7 @@ const NavBar = () => {
         {keycloak.authenticated && (
           <SubMenu key="SubMenu" icon={<UserOutlined />} title="Profile">
             <Menu.Item key="profile" icon={<UserOutlined />}>
-              <NavLink to="/Profile">Profile</NavLink>
+              <NavLink to="/Profile" onClick={addUsers()}>Profile</NavLink>
             </Menu.Item>
 
             <Menu.Item key="create" icon={<PlusOutlined />}>

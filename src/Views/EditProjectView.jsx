@@ -1,9 +1,10 @@
-import EditProject from "../components/editProject/EditProject"
+import YourProjects from "../components/editProject/YourProjects"
+
 
 const EditProjectView = () => {
     return (
         <>
-        <EditProject/>
+        <YourProjects/>
         </>
     )
         
