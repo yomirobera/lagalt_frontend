@@ -37,7 +37,7 @@ const Profile = () => {
   return (
     <div>
       {user ? (
-        <div>
+        <div style={{padding:'100px'}}>
           <h2>Logged-in User Information</h2>
           <p>First Name: {user.f_name}</p>
           <p>Last Name: {user.l_name}</p>
