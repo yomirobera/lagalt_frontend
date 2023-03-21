@@ -14,7 +14,7 @@
     justify-items: center;
 }
 
-.music{
+.musikk{
     background-color: #a8e484;
     
 }
@@ -93,7 +93,7 @@
     text-decoration: underline;
 }
 
-.music#musicIcon{
+.musikk#musicIcon{
     position: relative;
     display: inline-block;
     top:5px;
@@ -153,7 +153,7 @@
     box-shadow: 0px 2px 2px 1px #aaaa;
 }
 
-.ant-col.music.ant-col-xs-24.ant-col-sm-12.ant-col-md-14.ant-col-lg-14.css-dev-only-do-not-override-ph9edi{
+.ant-col.musikk.ant-col-xs-24.ant-col-sm-12.ant-col-md-14.ant-col-lg-14.css-dev-only-do-not-override-ph9edi{
     background-color: #ffff;
     max-height: 100%;               
     max-width: 100%;
