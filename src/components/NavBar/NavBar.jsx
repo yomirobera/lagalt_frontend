@@ -19,14 +19,33 @@ import { addUsers, getUser } from "../../api/user";
 const { SubMenu } = Menu;
 
 const NavBar = () => {
-  const navigate = useNavigate();
+    const navigate = useNavigate();
+    // Using the `then` method
+    if(keycloak.authenticated){
+
+      getUser(keycloak.tokenParsed.sub)
+      .then(result => {
+        if (!result) {
+          console.log("POST")
+          addUsers();
+        } else {
+          // do nothing
+          console.log("DONT")
+        }
+      })
+      .catch(error => {
+        console.error(error);
+      });
+    }
 
 
-  if (keycloak.authenticated && !(getUser(keycloak.tokenParsed.sub))) {
-     addUsers();
-  } else {
-    // do nothing
-  }
+  // if (keycloak.authenticated && !(getUser(keycloak.tokenParsed.sub))) {
+  //   console.log("POST")
+  //   addUsers();
+  // } else {
+  //   // do nothing
+  //   console.log("DONT")
+  // }
 
 
 
