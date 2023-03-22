@@ -6,11 +6,20 @@ export const setSearchQuery = (query) => ({
     payload: query,
 });
     
-export const applyFilter = (filter) => ({
+export const applyFilters = (filters) =>({
+      type: 'APPLY_FILTERS',
+      payload: filters,
+});
+
+export const removeFilter = (filter) =>({
+    type: 'REMOVE_FILTERS',
+    payload: filter,
+});
+/* export const applyFilter = (filter) => ({
     type: 'APPLY_FILTER',
     payload: filter,
 });
-
+ */
 export const fetchProjectList = () => {
     return (dispatch, getState) => {
         fetch(API_URL) // make a GET request to the API
