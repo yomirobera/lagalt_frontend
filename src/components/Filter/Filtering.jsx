@@ -8,14 +8,10 @@ import { fetchProjectList } from '../../redux/actions'
 
 const Filtering = () => {
   const dispatch = useDispatch();
-  const [filter, setFilter] = React.useState({});
+  //const [filter, setFilter] = React.useState({});
   const selectedFilters = useSelector(state => state.projects.selectedFilters);
   const filterSelectedproject = (value) => {
-    const updatedFilters = { ...filter };
-    updatedFilters[value] = !updatedFilters[value];
-    setFilter(updatedFilters);
-
-    if (!updatedFilters[value]) {
+    if (!selectedFilters.includes(value)) {
       dispatch(selectFilter(value));
     } else {
       dispatch(deselectFilter(value));
@@ -34,11 +30,11 @@ const Filtering = () => {
       <Checkbox className='checkbox-item' /* checked={selectedFilters.includes(value)} */ onClick={fetchAllProjects}>
         <span>Vis populære</span>
       </Checkbox>
-      <Checkbox className='checkbox-item' value='MUSIC' checked={selectedFilters.includes('MUSIC')}  onClick={() => filterSelectedproject('MUSIC')}>
+      <Checkbox className='checkbox-item' value='Musikk' checked={selectedFilters.includes('Musikk')}  onClick={() => filterSelectedproject('Musikk')}>
         <span>Musikk</span>
         <Icon icon="ph:music-notes-fill" className="catagory-icon" />
       </Checkbox>
-      <Checkbox className='checkbox-item' value='FILM' checked={selectedFilters.includes('FILM')}  onClick={() => filterSelectedproject('FILM')}>
+      <Checkbox className='checkbox-item' value='Film' checked={selectedFilters.includes('Film')}  onClick={() => filterSelectedproject('Film')}>
         <span>Film</span>
         <Icon icon="icon-park:film" className="catagory-icon" />
       </Checkbox>

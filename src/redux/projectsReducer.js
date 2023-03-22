@@ -14,46 +14,59 @@ export const projectSlice = createSlice({
     fetchProjects: (state, action) => {
         state.isSearching = false
         state.data = action.payload
+        console.log(state.data);
     },
     searchProjects: (state, action) => {
         const currentProjects  = state.data;
         state.data = currentProjects.filter((project) => project.title.includes(action.payload));
     },
 
-  /*   selectFilter: (state, action) => {
+    selectFilter: (state, action) => {
       state.selectedFilters.push(action.payload);
       const allProjects = state.data;
       state.data = allProjects.filter((project) => { return state.selectedFilters.includes(project.category )});
-    }, */
+    }, 
 
-    selectFilter: (state, action) => {
+   /*  selectFilter: (state, action) => {
       const updatedSelectedFilters = [...state.selectedFilters, action.payload];
       const allProjects = state.data;
-      const updatedProjects = allProjects.filter(project => updatedSelectedFilters.includes(project.category));
-    
+      state.data = allProjects.filter((project) => {
+         {return updatedSelectedFilters.includes(project.category)) {
+            return true;  
+          }
+            return false;
+        }
+        ));
+        //state.data = updatedProjects;
+    console.log(updatedProjects);
+    console.log(allProjects);
+    console.log(state.data)
       return {
         ...state,
         selectedFilters: updatedSelectedFilters,
-        data: updatedProjects,
+        data: updatedProjects,        
       };
-    },
-    deselectFilter: (state, action) => {
+    }, */
+   /*  deselectFilter: (state, action) => {
       const updatedSelectedFilters = state.selectedFilters.filter(value => value !== action.payload);
       const allProjects = state.data;
       const updatedProjects = allProjects.filter(project => updatedSelectedFilters.includes(project.category));
-    
+      console.log(updatedProjects);
+      console.log(allProjects);
+      console.log(state.data)
       return {
         ...state,
         selectedFilters: updatedSelectedFilters,
         data: updatedProjects,
       };
     }
-
-   /*  deselectFilter: (state, action) => {
+ */
+   deselectFilter: (state, action) => {
       state.selectedFilters = state.selectedFilters.filter(value => value !== action.payload);
       const allProjects = state.data;
       state.data = allProjects.filter((project) => { return state.selectedFilters.includes(project.category )});
-    } */
+    } 
+    
    /*  filterProjects: (state, action) => {
         const allProjects = state.data;
         state.data = allProjects.filter((project) => project.category === action.payload);
