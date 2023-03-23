@@ -6,9 +6,19 @@ export const setSearchQuery = (query) => ({
     payload: query,
 });
     
-export const applyFilter = (filter) => ({
-    type: 'APPLY_FILTER',
+export const applyFilters = (filters) =>({
+      type: 'APPLY_FILTERS',
+      payload: filters,
+});
+
+export const removeFilter = (filter) =>({
+    type: 'REMOVE_FILTER',
     payload: filter,
+});
+
+export const clearallFilter = (clear) => ({
+    type: 'CLEARALL_FILTER',
+    payload: clear,
 });
 
 export const fetchProjectList = () => {

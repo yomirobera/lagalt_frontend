@@ -71,11 +71,11 @@ strong{
 }
 
 .checkbox-item {
+    position: relative;
     display: flex;
     align-items: center;
     margin-bottom: 12px;
-    position: relative;
-  }
+   }
   
   .checkbox-item::after {
     content: '';
@@ -128,4 +128,9 @@ strong{
   .checkbox-item:nth-child(6)::after {
     background-color: #e87c7c;
     left: 100px;
+  }
+
+
+  .ant-checkbox-wrapper.checkbox-item.css-dev-only-do-not-override-ph9edi {
+    margin-inline-start: 0px;
   }
