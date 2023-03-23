@@ -1,12 +1,3 @@
-
-import './App.css';
-
-import {BrowserRouter,Routes,Route} from 'react-router-dom';
-import LandingView from './Views/LandingView';
-import CreateprojectView from './Views/CreateprojectView';
-import ProfileView from './Views/ProfileView';
-import NavBar from './components/NavBar/NavBar';
-import Filtering from './components/Filter/Filtering';
 import ProjectList from './components/projectList/ProjectList';
 import EditProjectView from './Views/EditProjectView';
 import ProjectView from './Views/ProjectView';
@@ -33,9 +24,7 @@ function App() {
             </Routes> }
         </div>
     </BrowserRouter>
-    
-  );
+      );
   
-}
-
-export default App;
+    }
+    export default App;
