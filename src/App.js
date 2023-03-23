@@ -10,6 +10,7 @@ import Filtering from './components/Filter/Filtering';
 import ProjectList from './components/projectList/ProjectList';
 import EditProjectView from './Views/EditProjectView';
 import ProjectView from './Views/ProjectView';
+import JoinProjectView from './Views/JoinProjectView';
 
 
 
@@ -25,6 +26,7 @@ function App() {
               <Route path="/EditProject" element={ <EditProjectView />}/>
               <Route path="/YourProject" element={ <ProjectView />}/>
               <Route path="/profile" element={ <ProfileView />}/>
+              <Route path="/join-project/:id" element={ <JoinProjectView />}/>
             </Routes> }
         </div>
     </BrowserRouter>

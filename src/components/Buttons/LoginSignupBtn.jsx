@@ -1,5 +1,4 @@
 import { Button,Space,AudioOutlined } from "antd";
-import { LoginOutlined, UserAddOutlined } from "@ant-design/icons";
 import keycloak from "../keycloak/keycloak";
 
 /* const suffix = (
