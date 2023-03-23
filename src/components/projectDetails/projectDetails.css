@@ -1,6 +1,10 @@
-.detailsCard .ant-card {
+.detailsCard {
     width: 100%;
     height: 570px;
+}
+.detailsCard .ant-card {
+    width: 100%;
+    height: 100%;
     overflow-x: hidden;
    }
 .detailsCard .ant-card .ant-card-body {
@@ -86,9 +90,51 @@
        font-family: 'Times New Roman', Times, serif;
        color: black;
      }
+.detailsCard .projMedlemer li:first-child {
+        font-size: 12px;
+        font-weight: bold;
+        font-family: 'Times New Roman', Times, serif;
+        color: black;
+        list-style-type: none;
+      }
+.detailsCard .projMedlemer li:not(:first-child) {
+    position: relative;
+    top:0px;
+    bottom:22px;
+    font-size: 12px;
+    font-weight:bold;
+    font-family: 'Times New Roman', Times, serif;
+    color: red;
+    list-style-type: none;
+    text-decoration: underline;
+}
+
+.detailsCard .projMedlemer li a {
+    position: relative;
+    top:0px;
+    bottom:22px;
+    font-size: 12px;
+    font-weight:bold;
+    font-family: 'Times New Roman', Times, serif;
+    color: red;
+    text-decoration: underline;
+}
+
+.detailsCard .porjOwner{
+    position: relative;
+    left:0px;
+    top:0px;
+    bottom:18px;
+    border: none;
+    font-size: 12px;
+    font-weight:bold;
+    font-family: 'Times New Roman', Times, serif;
+    color: black;
+}
 
 .detailsCard .card-loginLink{
        position: relative;
+       top:20px;
        bottom: 10px;
    }
 .detailsCard .card-loginLink a{

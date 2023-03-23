@@ -47,6 +47,17 @@ console.log(project);
                         <Tag className='skills' style={{ borderRadius: 20, margin: '5px' }}>{skill}</Tag>
                     ))}
                 </div>
+                <div className='projMembers'>
+                    <span className='porjOwner'><strong>Prosjekt eier : </strong><a href={`https://example.com/search?q=${id}`}>{project.owner}</a></span>
+{/*this is for members*/}<ul className='projMedlemer'>
+                           <li><strong>Prosjekt medlemer : </strong></li>
+                           {project.skillsRequired.map(skill => (
+                             <li key={skill}>
+                               <a href={`https://example.com/search?q=${skill}`}>{skill}</a>
+                             </li>
+                            ))}
+                        </ul>
+                </div>
                 <div className='card-loginLink'>
                     <p><strong>Vil du bli på dette prosjektet? </strong>
                     <a href="#" onClick={() => keycloak.login()}>Logg inn, </a>eller 
