@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Form, Input, Button, Select } from 'antd';
+import { Form, Input, Button, Select, Tag } from 'antd';
 import withAuth from '../../hoc/withAuth';
 import { updateProject } from '../../api/projects';
 
@@ -9,10 +9,17 @@ const EditProject = ({ project }) => {  // Component function taking in project 
   const [title, setTitle] = useState(project.title);  
   const [description, setDescription] = useState(project.description);  
   const [category, setCategory] = useState(project.category);  
-  const [imageUrl, setImageUrl] = useState(project.imageUrl);  
+  const [img_url, setImg_url] = useState(project.img_url);
+  const [status, setStatus] = useState(project.status);
+  const [tags, setTags] = useState (project.tags);
+  const [skillsRequired, setSkillsRequired] = useState (project.skillsRequired);
 
   const handleTitleChange = (event) => {  // Handler function for title change
     setTitle(event.target.value);  // Update title state value
+  };
+
+  const handleStatusChange = (value) => {  // Handler function for status change
+    setStatus(value);  // Update status state value
   };
 
   const handleDescriptionChange = (event) => {  // Handler function for description change
@@ -23,45 +30,66 @@ const EditProject = ({ project }) => {  // Component function taking in project 
     setCategory(value);  // Update category state value
   };
 
-  const handleImageChange = (event) => {  // Handler function for image change
-    const file = event.target.files[0];  
-    const reader = new FileReader(); 
-    reader.onload = (event) => { 
-      setImageUrl(event.target.result);  // Update imageUrl state value with image data URL
-    };
-    reader.readAsDataURL(file);  // Read file as data URL
+  const handleImageChange = (event) => {
+    if (event.target.files && event.target.files[0]) { // Check if files are present
+      const reader = new FileReader();
+      reader.onload = () => {
+        setImg_url(reader.result); // Set the state to the selected file
+      };
+      reader.readAsDataURL(event.target.files[0]); // Read the selected file as a data URL
+    } else {
+      setImg_url(null); // If no file is selected, set the state to null
+    }
   };
 
   const handleSubmit = async (event) => {  // Handler function for form submission
-    event.preventDefault();  // Prevent default form submission behavior
-    console.log("Submitting form..")
+    console.log("Submitting form..")   
+    alert(`img_url ${img_url}`);
+    alert(`skillsRequired ${skillsRequired}`);
 
     const updatedProject = {  // Create updated project object with new values
       ...project,  
       title,  
       description,  
-      category,  
-      imageUrl,  
+      category,
+      status,  
+      img_url,
+      tags,
+      skillsRequired
     };
+
+    console.log(updatedProject);
   
     try {
       const response = await updateProject(project.id, updatedProject);  // Call API function to update project
       console.log("Project updated YAY!")
+      alert("Project updated YAY!");
       // Handle successful response
     } catch (error) {
+      alert(error);
       console.error("Error:", error);  // Log error message to console
     }
   };
 
   return (
-    <Form onSubmit={handleSubmit} initialValues={{title: project.title, description: project.description, category: project.category}}>
-      <Form.Item label="Title" name="title" rules={[{ required: true, message: 'Please input the title of the project!' }]}>
+    <Form onFinish={handleSubmit} initialValues={{title: project.title, status: project.status, description: project.description, category: project.category}}>
+      <Form.Item label="Navn på prosjektet" name="title" rules={[{ required: true, message: 'Please input the title of the project!' }]}>
         <Input onChange={handleTitleChange} />
       </Form.Item>
-      <Form.Item label="Description" name="description" rules={[{ required: true, message: 'Please input the description of the project!' }]}>
+
+      <Form.Item label="Progresjon" name="status">
+        <Select onChange={handleStatusChange}>
+          <Option value="Ikke påbegynt">Ikke påbegynt</Option>
+          <Option value="I startfasen">I startfasen</Option>
+          <Option value="Underveis">Underveis</Option>
+          <Option value="I avslutningsfasen">I avslutningsfasen</Option>
+        </Select>
+      </Form.Item>
+
+      <Form.Item label="Beskrivelse" name="description" rules={[{ required: true, message: 'Please input the description of the project!' }]}>
         <Input.TextArea onChange={handleDescriptionChange} />
       </Form.Item>
-      <Form.Item label="Creative field" name="category" rules={[{ required: true, message: 'Please select the creative field!' }]}>
+      <Form.Item label="Kategori" name="category" rules={[{ required: true, message: 'Please select the creative field!' }]}>
         <Select onChange={handleCategoryChange}>
           <Option value="Musikk">Musikk</Option>
           <Option value="Film">Film</Option>
@@ -70,9 +98,46 @@ const EditProject = ({ project }) => {  // Component function taking in project 
         </Select>
       </Form.Item>
       <Form.Item label="Image" name="image">
-        {imageUrl && <img src={imageUrl} alt="Project" />}
+        
         <input type="file" accept="image/*" onChange={handleImageChange} />
       </Form.Item>
+
+      <Form.Item
+        label="Legg til eller fjern ferdigheter som er ønsket i prosjektet"
+        name="skills"
+        >
+        <Input
+          placeholder="Endre ferdigheter (atskilt med komma)"
+          value={skillsRequired.join(",")}
+          onChange={(e) => setSkillsRequired(e.target.value.split(",").map(tag => tag.trim()))}
+        />
+        {skillsRequired.map((tag, index) => (
+          <Tag key={index} closable onClose={() => {
+            const newTags = [...skillsRequired];
+            newTags.splice(index, 1);
+            setSkillsRequired(newTags);
+          }}>{tag}</Tag>
+        ))}
+      </Form.Item>
+
+      <Form.Item
+        label="Legg til eller fjern tags som beskriver prosjektet"
+        name="tags"
+        >
+        <Input
+          placeholder="Endre tags (atskilt med komma)"
+          value={tags.join(",")}
+          onChange={(e) => setTags(e.target.value.split(","))}
+        />
+        {tags.map((tag, index) => (
+          <Tag key={index} closable onClose={() => {
+            const newTags = [...tags];
+            newTags.splice(index, 1);
+            setTags(newTags);
+          }}>{tag}</Tag>
+        ))}
+      </Form.Item>
+
       <Form.Item>
         <Button type="primary" htmlType="submit">Save</Button>
       </Form.Item>
