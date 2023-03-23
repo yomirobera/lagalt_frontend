@@ -33,8 +33,7 @@ const addUsers = async () => {
         
       }),
     });
-    const data = await response.json();
-    return data;
+    return response;
   } catch (error) {
     console.log(error)
     throw new Error(`Error adding project: ${error.message}`);

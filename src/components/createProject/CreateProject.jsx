@@ -4,6 +4,7 @@ import { Form, Input, Button, Select, Tag } from 'antd';
 import withAuth from '../../hoc/withAuth';
 import { addProject } from '../../api/projects';
 import './CreateProject.css'
+import keycloak from '../keycloak/keycloak';
 
 const { Option } = Select;
 
@@ -34,13 +35,13 @@ const CreateProject = () => {
     try {
       await addProject({ //gets addproject function from the api with project data
         ...values,
-        owner: 1, // replace with actual owner ID
+        owner: keycloak.tokenParsed.sub, // replace with actual owner ID
         img_url: img_url,
         tags: tags,
         status: status
         
       });
-      form.resetFields(); //Reset the form fields
+      form.resetFields(); //Reset the form fields 
       alert(`Project added successfully. Image: ${img_url}`);
     } catch (error) {
       console.error(error); //Logs any errors to the console

@@ -3,12 +3,14 @@ import withAuth from '../../hoc/withAuth';
 import keycloak from '../keycloak/keycloak';
 import { apiUrl } from '../../api/user';
 import './Profile.css';
+import { Form, Input, Tag } from 'antd';
 
 const Profile = () => {
   const [user, setUser] = useState(null);
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [description, setDescription] = useState('');
+  const [skills, setSkills] = useState([]);
   
   const fetchUser = useCallback(async () => {
     try {
@@ -106,6 +108,25 @@ const Profile = () => {
           <textarea name="description" value={description} onChange={handleInputChange} />
         </label>
         <br />
+
+        <Form.Item
+        label="Legg til eller fjern ferdigheter som er ønsket i prosjektet"
+        name="skills"
+        >
+        <Input
+          placeholder="Endre ferdigheter (atskilt med komma)"
+          value={skills.join(",")}
+          onChange={(e) => setSkills(e.target.value.split(",").map(tag => tag.trim()))}
+        />
+        {skills.map((tag, index) => (
+          <Tag key={index} closable onClose={() => {
+            const newTags = [...skills];
+            newTags.splice(index, 1);
+            setSkills(newTags);
+          }}>{tag}</Tag>
+        ))}
+      </Form.Item>
+
         <label class="checkbox-label">
           <input type="checkbox" name="hidden" required />
           <span class="checkbox-text">

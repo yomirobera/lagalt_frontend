@@ -4,6 +4,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchProjectList } from '../../redux/actions';
 import withAuth from '../../hoc/withAuth';
 import EditProject from './EditProject';
+import keycloak from '../keycloak/keycloak';
+import { Link } from 'react-router-dom';
+import JoinProject from './ViewProject';
 
 //The number of projects to display per page
 const PAGE_SIZE = 4;
@@ -30,7 +33,7 @@ const YourProjects = () => {
   };
 
   // calculate the start and end indexes of the projects to display based on the current page and page size
-  const startIndex = (currentPage - 1) * PAGE_SIZE;
+  const startIndex = (currentPage ) * PAGE_SIZE;
   const endIndex = startIndex + PAGE_SIZE;
   // slice the data array to get only the projects to display on the current page
   const pageData = data.slice(startIndex, endIndex);
@@ -41,7 +44,7 @@ const YourProjects = () => {
         <h2>Endre eksisterende project</h2>
         <h3>Prosjektene dine</h3>
        
-        {pageData.map((project) => (
+        {pageData.filter((project) => project.owner === keycloak.tokenParsed.sub).map((project) => (
           <Card key={project.id} style={{ marginBottom: 10 }} onClick={() => handleCardClick(project)}>
             <h3 style={{cursor: 'pointer'}}>{project.title}</h3>
           </Card>
@@ -55,7 +58,12 @@ const YourProjects = () => {
           style={{ marginTop: 10 }}
         />
       </Col>
-      {selectedProject && <EditProject project={selectedProject} />}
+     
+      {selectedProject && (
+      <Link to={`/join-project/${selectedProject.id}`}>
+        <JoinProject project={selectedProject} />
+      </Link>
+    )}
     </Row>
   );
 };
