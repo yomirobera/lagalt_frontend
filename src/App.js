@@ -1,4 +1,9 @@
 import ProjectList from './components/projectList/ProjectList';
+import { BrowserRouter,Routes,Route} from 'react-router-dom';
+import NavBar from './components/NavBar/NavBar';
+import LandingView from './Views/LandingView';
+import CreateprojectView from './Views/CreateprojectView'
+import ProfileView from './Views/ProfileView'
 import EditProjectView from './Views/EditProjectView';
 import ProjectView from './Views/ProjectView';
 import ProjectDetails from './components/projectDetails/ProjectDetails';
