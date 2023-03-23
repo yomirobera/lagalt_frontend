@@ -33,7 +33,7 @@ const YourProjects = () => {
   };
 
   // calculate the start and end indexes of the projects to display based on the current page and page size
-  const startIndex = (currentPage ) * PAGE_SIZE;
+  const startIndex = (currentPage -1) * PAGE_SIZE;
   const endIndex = startIndex + PAGE_SIZE;
   // slice the data array to get only the projects to display on the current page
   const pageData = data.slice(startIndex, endIndex);
@@ -58,12 +58,7 @@ const YourProjects = () => {
           style={{ marginTop: 10 }}
         />
       </Col>
-     
-      {selectedProject && (
-      <Link to={`/join-project/${selectedProject.id}`}>
-        <JoinProject project={selectedProject} />
-      </Link>
-    )}
+      {selectedProject && <EditProject project={selectedProject} />}
     </Row>
   );
 };
