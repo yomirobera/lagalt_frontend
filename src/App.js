@@ -10,8 +10,12 @@ import Filtering from './components/Filter/Filtering';
 import ProjectList from './components/projectList/ProjectList';
 import EditProjectView from './Views/EditProjectView';
 import ProjectView from './Views/ProjectView';
+<<<<<<< HEAD
 import ProjectDetails from './components/projectDetails/ProjectDetails';
 import ProjectDetailsView from './Views/ProjectDetailsView';
+=======
+import JoinProjectView from './Views/JoinProjectView';
+>>>>>>> 022964b3e23efb4264a9e02fa56555c4525122fc
 
 
 
@@ -27,7 +31,11 @@ function App() {
               <Route path="/EditProject" element={ <EditProjectView />}/>
               <Route path="/YourProject" element={ <ProjectView />}/>
               <Route path="/profile" element={ <ProfileView />}/>
+<<<<<<< HEAD
               <Route path="/ProjectDetails/:id" element={<ProjectDetailsView />}/>
+=======
+              <Route path="/join-project/:id" element={ <JoinProjectView />}/>
+>>>>>>> 022964b3e23efb4264a9e02fa56555c4525122fc
             </Routes> }
         </div>
     </BrowserRouter>

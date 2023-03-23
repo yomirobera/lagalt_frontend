@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
-import { Form, Input, Button, Upload, Select } from 'antd';
+import { Form, Input, Button, Select, Tag } from 'antd';
 
 import withAuth from '../../hoc/withAuth';
 import { addProject } from '../../api/projects';
+import './CreateProject.css'
+import keycloak from '../keycloak/keycloak';
+
+const { Option } = Select;
 
 //Defining layout for the form components
 const layout = {
@@ -21,7 +25,9 @@ const CreateProject = () => {
     //UseState hook
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
-  const [imageUrl, setImageUrl] = useState(null);
+  const [img_url, setImg_url] = useState(null);
+  const [tags, setTags] = useState ([]);
+  const [status, setStatus] = useState (null);
 
   //Defining an async function 
   const onFinish = async (values) => {
@@ -29,12 +35,14 @@ const CreateProject = () => {
     try {
       await addProject({ //gets addproject function from the api with project data
         ...values,
-        status: 'done', // default status
-        owner: 1, // replace with actual owner ID
-        img_url: imageUrl
+        owner: keycloak.tokenParsed.sub, // replace with actual owner ID
+        img_url: img_url,
+        tags: tags,
+        status: status
+        
       });
-      form.resetFields(); //Reset the form fields
-      alert(`Project added successfully. Image: ${imageUrl}`);
+      form.resetFields(); //Reset the form fields 
+      alert(`Project added successfully. Image: ${img_url}`);
     } catch (error) {
       console.error(error); //Logs any errors to the console
       alert(`Error adding project: ${error.message}`);
@@ -50,15 +58,21 @@ const CreateProject = () => {
 
   //Defining a function for handling image changes when an image is uploaded
 
-  const handleImageChange = (info) => {
-    const reader = new FileReader(); // creates a new filereader instance
-    reader.onload = () => {
-      const base64Url = reader.result;
-      setImageUrl(base64Url);
-    };
-    reader.readAsDataURL(info.file.originFileObj); // reads the contents of the uploaded file as a binary data array
+  const handleImageChange = (event) => {
+    if (event.target.files && event.target.files[0]) { // Check if files are present
+      const reader = new FileReader();
+      reader.onload = () => {
+        setImg_url(reader.result); // Set the state to the selected file
+      };
+      reader.readAsDataURL(event.target.files[0]); // Read the selected file as a data URL
+    } else {
+      setImg_url(null); // If no file is selected, set the state to null
+    }
   };
-  
+
+  const handleStatusChange = (value) => {  // Handler function for status change
+    setStatus(value);  // Update status state value
+  };
 
   return (
     <Form
@@ -69,22 +83,44 @@ const CreateProject = () => {
       onFinishFailed={onFinishFailed}
     >
       <Form.Item
-        label="Title"
+        label="Navn på prosjektet"
         name="title"
-        rules={[{ required: true, message: 'Please input project title!' }]}
+        rules={[{ required: true, message: 'Skriv inn prosjekttittel!' }]}
       >
-        <Input />
+        <Input
+         placeholder="Utvikle plante-app"
+         />
       </Form.Item>
 
       <Form.Item
-        label="Description"
+        label="Beskrivelse av prosjektet"
         name="description"
-        rules={[{ required: true, message: 'Please input project description!' }]}
+        rules={[{ required: true, message: 'Vennligst skriv inn prosjektbeskrivelse!' }]}
       >
-        <Input.TextArea />
+        <Input.TextArea 
+        placeholder="Hva går prosjektet ut på? Hvem står bak prosjektet?"
+        />
       </Form.Item>
 
-      <Form.Item label="Creative field:" name="category">
+      <Form.Item
+        label="Legg til tags som beskriver prosjektet"
+        name="tags"
+        >
+        <Input
+          placeholder="Skriv inn ferdigheter atskilt med komma"
+          value={tags.join(",")}
+          onChange={(e) => setTags(e.target.value.split(","))}
+        />
+        {tags.map((tag, index) => (
+          <Tag key={index} closable onClose={() => {
+            const newTags = [...tags];
+            newTags.splice(index, 1);
+            setTags(newTags);
+          }}>{tag}</Tag>
+        ))}
+      </Form.Item>
+
+      <Form.Item label="Kreativt felt:" name="category">
         <Select>
           <Select.Option value="Musikk">Musikk</Select.Option>
           <Select.Option value="Film">Film</Select.Option>
@@ -93,27 +129,22 @@ const CreateProject = () => {
         </Select>
       </Form.Item>
 
+      <Form.Item label="Progresjon" name="status">
+        <Select onChange={handleStatusChange}>
+          <Option value="Ikke påbegynt">Ikke påbegynt</Option>
+          <Option value="I startfasen">I startfasen</Option>
+          <Option value="Underveis">Underveis</Option>
+          <Option value="I avslutningsfasen">I avslutningsfasen</Option>
+        </Select>
+      </Form.Item>
 
-      <Form.Item label="Image">
-        <Upload
-          name="avatar"
-          accept="image/*"
-          showUploadList={false}
-          onChange={handleImageChange}
-        >
-          {imageUrl ? (
-            <div style={{marginBottom: '16px'}}>
-                <img src={imageUrl} alt="avatar" style={{ width: '100%' }} />
-            </div>
-          ) : (
-            <Button>Upload</Button>
-          )}
-        </Upload>
+      <Form.Item label="Image" name="image">
+        <Input type="file" accept="image/*" onChange={handleImageChange} />
       </Form.Item>
 
       <Form.Item {...tailLayout}>
         <Button type="primary" htmlType="submit" loading={loading}>
-          Add Project
+          OPPRETT NYTT PROSJEKT
         </Button>
       </Form.Item>
     </Form>
