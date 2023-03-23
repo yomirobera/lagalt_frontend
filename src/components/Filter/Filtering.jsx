@@ -3,7 +3,7 @@ import { Checkbox } from 'antd';
 import { Icon } from '@iconify/react';
 import './Filtering.css';
 import { useDispatch,useSelector} from 'react-redux';
-import { filterProjects, selectFilter, deselectFilter } from '../../redux/projectsReducer';
+import { filterProjects, selectFilter, deselectFilter,clearFilter } from '../../redux/projectsReducer';
 import { fetchProjectList } from '../../redux/actions'
 
 const Filtering = () => {
@@ -21,13 +21,14 @@ const Filtering = () => {
   }
 
   const fetchAllProjects = () => {
+    dispatch(clearFilter());
     dispatch(fetchProjectList())
   }
   
   return (
     <div className='checkboxAside'>
       <h2>Filter</h2>
-      <Checkbox className='checkbox-item' /* checked={selectedFilters.includes(value)} */ onClick={fetchAllProjects}>
+      <Checkbox className='checkbox-item' checked={selectedFilters.length === 1 && selectedFilters.includes('')}  onClick={fetchAllProjects}>
         <span>Vis populære</span>
       </Checkbox>
       <Checkbox className='checkbox-item' value='Musikk' checked={selectedFilters.includes('Musikk')}  onClick={() => filterSelectedproject('Musikk')}>
@@ -50,8 +51,7 @@ const Filtering = () => {
       <p>lagAlt er den enkleste måten å finne folk til dine kreative prosjekter. 
        Det enste du trenger å gjøre for å komme i gang er å opprette et prosjekt med
        beskrivelse og ønskede ferdighter, så er søke-prosessen etter kreative og flinke folk igangsatt.<br/>
-      <strong>Tjenesten er gratis og uforpliktende!</strong> 
-       
+      <strong>Tjenesten er gratis og uforpliktende!</strong>       
        </p>
     </div>
   ); 

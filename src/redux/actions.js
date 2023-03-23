@@ -12,14 +12,15 @@ export const applyFilters = (filters) =>({
 });
 
 export const removeFilter = (filter) =>({
-    type: 'REMOVE_FILTERS',
+    type: 'REMOVE_FILTER',
     payload: filter,
 });
-/* export const applyFilter = (filter) => ({
-    type: 'APPLY_FILTER',
-    payload: filter,
+
+export const clearallFilter = (clear) => ({
+    type: 'CLEARALL_FILTER',
+    payload: clear,
 });
- */
+
 export const fetchProjectList = () => {
     return (dispatch, getState) => {
         fetch(API_URL) // make a GET request to the API
