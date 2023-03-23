@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { API_URL } from '../../api/projects';
 import { Card, Col, Row,Tag,Button} from 'antd';
-import './../projectList/projectList.css'
+import './projectDetails.css';
 import keycloak from '../keycloak/keycloak';
 import musicImg from "../../assets/img/musicImg.png";
 
@@ -23,7 +23,7 @@ const ProjectDetails = () => {
 console.log(project);
 
   return (
-    <div>
+    <div className='detailsCard'>
       { project && (
          <Card>
             <Row gutter={16} style={{marginLeft: '0px', marginRight: '0px', paddingLeft: '25px'}}>
@@ -31,7 +31,7 @@ console.log(project);
                     style={{ paddingLeft: '50px',paddingTop:'25px', paddingRight: '0px'}}
                 >
                 <h2 className='categoryText'>{project.category} <span id='musicIcon' className={project.category.replace(' ', '-').toLowerCase()}></span></h2>
-                <h3 className='projTitle'>{project.title}<span className='arrowIcon'></span></h3>
+                <h3 className='projTitle'>{project.title}</h3>
                 <div className='projTags'>
                     {project.skillsRequired.map(skill => (
                         <Tag className={project.category.replace(' ', '-').toLowerCase()} style={{ borderRadius: 20, margin: '5px', color:'white' }}>{skill}</Tag>
