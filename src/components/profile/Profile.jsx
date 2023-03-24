@@ -5,7 +5,6 @@ import { apiUrl } from '../../api/user';
 import './Profile.css';
 import { Form, Input, Tag } from 'antd';
 import { createSkill } from '../../api/skill';
-import { createSkill } from '../../api/skill';
 
 const Profile = () => {
   const [user, setUser] = useState(null);

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import React, { useState, useEffect } from 'react';
 import { Form, Input, Button, Select, Tag } from 'antd';
 import withAuth from '../../hoc/withAuth';
 import { updateProject } from '../../api/projects';
