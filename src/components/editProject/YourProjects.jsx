@@ -78,8 +78,7 @@ const YourProjects = () => {
           style={{ marginTop: 100 }}
         />
       </Col>
-      {selectedProject && routeChange(`/EditProject/${selectedProject.id}`)}
-
+      {selectedProject && routeChange(`/ProjectAdmin/${selectedProject.id}`)}
     </Row>
   );
 };
