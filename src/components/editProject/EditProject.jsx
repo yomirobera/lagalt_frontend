@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { Form, Input, Button, Select, Tag } from 'antd';
 import withAuth from '../../hoc/withAuth';
 import { updateProject } from '../../api/projects';
-import { useLocation, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { API_URL } from '../../api/projects';
 import '../../css/editProject.css';
 
 
 const { Option } = Select;
 const EditProject = () => {  // Component function taking in project as prop
+  const navigate = useNavigate();
   // const location = useLocation();   
   const { projectId } = useParams()
   // let project = state;
@@ -26,7 +27,8 @@ const EditProject = () => {  // Component function taking in project as prop
       // Make an API call to get the project data
       fetch(`${API_URL}/${projectId}`)
         .then(response => response.json())
-        .then(data => setProject(data))
+        .then(data => {console.log("PENGER",data);
+        setProject(data)})
         .catch(error => console.log("ERROR: ",error));
     }, []);
 
@@ -91,10 +93,12 @@ const EditProject = () => {  // Component function taking in project as prop
       <div id='form'>
 
         <Form onFinish={handleSubmit} initialValues={{title: project.title, status: project.status, description: project.description, category: project.category}}>
-          <Form.Item label="Navn på prosjektet" name="title" rules={[{ required: true, message: 'Please input the title of the project!' }]}>
+        <b>* Navn på prosjektet</b>
+          <Form.Item name="title" rules={[{ required: true, message: 'Please input the title of the project!' }]}>
             <Input onChange={handleTitleChange} />
           </Form.Item>
-          <Form.Item label="Progresjon" name="status">
+          <b>Progresjon</b>
+          <Form.Item  name="status">
             <Select onChange={handleStatusChange}>
               <Option value="Ikke påbegynt">Ikke påbegynt</Option>
               <Option value="I startfasen">I startfasen</Option>
@@ -102,10 +106,12 @@ const EditProject = () => {  // Component function taking in project as prop
               <Option value="I avslutningsfasen">I avslutningsfasen</Option>
             </Select>
           </Form.Item>
-          <Form.Item label="Beskrivelse" name="description" rules={[{ required: true, message: 'Please input the description of the project!' }]}>
+          <b>* Beskrivelse</b>
+          <Form.Item name="description" rules={[{ required: true, message: 'Please input the description of the project!' }]}>
             <Input.TextArea onChange={handleDescriptionChange} />
           </Form.Item>
-          <Form.Item label="Kategori" name="category" rules={[{ required: true, message: 'Please select the creative field!' }]}>
+          <b>* Kategori</b>
+          <Form.Item  name="category" rules={[{ required: true, message: 'Please select the creative field!' }]}>
             <Select onChange={handleCategoryChange}>
               <Option value="Musikk">Musikk</Option>
               <Option value="Film">Film</Option>
@@ -116,27 +122,25 @@ const EditProject = () => {  // Component function taking in project as prop
           <Form.Item label="Image" name="image">
             <input type="file" accept="image/*" onChange={handleImageChange} />
           </Form.Item>
+          <b>Legg til- eller fjern ferdigheter som er ønsket i prosjektet</b>
           <Form.Item
-            label="Legg til eller fjern ferdigheter som er ønsket i prosjektet"
             name="skills"
             >
             <Input
               placeholder="Endre ferdigheter (atskilt med komma)"
               value={skillsRequired.join(",")}
               onChange={(e) => setSkillsRequired(e.target.value.split(",").map(tag => tag.trim()))}
-            />
+              />
             {skillsRequired.map((tag, index) => (
               <Tag key={index} closable onClose={() => {
                 const newTags = [...skillsRequired];
                 newTags.splice(index, 1);
                 setSkillsRequired(newTags);
               }}>{tag}</Tag>
-            ))}
+              ))}
           </Form.Item>
-          <Form.Item
-            label="Legg til eller fjern tags som beskriver prosjektet"
-            name="tags"
-            >
+          <b>Legg til- eller fjern tags som beskriver prosjektet</b>
+          <Form.Item name="tags">
             <Input
               placeholder="Endre tags (atskilt med komma)"
               value={tags.join(",")}
@@ -154,6 +158,7 @@ const EditProject = () => {  // Component function taking in project as prop
             <Button type="primary" htmlType="submit" style={{padding: "1px 20px"}}>Lagre endringer</Button>
           </Form.Item>
         </Form>
+          <Button onClick={()=>navigate(-2)} style={{left:"43%"}}>BACK</Button>
       </div>
     );
   }

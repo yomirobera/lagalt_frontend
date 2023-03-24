@@ -8,6 +8,7 @@ import { Link, Route, Routes } from 'react-router-dom';
 import LandingView from '../../Views/LandingView';
 import ProfileView from '../../Views/ProfileView';
 import { useNavigate } from "react-router-dom";
+import '../../css/yourProjects.css';
 
 
 
@@ -59,28 +60,33 @@ const YourProjects = () => {
     navigate(path);}
 
   return (
-    <Row justify="center" align="middle" style={{  marginTop: '70px' }}>
-      <Col xs={24} sm={16} md={12} lg={8}>
-        <h2>Endre eksisterende project</h2>
-        <h3>Prosjektene dine</h3>
-       
-        {pageData.filter((project) => project.owner === keycloak.tokenParsed.sub).map((project) => (
-          <Card key={project.id} style={{ marginBottom: 10 }} onClick={() => handleCardClick(project)}>
-            <h3 style={{cursor: 'pointer'}}>{project.title}</h3>
-          </Card>
-        ))}
+    <div id='yourProj'>
+      <Row>
+        <Col xs={24} sm={16} md={12} lg={8}>
+          <h3>Dine prosjekter</h3>
+        
+          {pageData.filter((project) => project.owner === keycloak.tokenParsed.sub).map((project) => (
+            <Card key={project.id} style={{ marginBottom: 10 }} onClick={() => handleCardClick(project)}>
+              <h3 style={{cursor: 'pointer'}}>{project.title}<span className="applicationNr" style={{marginLeft:"50%",color:"white"}}>{project.applications.length}</span></h3>
+            </Card>
+          ))}
+        
+          <Pagination
+            current={currentPage}
+            pageSize={PAGE_SIZE}
+            total={data.length}
+            onChange={handlePageChange}
+            style={{ marginTop: 100 }}
+          />
+        </Col>
       
-        <Pagination
-          current={currentPage}
-          pageSize={PAGE_SIZE}
-          total={data.length}
-          onChange={handlePageChange}
-          style={{ marginTop: 100 }}
-        />
-      </Col>
-      {selectedProject && routeChange(`/EditProject/${selectedProject.id}`)}
+        {/* <React.Fragment key={project.id}>
+                <Link to={`/ProjectDetails/${project.id}`}></Link> */}
+        {selectedProject && routeChange(`/EditProject/${selectedProject.id}`)}
 
-    </Row>
+      </Row>
+
+    </div>
   );
 };
 

@@ -1,0 +1,15 @@
+#yourProj{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 100%;
+}
+.applicationNr{
+    background-color: red;
+    width: 25px;
+    height: 25px;
+    display: block;
+    border-radius: 23px;
+    text-align: center;
+}
