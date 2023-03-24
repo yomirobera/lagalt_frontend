@@ -20,14 +20,14 @@ const tailLayout = {
 };
 
 //Creating the createproject functional component
-const CreateProject = () => {
+const CreateProject = (project) => {
 
     //UseState hook
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
   const [img_url, setImg_url] = useState(null);
   const [tags, setTags] = useState ([]);
-  const [status, setStatus] = useState (null);
+  const [skillsRequired, setSkillsRequired] = useState ([]);
 
   //Defining an async function 
   const onFinish = async (values) => {
@@ -38,8 +38,8 @@ const CreateProject = () => {
         owner: keycloak.tokenParsed.sub, // replace with actual owner ID
         img_url: img_url,
         tags: tags,
-        status: status
-        
+        status: "Ikke påbegynt",
+        skillsRequired: skillsRequired
       });
       form.resetFields(); //Reset the form fields 
       alert(`Project added successfully. Image: ${img_url}`);
@@ -68,10 +68,6 @@ const CreateProject = () => {
     } else {
       setImg_url(null); // If no file is selected, set the state to null
     }
-  };
-
-  const handleStatusChange = (value) => {  // Handler function for status change
-    setStatus(value);  // Update status state value
   };
 
   return (
@@ -103,11 +99,28 @@ const CreateProject = () => {
       </Form.Item>
 
       <Form.Item
-        label="Legg til tags som beskriver prosjektet"
+        label="Legg til eller fjern ferdigheter som er ønsket i prosjektet"
+        name="skills"
+        >
+        <Input
+          placeholder="Endre ferdigheter (atskilt med komma)"
+          value={skillsRequired.join(",")}
+          onChange={(e) => setSkillsRequired(e.target.value.split(",").map(tag => tag.trim()))}
+        />
+        {skillsRequired.map((tag, index) => (
+          <Tag key={index} closable onClose={() => {
+            const newTags = [...skillsRequired];
+            newTags.splice(index, 1);
+            setSkillsRequired(newTags);
+          }}>{tag}</Tag>
+        ))}
+      </Form.Item>
+      <Form.Item
+        label="Legg til eller fjern tags som beskriver prosjektet"
         name="tags"
         >
         <Input
-          placeholder="Skriv inn ferdigheter atskilt med komma"
+          placeholder="Endre tags (atskilt med komma)"
           value={tags.join(",")}
           onChange={(e) => setTags(e.target.value.split(","))}
         />
@@ -120,21 +133,12 @@ const CreateProject = () => {
         ))}
       </Form.Item>
 
-      <Form.Item label="Kreativt felt:" name="category">
+      <Form.Item label="Kategori:" name="category">
         <Select>
           <Select.Option value="Musikk">Musikk</Select.Option>
           <Select.Option value="Film">Film</Select.Option>
           <Select.Option value="Spillutvikling">Spillutvikling</Select.Option>
           <Select.Option value="Webutvikling">Webutvikling</Select.Option>
-        </Select>
-      </Form.Item>
-
-      <Form.Item label="Progresjon" name="status">
-        <Select onChange={handleStatusChange}>
-          <Option value="Ikke påbegynt">Ikke påbegynt</Option>
-          <Option value="I startfasen">I startfasen</Option>
-          <Option value="Underveis">Underveis</Option>
-          <Option value="I avslutningsfasen">I avslutningsfasen</Option>
         </Select>
       </Form.Item>
 

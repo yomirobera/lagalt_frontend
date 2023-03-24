@@ -23,7 +23,7 @@ function App() {
               <Route path="/CreateProject" element={ <CreateprojectView />}/>
               <Route path="/EditProject" element={ <EditProjectView />}/>
               <Route path="/YourProject" element={ <ProjectView />}/>
-              <Route path="/profile" element={ <ProfileView />}/>
+              <Route path="/profile" element={ <ProfileView/>}/>
               <Route path="/ProjectDetails/:id" element={<ProjectDetailsView />}/>
               <Route path="/join-project/:id" element={ <JoinProjectView />}/>
             </Routes> }
