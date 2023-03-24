@@ -1,4 +1,5 @@
-import ProjectDetails from "../components/projectDetails/ProjectDetails"
+import ProjectDetails from "../components/projectDetails/ProjectDetails";
+import ApplyToProject from "../components/Apply/ApplyToProject";
 
 const ProjectDetailsView = () => {
     return (
