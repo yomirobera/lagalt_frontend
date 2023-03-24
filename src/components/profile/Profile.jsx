@@ -4,6 +4,7 @@ import keycloak from '../keycloak/keycloak';
 import { apiUrl } from '../../api/user';
 import './Profile.css';
 import { Form, Input, Tag } from 'antd';
+import { createSkill } from '../../api/skill';
 
 const Profile = () => {
   const [user, setUser] = useState(null);
@@ -30,6 +31,7 @@ const Profile = () => {
       setFirstName(fetchedUser.f_name);
       setLastName(fetchedUser.l_name);
       setDescription(fetchedUser.description);
+      setSkills(fetchedUser.skills)
     } catch (error) {
       // Handle error
     }
@@ -61,6 +63,9 @@ const Profile = () => {
     console.log("desc: ",description)
     console.log(event.target.hidden.checked)
     try {
+      for await (const skill of skills) {
+        await createSkill(skill);
+      }
       const response = await fetch(`${apiUrl}/${keycloak.tokenParsed.sub}`, {
         method: 'PUT',
         headers: {
@@ -71,6 +76,7 @@ const Profile = () => {
           f_name: firstName,
           l_name: lastName,
           description: description,
+          skills: skills,
           hidden: event.target.hidden.checked
         })
       });
@@ -79,8 +85,8 @@ const Profile = () => {
         throw new Error(`Failed to update user. Status code: ${response.status}`);
       }
 
-      const updatedUser = await response.json();
-      setUser(updatedUser);
+      
+      setUser(response);
       alert('User updated successfully');
     } catch (error) {
       alert(`Failed to update user: ${error.message}`);
