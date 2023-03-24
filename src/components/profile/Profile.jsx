@@ -128,7 +128,7 @@ const Profile = () => {
       </Form.Item>
 
         <label class="checkbox-label">
-          <input type="checkbox" name="hidden" required />
+          <input type="checkbox" name="hidden" />
           <span class="checkbox-text">
             Jeg ønsker at ferdighetene mine skal holdes private, 
             og kun skal deles med prosjekteier hvis jeg søker om å delta på et prosjekt.
