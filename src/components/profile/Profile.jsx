@@ -52,7 +52,10 @@ const Profile = () => {
       setLastName(value);
     } else if (name === 'description') {
       setDescription(value);
+    } else if (name === 'skills') {
+      setSkills(value);
     }
+
   };
 
   const handleSubmit = async (event) => {

@@ -61,11 +61,13 @@ if (!project) {
                    <ApplyToProject projectId ={{id}}/>
                 </div>
                 
+                {!keycloak.authenticated && (
                 <div className='card-loginLink'>
                     <p><strong>Vil du bli på dette prosjektet? </strong>
                     <a href="#" onClick={() => keycloak.login()}>Logg inn, </a>eller 
                     <a href="#" onClick={() => keycloak.register()}> register bruker</a></p>
                 </div>
+                )}
                 </Col>
                 <Col xs={24} sm={12} md={10} lg={10} style={{paddingLeft: '0px',
                     paddingRight: '0px'}}>
