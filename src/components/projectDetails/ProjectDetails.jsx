@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link} from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { API_URL } from '../../api/projects';
 import { Card, Col, Row,Tag,Button} from 'antd';
@@ -18,9 +18,10 @@ const ProjectDetails = () => {
           .then(data => setProject(data))
           .catch(error => console.log(error));
       }, [id]);
-//const project = useSelector(state => state.projects.data.find(project => project.id === id));
-//find(project => project.id === id));
-console.log(project);
+
+if (!project) {
+    return <div>Loading...</div>;
+}
 
   return (
     <div className='detailsCard'>
@@ -48,12 +49,12 @@ console.log(project);
                     ))}
                 </div>
                 <div className='projMembers'>
-                    <span className='porjOwner'><strong>Prosjekt eier : </strong><a href={`https://example.com/search?q=${id}`}>{project.owner}</a></span>
+                    <span className='porjOwner'><strong>Prosjekt eier : </strong><Link to={`/UserProfile/${project.owner}`}>{project.owner}</Link></span>
 {/*this is for members*/}<ul className='projMedlemer'>
                            <li><strong>Prosjekt medlemer : </strong></li>
-                           {project.skillsRequired.map(skill => (
-                             <li key={skill}>
-                               <a href={`https://example.com/search?q=${skill}`}>{skill}</a>
+                           {project.members.map(member => (
+                             <li key={member}>
+                               <Link to={`/UserProfile/${member}`}>{member}</Link>
                              </li>
                             ))}
                         </ul>

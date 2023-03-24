@@ -9,6 +9,7 @@ import ProjectView from './Views/ProjectView';
 import ProjectDetails from './components/projectDetails/ProjectDetails';
 import ProjectDetailsView from './Views/ProjectDetailsView';
 import JoinProjectView from './Views/JoinProjectView';
+import UserProfileView from './Views/UserProfileView';
 
 
 
@@ -26,6 +27,7 @@ function App() {
               <Route path="/profile" element={ <ProfileView />}/>
               <Route path="/ProjectDetails/:id" element={<ProjectDetailsView />}/>
               <Route path="/join-project/:id" element={ <JoinProjectView />}/>
+              <Route path="/UserProfile/:id" element={<UserProfileView/>}/>
             </Routes> }
         </div>
     </BrowserRouter>
