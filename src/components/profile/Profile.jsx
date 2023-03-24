@@ -5,6 +5,7 @@ import { apiUrl } from '../../api/user';
 import './Profile.css';
 import { Form, Input, Tag } from 'antd';
 import { createSkill } from '../../api/skill';
+import { createSkill } from '../../api/skill';
 
 const Profile = () => {
   const [user, setUser] = useState(null);
@@ -52,7 +53,10 @@ const Profile = () => {
       setLastName(value);
     } else if (name === 'description') {
       setDescription(value);
+    } else if (name === 'skills') {
+      setSkills(value);
     }
+
   };
 
   const handleSubmit = async (event) => {
@@ -85,7 +89,7 @@ const Profile = () => {
         throw new Error(`Failed to update user. Status code: ${response.status}`);
       }
 
-      
+    
       setUser(response);
       alert('User updated successfully');
     } catch (error) {

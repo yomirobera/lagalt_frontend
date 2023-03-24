@@ -61,7 +61,6 @@ const YourProjects = () => {
   return (
     <Row justify="center" align="middle" style={{  marginTop: '70px' }}>
       <Col xs={24} sm={16} md={12} lg={8}>
-        <h2>Endre eksisterende project</h2>
         <h3>Prosjektene dine</h3>
        
         {pageData.filter((project) => project.owner === keycloak.tokenParsed.sub).map((project) => (

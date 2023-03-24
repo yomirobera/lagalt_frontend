@@ -1,9 +1,10 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link} from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { API_URL } from '../../api/projects';
 import { Card, Col, Row,Tag,Button} from 'antd';
 import './projectDetails.css';
+import ApplyToProject from '../../components/Apply/ApplyToProject'
 import keycloak from '../keycloak/keycloak';
 import musicImg from "../../assets/img/musicImg.png";
 
@@ -18,9 +19,10 @@ const ProjectDetails = () => {
           .then(data => setProject(data))
           .catch(error => console.log(error));
       }, [id]);
-//const project = useSelector(state => state.projects.data.find(project => project.id === id));
-//find(project => project.id === id));
-console.log(project);
+
+if (!project) {
+    return <div>Loading...</div>;
+}
 
   return (
     <div className='detailsCard'>
@@ -37,32 +39,35 @@ console.log(project);
                         <Tag className={project.category.replace(' ', '-').toLowerCase()} style={{ borderRadius: 20, margin: '5px', color:'white' }}>{skill}</Tag>
                     ))}
                 </div>
-                <p><strong>Beskrivelse av prosjektet: </strong>{project.description}
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut </p>
-                <p><strong>Ønskede ferdighter: </strong>{project.description}Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut </p>
+                <p><strong>Beskrivelse av prosjektet: </strong>{project.description}</p>
+                <p><strong>Ønskede ferdighter: </strong>{project.description}</p>
                 <div className='reqSkills'>
                     {project.skillsRequired.map(skill => (
                         <Tag className='skills' style={{ borderRadius: 20, margin: '5px' }}>{skill}</Tag>
                     ))}
                 </div>
                 <div className='projMembers'>
-                    <span className='porjOwner'><strong>Prosjekt eier : </strong><a href={`https://example.com/search?q=${id}`}>{project.owner}</a></span>
+                    <span className='porjOwner'><strong>Prosjekt eier : </strong><Link to={`/UserProfile/${project.owner}`}>{project.owner}</Link></span>
 {/*this is for members*/}<ul className='projMedlemer'>
                            <li><strong>Prosjekt medlemer : </strong></li>
-                           {project.skillsRequired.map(skill => (
-                             <li key={skill}>
-                               <a href={`https://example.com/search?q=${skill}`}>{skill}</a>
+                           {project.members.map(member => (
+                             <li key={member}>
+                               <Link to={`/UserProfile/${member}`}>{member}</Link>
                              </li>
                             ))}
                         </ul>
                 </div>
+                <div className='applyForm'>
+                   <ApplyToProject projectId ={{id}}/>
+                </div>
+                
+                {!keycloak.authenticated && (
                 <div className='card-loginLink'>
                     <p><strong>Vil du bli på dette prosjektet? </strong>
                     <a href="#" onClick={() => keycloak.login()}>Logg inn, </a>eller 
                     <a href="#" onClick={() => keycloak.register()}> register bruker</a></p>
                 </div>
+                )}
                 </Col>
                 <Col xs={24} sm={12} md={10} lg={10} style={{paddingLeft: '0px',
                     paddingRight: '0px'}}>

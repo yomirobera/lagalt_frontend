@@ -72,8 +72,8 @@ const NavBar = () => {
         )}
         {keycloak.authenticated && (
           <SubMenu key="SubMenu" icon={<UserOutlined />} title="Profile">
-            <Menu.Item key="profile" icon={<UserOutlined />}>
-              <NavLink to="/Profile">Profile</NavLink>
+            <Menu.Item key="YourProfile" icon={<UserOutlined />}>
+              <NavLink to="/YourProfile">Profile</NavLink>
             </Menu.Item>
 
             <Menu.Item key="create" icon={<PlusOutlined />}>
