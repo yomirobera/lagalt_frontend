@@ -4,7 +4,7 @@ import withAuth from '../../hoc/withAuth';
 import { updateProject } from '../../api/projects';
 import { useLocation, useParams } from "react-router-dom";
 import { API_URL } from '../../api/projects';
-
+import '../../css/editProject.css';
 
 
 const { Option } = Select;
@@ -88,70 +88,73 @@ const EditProject = () => {  // Component function taking in project as prop
       }
     };
     return (
-      <Form onFinish={handleSubmit} initialValues={{title: project.title, status: project.status, description: project.description, category: project.category}}>
-        <Form.Item label="Navn på prosjektet" name="title" rules={[{ required: true, message: 'Please input the title of the project!' }]}>
-          <Input onChange={handleTitleChange} />
-        </Form.Item>
-        <Form.Item label="Progresjon" name="status">
-          <Select onChange={handleStatusChange}>
-            <Option value="Ikke påbegynt">Ikke påbegynt</Option>
-            <Option value="I startfasen">I startfasen</Option>
-            <Option value="Underveis">Underveis</Option>
-            <Option value="I avslutningsfasen">I avslutningsfasen</Option>
-          </Select>
-        </Form.Item>
-        <Form.Item label="Beskrivelse" name="description" rules={[{ required: true, message: 'Please input the description of the project!' }]}>
-          <Input.TextArea onChange={handleDescriptionChange} />
-        </Form.Item>
-        <Form.Item label="Kategori" name="category" rules={[{ required: true, message: 'Please select the creative field!' }]}>
-          <Select onChange={handleCategoryChange}>
-            <Option value="Musikk">Musikk</Option>
-            <Option value="Film">Film</Option>
-            <Option value="Spillutvikling">Spillutvikling</Option>
-            <Option value="Webutvikling">Webutvikling</Option>
-          </Select>
-        </Form.Item>
-        <Form.Item label="Image" name="image">
-          <input type="file" accept="image/*" onChange={handleImageChange} />
-        </Form.Item>
-        <Form.Item
-          label="Legg til eller fjern ferdigheter som er ønsket i prosjektet"
-          name="skills"
-          >
-          <Input
-            placeholder="Endre ferdigheter (atskilt med komma)"
-            value={skillsRequired.join(",")}
-            onChange={(e) => setSkillsRequired(e.target.value.split(",").map(tag => tag.trim()))}
-          />
-          {skillsRequired.map((tag, index) => (
-            <Tag key={index} closable onClose={() => {
-              const newTags = [...skillsRequired];
-              newTags.splice(index, 1);
-              setSkillsRequired(newTags);
-            }}>{tag}</Tag>
-          ))}
-        </Form.Item>
-        <Form.Item
-          label="Legg til eller fjern tags som beskriver prosjektet"
-          name="tags"
-          >
-          <Input
-            placeholder="Endre tags (atskilt med komma)"
-            value={tags.join(",")}
-            onChange={(e) => setTags(e.target.value.split(","))}
-          />
-          {tags.map((tag, index) => (
-            <Tag key={index} closable onClose={() => {
-              const newTags = [...tags];
-              newTags.splice(index, 1);
-              setTags(newTags);
-            }}>{tag}</Tag>
-          ))}
-        </Form.Item>
-        <Form.Item>
-          <Button type="primary" htmlType="submit">Save</Button>
-        </Form.Item>
-      </Form>
+      <div id='form'>
+
+        <Form onFinish={handleSubmit} initialValues={{title: project.title, status: project.status, description: project.description, category: project.category}}>
+          <Form.Item label="Navn på prosjektet" name="title" rules={[{ required: true, message: 'Please input the title of the project!' }]}>
+            <Input onChange={handleTitleChange} />
+          </Form.Item>
+          <Form.Item label="Progresjon" name="status">
+            <Select onChange={handleStatusChange}>
+              <Option value="Ikke påbegynt">Ikke påbegynt</Option>
+              <Option value="I startfasen">I startfasen</Option>
+              <Option value="Underveis">Underveis</Option>
+              <Option value="I avslutningsfasen">I avslutningsfasen</Option>
+            </Select>
+          </Form.Item>
+          <Form.Item label="Beskrivelse" name="description" rules={[{ required: true, message: 'Please input the description of the project!' }]}>
+            <Input.TextArea onChange={handleDescriptionChange} />
+          </Form.Item>
+          <Form.Item label="Kategori" name="category" rules={[{ required: true, message: 'Please select the creative field!' }]}>
+            <Select onChange={handleCategoryChange}>
+              <Option value="Musikk">Musikk</Option>
+              <Option value="Film">Film</Option>
+              <Option value="Spillutvikling">Spillutvikling</Option>
+              <Option value="Webutvikling">Webutvikling</Option>
+            </Select>
+          </Form.Item>
+          <Form.Item label="Image" name="image">
+            <input type="file" accept="image/*" onChange={handleImageChange} />
+          </Form.Item>
+          <Form.Item
+            label="Legg til eller fjern ferdigheter som er ønsket i prosjektet"
+            name="skills"
+            >
+            <Input
+              placeholder="Endre ferdigheter (atskilt med komma)"
+              value={skillsRequired.join(",")}
+              onChange={(e) => setSkillsRequired(e.target.value.split(",").map(tag => tag.trim()))}
+            />
+            {skillsRequired.map((tag, index) => (
+              <Tag key={index} closable onClose={() => {
+                const newTags = [...skillsRequired];
+                newTags.splice(index, 1);
+                setSkillsRequired(newTags);
+              }}>{tag}</Tag>
+            ))}
+          </Form.Item>
+          <Form.Item
+            label="Legg til eller fjern tags som beskriver prosjektet"
+            name="tags"
+            >
+            <Input
+              placeholder="Endre tags (atskilt med komma)"
+              value={tags.join(",")}
+              onChange={(e) => setTags(e.target.value.split(","))}
+            />
+            {tags.map((tag, index) => (
+              <Tag key={index} closable onClose={() => {
+                const newTags = [...tags];
+                newTags.splice(index, 1);
+                setTags(newTags);
+              }}>{tag}</Tag>
+            ))}
+          </Form.Item>
+          <Form.Item style={{textAlign: "center"}}>
+            <Button type="primary" htmlType="submit" style={{padding: "1px 20px"}}>Lagre endringer</Button>
+          </Form.Item>
+        </Form>
+      </div>
     );
   }
 
