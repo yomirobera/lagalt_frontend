@@ -54,3 +54,26 @@ label.checkbox-label span.checkbox-text {
   display: inline-block;
   vertical-align: middle;
 }
+
+.min-profil {
+  padding-top: 100px;
+  text-align: center;
+
+}
+.navn {
+  font-weight: bold;
+}
+
+.Skills .ferdigheter{
+  position: relative;
+  bottom:12px;
+  border: 2px solid black;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight:bold;
+  font-family: 'Times New Roman', Times, serif;
+  color: black;
+}
+.ferdigheterTittel {
+  font-weight: bold;
+}
