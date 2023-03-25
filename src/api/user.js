@@ -1,4 +1,4 @@
-import keycloak from "../components/keycloak/keycloak";
+                                                              import keycloak from "../components/keycloak/keycloak";
 
 const apiUrl = "http://localhost:8080/api/v1/users";
 const apiUrl_apply = "http://localhost:8080/api/v1/users/applications";

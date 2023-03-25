@@ -59,6 +59,7 @@ let navigate = useNavigate();
                     paddingRight: '0px'}}>
                 <img alt="project cover" src={musicImg /* project.img_url */} style={{ width: '100%',maxWidth: '100%',height:'100%', maxHeight: '100%', objectFit: 'cover'}} />
                 </Col> 
+                <AcceptRejectAppli projID={id}/>
                 <Comment/>
                 
             </Row>
