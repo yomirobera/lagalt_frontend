@@ -75,7 +75,6 @@ const NavBar = () => {
             <Menu.Item key="YourProfile" icon={<UserOutlined />}>
               <NavLink to="/YourProfile">Profile</NavLink>
             </Menu.Item>
-
             <Menu.Item key="create" icon={<PlusOutlined />}>
               <NavLink to="/CreateProject">New project</NavLink>
             </Menu.Item>

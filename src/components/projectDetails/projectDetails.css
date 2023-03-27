@@ -1,6 +1,7 @@
 .detailsCard {
     width: 100%;
-    min-height: 570px;
+    min-height: 800px;
+  
 }
 .detailsCard .ant-card {
     width: 100%;
@@ -68,6 +69,10 @@
        position: relative;
        bottom:15px;
        margin-bottom: 10px;
+       font-size: 12px;
+       font-weight:bold;
+       font-family: 'Times New Roman', Times, serif;
+       color: black;
      }
     
 .detailsCard .ant-card .ant-card-body p{
@@ -131,6 +136,30 @@
     font-family: 'Times New Roman', Times, serif;
     color: black;
 }
+.detailsCard .porjOwner p{
+    position: relative;
+    left:0px;
+    top:-10px;
+    bottom:40px;
+    border: none;
+    font-size: 12px;
+    font-weight:bold;
+    font-family: 'Times New Roman', Times, serif;
+    color: black;
+}
+.detailsCard .porjOwner a {
+    position: relative;
+    left:0px;
+    top:0px;
+    bottom:40px;
+    border: none;
+    font-size: 12px;
+    font-weight:bold;
+    font-family: 'Times New Roman', Times, serif;
+    color: black;
+}
+
+
 
 .detailsCard .card-loginLink{
        position: relative;

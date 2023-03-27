@@ -1,8 +1,8 @@
 import React from 'react';
 import { useParams, Link} from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { API_URL_APPLI } from '../../api/projApplications';
 import { Card,Divider,Meta, Col, Row,Tag,Button,Space, Avatar,Typography } from 'antd';
+import './AcceptReject.css';
 import keycloak from '../keycloak/keycloak';
 
 const AcceptRejectAppli = (props) => {
@@ -60,31 +60,21 @@ const AcceptRejectAppli = (props) => {
       };
     
     return (
-        <>
-            <Meta title="Nye søkere på prosjektet " />
-            <Card
-                hoverable
-                style={{ width: 800 }}
-                >
-                    {project.map((proj) => (
-                        <Divider>             
-                            <p>{proj.motivation}</p>
-                            <br />
-                            <Button type="primary" 
-                                onClick={() => handleAccept(proj.id)}> 
-                                Accept
-                            </Button>
-                            <Button type="danger" style={{ marginLeft: '10px' }} 
-                                 onClick={() => handleReject(proj.id)}> 
-                                 Reject
-                            </Button>
-                            
-                        </Divider>
-                    ))}
-            </Card>
-        </>
-          );
-        }
+      <div className='card-container'>
+      <h3 className='card-title'>Nye søkere på prosjektet</h3>
+      <Card hoverable className='card-body'>
+        {project.map((proj) => (
+          <Divider className='card-divider'>
+            <p className='card-motivation'>{proj.motivation}</p>
+            <br/>
+            <Button type="primary" /* className={proj.category.replace(' ', '-').toLowerCase()} */  onClick={() => handleAccept(proj.id)}>Accept</Button>
+            <Button type="danger" className='card-button' onClick={() => handleReject(proj.id)}>Reject</Button>
+          </Divider>
+        ))}
+      </Card>
+     </div>
+      );
+    }
         
 export default AcceptRejectAppli;        
         

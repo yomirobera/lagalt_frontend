@@ -6,7 +6,6 @@ import YourProjects from "../components/editProject/YourProjects";
 const LandingView = () => {
     return (
         <Card title="Add Project">
-            <h3>Nytt prosjekt</h3>  
             <AddProject/>
         </Card>
         

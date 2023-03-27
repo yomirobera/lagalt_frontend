@@ -2,9 +2,10 @@ import { useEffect, useState, useCallback } from 'react';
 import withAuth from '../../hoc/withAuth';
 import keycloak from '../keycloak/keycloak';
 import { apiUrl } from '../../api/user';
-import './Profile.css';
+import './yourProfile.css';
 import YourProjects from '../editProject/YourProjects';
-import {Tag, Button} from 'antd';
+import {Tag,Space,Card,Avatar, Typography, Divider, Button} from 'antd';
+import { UserOutlined } from '@ant-design/icons';
 import { useNavigate } from "react-router-dom";
 
 
@@ -14,7 +15,7 @@ const YourProfile = () => {
         const [lastName, setLastName] = useState('');
         const [description, setDescription] = useState('');
         const [skills, setSkills] = useState([]);
-        
+        const { Text } = Typography;
         const fetchUser = useCallback(async () => {
           try {
             // Update token and get user ID
@@ -48,29 +49,38 @@ const YourProfile = () => {
         let navigate = useNavigate(); 
         const routeChange = (path) =>{ 
           navigate(path);}
-
-            console.log(typeof skills)
+        console.log(typeof skills)
+        
     return ( 
-        <div>
-
-            <h2 className='min-profil'>Min profil</h2>
-            <p>{firstName} {lastName}</p>
-            <p>{description}</p>
-    
-            <ul className='Skills'>
-            <h3 className='ferdigheterTittel'>Mine ferdigheter</h3>
-            { <Tag className='ferdigheter' style={{ borderRadius: 20, margin: '5px' }}></Tag> && skills.map((skill, index) => (
-             <li key={index}>{skill}</li>
+     <>
+        <div className='myProfile'>
+          {/* <h2 className='min-profil'>Min profil</h2> */}
+          <div className='wraperCard'>
+            <Space wrap size={36}><Avatar size={140} icon={<UserOutlined />} /></Space>
+            <Typography.Title level={3}>{firstName} {lastName}</Typography.Title>
+            <Divider />
+            <Typography.Paragraph>{description}Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
+            quis nostrud exercitation ullamco laboris nisi ut 
+            aliquip ex ea commodo consequat.</Typography.Paragraph>
+            <Divider />
+            <Typography.Paragraph>
+              <strong>Mine ferdigheter</strong>
+              <ul className='Skills'>
+                {<Tag className='ferdigheter' style={{ borderRadius: 20, margin: '5px' }}></Tag> && skills.map((skill, index) => (
+                  <li key={index}>{skill}</li>
                 ))}
-            </ul>
-    
-            <YourProjects/>
-            <Button type="primary" htmlType="submit"
-             onClick={() => {routeChange('/Profile')}}>ENDRE PROFIL
-            </Button>
-            
+              </ul>
+            </Typography.Paragraph>
+             <Divider/>
+             <YourProjects/>
+             { <Button className='editProfilbtn' type="primary" htmlType="submit" onClick={() => {routeChange('/Profile')}}>
+              ENDRE PROFIL
+              </Button>
+             }
+          </div>
         </div>
-
+     </>
+      
     )
         
 }

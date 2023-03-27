@@ -1,35 +1,43 @@
-.userProfileInfo .ant-card {
-    width: 80%;
-   
+.userProfileInfo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.userProfileInfo .cardContainer {
+  height: 100%;
+  margin-top: 70px;;
+  width: auto;
+  max-width: 800px;
+  background-color: #f8f4f4;
 
 }
-.userProfileInfo .ant-card .ant-card-body{
+.userProfileInfo .cardContainer{
+    height: 100%;
     width:100%;
     border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0px 2px 2px 4px #aaaa;
+    box-shadow: 0px 1px 1px 1px #aaaa;
 
 }
 
-.userProfileInfo{
-    position: absolute;
-    display:inline-block;
-    top:10px;
-    left:50px;
-    margin-top: 80px;
-    padding-bottom: 60px;
-}
+
 .userProfileInfo .ant-space-item .ant-avatar.ant-avatar-circle.ant-avatar-icon.css-dev-only-do-not-override-ph9edi {
     position: relative;
+    bottom: 30px;
     right:0;
-    left: 250px;
+    left: 296px;
+    margin-top: 50px;
+    
 }
 
 .userProfileInfo h1 {
     position: relative;
     display: inline-block;
-    top:25px;
-    left:260px;
+    top:135px;
+    left:100px;
+
   }
 
 .userProfileInfo h1 > * {
@@ -38,8 +46,13 @@
   }
 
 .userProfileInfo .ant-typography.css-dev-only-do-not-override-ph9edi{
-    width: 70%;
-    margin-left: 100px;
+  position: relative;
+  left:75px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 80%;
+    
   }
 
 .userProfileInfo .userProfilSkills li:first-child {
@@ -69,13 +82,13 @@ text-decoration: none;
 .userProfileLinks {
     display: flex;
     justify-content: center;
-    padding-right: 100px;
+    padding-right: 22px;
   }
   
 .userProfileLinks img {
     width: 35px; 
     height: 35px; 
-    margin: 10px; 
+    margin: 5px; 
   }
 
 

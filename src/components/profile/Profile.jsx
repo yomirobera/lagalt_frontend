@@ -1,9 +1,10 @@
+import React from "react";
 import { useEffect, useState, useCallback } from 'react';
 import withAuth from '../../hoc/withAuth';
 import keycloak from '../keycloak/keycloak';
 import { apiUrl } from '../../api/user';
+import {  Tag} from 'antd';
 import './Profile.css';
-import { Form, Input, Tag } from 'antd';
 import { createSkill } from '../../api/skill';
 
 const Profile = () => {
@@ -98,58 +99,66 @@ const Profile = () => {
 
   return (
     <div className="profile-form">
-  {user ? (
-    <div className="form-container">
-      <h3>Din profil</h3>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Fornavn:
-          <input type="text" name="f_name" value={firstName} onChange={handleInputChange} />
-        </label>
-        <br />
-        <label>
-          Etternavn:
-          <input type="text" name="l_name" value={lastName} onChange={handleInputChange} />
-        </label>
-        <br />
-        <label>
-        Fortell litt mer om deg selv:
-          <textarea name="description" value={description} onChange={handleInputChange} />
-        </label>
-        <br />
-
-        <Form.Item
-        label="Legg til eller fjern ferdigheter som er ønsket i prosjektet"
-        name="skills"
-        >
-        <Input
-          placeholder="Endre ferdigheter (atskilt med komma)"
-          value={skills.join(",")}
-          onChange={(e) => setSkills(e.target.value.split(",").map(tag => tag.trim()))}
-        />
-        {skills.map((tag, index) => (
-          <Tag key={index} closable onClose={() => {
-            const newTags = [...skills];
-            newTags.splice(index, 1);
-            setSkills(newTags);
-          }}>{tag}</Tag>
-        ))}
-      </Form.Item>
-
-        <label className="checkbox-label">
-          <input type="checkbox" name="hidden"/>
-          <span className="checkbox-text">
-            Jeg ønsker at ferdighetene mine skal holdes private, 
-            og kun skal deles med prosjekteier hvis jeg søker om å delta på et prosjekt.
-          </span>
-       </label>
-        <br />
-        <button type="submit">Lagre Endringer</button>
-      </form>
-    </div>
-  ) : (
-    <p>Loading...</p>
-  )}
+      {user ? (
+        <div className="form-container">
+            <div className="card-header">
+               <h3>Din profil</h3>
+            </div>
+            <div className="card-body">
+                <form name=" Edit-form" onSubmit={handleSubmit}>
+                    <div className="form-group">
+                      <label>
+                        *Fornavn:
+                        <input type="text" name="f_name" value={firstName} onChange={handleInputChange} />
+                      </label>
+                    </div>
+                    <div className="form-group">
+                      <label>
+                        *Etternavn:
+                        <input type="text" name="l_name" value={lastName} onChange={handleInputChange} />
+                      </label>
+                    </div>
+                    <div className="form-group">
+                      <label>
+                      Fortell litt mer om deg selv:
+                        <textarea name="description" value={description} onChange={handleInputChange} />
+                      </label>
+                    </div>
+                    <div className="form-group">
+                      <label>
+                          Legg til eller fjern ferdigheter som er ønsket i prosjektet:
+                          <input
+                            placeholder="Endre ferdigheter (atskilt med komma)"
+                            value={skills.join(",")}
+                            onChange={(e) => setSkills(e.target.value.split(",").map(tag => tag.trim()))}
+                          />
+                          {skills.map((tag, index) => (
+                            <Tag key={index} closable onClose={() => {
+                              const newTags = [...skills];
+                              newTags.splice(index, 1);
+                              setSkills(newTags);
+                            }}>{tag}</Tag>
+                          ))}
+                      </label>
+                    </div>
+                    <div className="form-group">
+                      <label className="checkbox-label">
+                        <input type="checkbox" name="hidden"/>
+                        <span className="checkbox-text">
+                          Jeg ønsker at ferdighetene mine skal holdes private, 
+                          og kun skal deles med prosjekteier hvis jeg søker om å delta på et prosjekt.
+                        </span>
+                      </label>
+                   </div>
+                    <div className="form-group">
+                      <button type="submit" className="btn-primary">Lagre Endringer</button>
+                    </div>
+                 </form>
+              </div>
+           </div>
+      ) : (
+  <p>Loading...</p>
+)}    
 </div>
 );
 };

@@ -1,4 +1,5 @@
-.profile-form {
+
+/* .profile-form {
   font-size: 16px;
 }
 
@@ -44,7 +45,7 @@ button[type='submit'] {
 }
 
 /* New CSS rule for aligning the checkbox input and the text */
-label.checkbox-label input[type="checkbox"] {
+/* label.checkbox-label input[type="checkbox"] {
   display: inline-block;
   vertical-align: middle;
   margin-right: 5px;
@@ -76,4 +77,105 @@ label.checkbox-label span.checkbox-text {
 }
 .ferdigheterTittel {
   font-weight: bold;
+}
+ */
+.body{
+  
+}
+ .profile-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 58px;
+    padding-bottom: 10px;;
+    height: 100vh;
+  
+  }
+  
+  .form-container {
+    position: relative;
+    max-width: 500px;
+    border-radius: 20px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.2); 
+    background-color: #f8f4f4;
+    padding: 24px;
+    top:5px;
+    margin: 0 auto;
+  }
+  
+  .card-header {
+    border-bottom: 1px solid #e5e5e5;
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+  }
+  
+  .card-header h3 {
+    margin-top: 0;
+    text-align: center;
+    font-size: 14px;
+    font-family: 'Times New Roman', Times, serif;
+    color:#000; 
+  }
+  
+  .card-body {
+    display: flex;
+    flex-direction: column;
+  }
+  .profile-form{
+    height: 100%;
+  }
+  .form-group {
+    margin-bottom: 16px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 20px;
+    font-size: 12px;
+    font-family: 'Times New Roman', Times, serif;
+    color:#000; 
+  }
+  
+  .form-group input[type="text"],
+  .form-group textarea,
+  .form-group input[type="email"],
+  .form-group input[type="password"] {
+    width: 100%;
+    border: 1px solid #e5e5e5;
+    border-radius: 20px;
+    padding: 8px;
+    font-size: 16px;
+    color: #555555;
+  }
+  
+  .form-group input[type="checkbox"] {
+    position: relative;
+    right:190px;
+  }
+  
+  .checkbox-text {
+    position: relative;
+    bottom:2px;
+    right:6px;
+    font-size: 10px;
+    margin-left: -372px;;
+    color: #555555;
+  }
+  
+  .form-group button[type='submit'] {
+    position: relative;
+    display: inline-block;
+    bottom: 0px;
+    top: 20px;
+    width: 100%;
+    background-color: #7393B0;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 12px;
+    cursor: pointer;
+    border-radius: 20px;
+    text-align: center;
 }

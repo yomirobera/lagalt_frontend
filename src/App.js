@@ -7,7 +7,6 @@ import ProfileView from './Views/ProfileView';
 import NavBar from './components/NavBar/NavBar';
 import Filtering from './components/Filter/Filtering';
 import ProjectList from './components/projectList/ProjectList';
-import YourProjectView from './Views/YourProjectView';
 import ProjectView from './Views/ProjectView';
 import ProjectDetails from './components/projectDetails/ProjectDetails';
 import ProjectDetailsView from './Views/ProjectDetailsView';
@@ -27,7 +26,6 @@ function App() {
             { <Routes>
               <Route path="/" element={ <LandingView />}/>
               <Route path="/CreateProject" element={ <CreateprojectView />}/>
-              <Route path="/YourProject" element={ <YourProjectView />}/>
               <Route path="/Projects" element={ <ProjectView />}/>
               <Route path="/YourProfile" element={ <YourProfileView />}/>
               <Route path="/profile" element={ <ProfileView />}/>
