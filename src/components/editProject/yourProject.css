@@ -1,12 +1,16 @@
-
+.yourProjCard {
+  padding: 100px;
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}
 table {
   position: relative;
   border-collapse: collapse;
   width: 100%;
   }
-
 .first-row th {
-    background-color: #f2f2f2;
+    background-color: #fff;
     font-weight:600;
     font-size: 14px;
     font-family: Helvetica, Verdana,sans-serif;
@@ -31,7 +35,7 @@ table {
     font-family: Helvetica, Verdana,sans-serif;
   }
   tr:nth-child(even) {
-    background-color: #f2f2f2;
+    background-color: #F2F2F2;
   }
   .applicationNr {
     display: inline-block;
@@ -44,8 +48,18 @@ table {
     line-height: 20px;
     cursor: pointer;
   }
-
   .yourProjCard ul .ant-pagination.css-dev-only-do-not-override-ph9edi {
    text-align: left;
-
   }
+
+
+
+
+
+
+
+
+
+
+
+

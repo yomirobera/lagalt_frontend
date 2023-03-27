@@ -10,11 +10,9 @@ import { useNavigate } from "react-router-dom";
 import AcceptRejectAppli from '../Apply/AcceptRejectAppli';
 import Comment from '../Comment/Comment';
 import { Components } from 'antd/es/date-picker/generatePicker';
-
 const ProjectAdmin = () => {
     const { id } = useParams();
     const [project, setProject] = useState(null);
-    
     useEffect(() => {
         // Make an API call to get the project data
         fetch(`${API_URL}/${id}`)
@@ -33,7 +31,7 @@ let navigate = useNavigate();
       { project && (
          <Card>
             <Row id="borderColor" gutter={16} style={{marginLeft: '0px', marginRight: '0px', paddingLeft: '25px'}} className={project.category.replace(' ', '-').toLowerCase()}>
-                <Col xs={24} sm={12} md={14} lg={14} 
+                <Col xs={24} sm={12} md={14} lg={14}
                     style={{ paddingLeft: '50px',paddingTop:'25px', paddingRight: '0px'}}
                 >
                 <h2 className='categoryText'>{project.category} <span id='musicIcon' className={project.category.replace(' ', '-').toLowerCase()}></span></h2>
@@ -60,17 +58,27 @@ let navigate = useNavigate();
                 <Col xs={24} sm={12} md={10} lg={10} style={{paddingLeft: '0px',
                     paddingRight: '0px'}}>
                 <img alt="project cover" src={musicImg /* project.img_url */} style={{ width: '100%',maxWidth: '100%',height:'100%', maxHeight: '100%', objectFit: 'cover'}} />
-                </Col> 
+                </Col>
                 <Divider/>
                 <AcceptRejectAppli projID={id}/>
                 <Divider/>
-                <Comment/>
-                
+            </Row>
+            <h3 className='commentHeaders'>Nyeste kommentarer</h3>
+            <Row className='comments' gutter={100} style={{marginLeft: '0px', marginRight: '0px', paddingLeft: '25px'}}>
+                <Comment projectId={id} />
             </Row>
          </Card>
       )}
     </div>
   );
 };
-
 export default ProjectAdmin
+
+
+
+
+
+
+
+
+

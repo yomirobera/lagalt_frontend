@@ -129,7 +129,7 @@
 
 }
 .newProject-card .ant-input {
-    min-width: 462px;
+    min-width: 563px;
     border-radius: 20px;
     
 }
@@ -137,8 +137,8 @@
     position: relative;
     display: inline-block;
     bottom: 0px;
-    right:78px;
-    min-width: 462px;
+    right:97px;
+    min-width: 578px;
     padding: 10px;
     background-color: #7393B0;
     border: none;

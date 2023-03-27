@@ -34,7 +34,12 @@ const AcceptRejectAppli = (props) => {
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify({status: "APPROVED"}),
+            body: JSON.stringify(
+              {
+                id:id,
+                status: "APPROVED",
+                motivation:""
+              }),
           });
           //const data = await response.json();
           return response;
@@ -50,7 +55,12 @@ const AcceptRejectAppli = (props) => {
                 headers: {
                   "Content-Type": "application/json",
                 },
-                body: JSON.stringify({status: "APPROVED"}),
+                body: JSON.stringify(
+                {
+                  id:id,
+                  status: "DENIED",
+                  motivation:""                 
+                }),
               });
               //const data = await response.json();
               return response;

@@ -1,4 +1,5 @@
 import { API_URL } from '../api/projects';
+import keycloak from '../components/keycloak/keycloak';
 import { fetchProjects } from '../redux/projectsReducer'
 
 export const setSearchQuery = (query) => ({
@@ -22,8 +23,12 @@ export const clearallFilter = (clear) => ({
 });
 
 export const fetchProjectList = () => {
+    let url = API_URL;
+    if(keycloak.authenticated){
+        url = `http://localhost:8080/api/v1/users/${keycloak.tokenParsed.sub}/getRecommendedProjects`;
+    }
     return (dispatch, getState) => {
-        fetch(API_URL) // make a GET request to the API
+        fetch(url) // make a GET request to the API
             .then(res => res.json()) 
             .then(
                 result => { 

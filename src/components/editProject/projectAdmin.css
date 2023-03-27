@@ -25,11 +25,11 @@
        background-color: #a07ce4;
    }
    
-.detailsCard .web-utvikling{
+.detailsCard .webutvikling{
        background-color: #e87c7c;
    
    }
-.detailsCard .spill-utvikling{
+.detailsCard .spillutvikling{
        background-color: #f8ac74;
    
    }
@@ -162,7 +162,7 @@
        background-size: 100% 100%;
        background-color: transparent;
    }
-.detailsCard .spill-utvikling#musicIcon{
+.detailsCard .spillutvikling#musicIcon{
        position: relative;
        display: inline-block;
        top:5px;
@@ -174,7 +174,7 @@
        background-size: 100% 100%;
        background-color: transparent;
    }
-.detailsCard .web-utvikling#musicIcon{
+.detailsCard .webutvikling#musicIcon{
        position: relative;
        display: inline-block;
        top:5px;
@@ -227,7 +227,7 @@
        padding-right: 0px;
        box-shadow: -25px 0px 0px 0px #a07ce4;
    }
-#borderColor.ant-row.web-utvikling.css-dev-only-do-not-override-ph9edi{
+#borderColor.ant-row.webutvikling.css-dev-only-do-not-override-ph9edi{
        background-color: #ffff;
        max-height: 100%;               
        max-width: 100%;
@@ -235,7 +235,7 @@
        padding-right: 0px;
        box-shadow: -25px 0px 0px 0px #e87c7c;
    }
-#borderColor.ant-row.spill-utvikling.css-dev-only-do-not-override-ph9edi{
+#borderColor.ant-row.spillutvikling.css-dev-only-do-not-override-ph9edi{
        background-color: #ffff;
        max-height: 100%;               
        max-width: 100%;

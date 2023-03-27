@@ -80,7 +80,7 @@ const NavBar = () => {
             </Menu.Item>
 
             <Menu.Item key="edit" icon={<EditOutlined />}>
-              <NavLink to="/YourProject">Endre project</NavLink>
+              <NavLink to="/YourProjects">Your project</NavLink>
             </Menu.Item>
           </SubMenu>
         )}
