@@ -3,7 +3,8 @@ import withAuth from '../../hoc/withAuth';
 import keycloak from '../keycloak/keycloak';
 import { apiUrl } from '../../api/user';
 import './Profile.css';
-import { Form, Input, Tag } from 'antd';
+import { useNavigate } from "react-router-dom";
+import { Form, Input, Tag, Button } from 'antd';
 import { createSkill } from '../../api/skill';
 
 const Profile = () => {
@@ -12,7 +13,9 @@ const Profile = () => {
   const [lastName, setLastName] = useState('');
   const [description, setDescription] = useState('');
   const [skills, setSkills] = useState([]);
-  
+
+  const navigate = useNavigate();
+
   const fetchUser = useCallback(async () => {
     try {
       // Update token and get user ID
@@ -60,10 +63,10 @@ const Profile = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log("id: ",keycloak.tokenParsed.sub)
-    console.log("fname: ",firstName)
+    console.log("id: ", keycloak.tokenParsed.sub)
+    console.log("fname: ", firstName)
     console.log("lname:", lastName)
-    console.log("desc: ",description)
+    console.log("desc: ", description)
     console.log(event.target.hidden.checked)
     try {
       for await (const skill of skills) {
@@ -88,7 +91,7 @@ const Profile = () => {
         throw new Error(`Failed to update user. Status code: ${response.status}`);
       }
 
-    
+
       setUser(response);
       alert('User updated successfully');
     } catch (error) {
@@ -97,60 +100,60 @@ const Profile = () => {
   };
 
   return (
-    <div className="profile-form">
-  {user ? (
-    <div className="form-container">
-      <h3>Din profil</h3>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Fornavn:
-          <input type="text" name="f_name" value={firstName} onChange={handleInputChange} />
-        </label>
-        <br />
-        <label>
-          Etternavn:
-          <input type="text" name="l_name" value={lastName} onChange={handleInputChange} />
-        </label>
-        <br />
-        <label>
-        Fortell litt mer om deg selv:
-          <textarea name="description" value={description} onChange={handleInputChange} />
-        </label>
-        <br />
-
-        <Form.Item
-        label="Legg til eller fjern ferdigheter som er ønsket i prosjektet"
-        name="skills"
-        >
-        <Input
-          placeholder="Endre ferdigheter (atskilt med komma)"
-          value={skills.join(",")}
-          onChange={(e) => setSkills(e.target.value.split(",").map(tag => tag.trim()))}
-        />
-        {skills.map((tag, index) => (
-          <Tag key={index} closable onClose={() => {
-            const newTags = [...skills];
-            newTags.splice(index, 1);
-            setSkills(newTags);
-          }}>{tag}</Tag>
-        ))}
-      </Form.Item>
-
-        <label className="checkbox-label">
-          <input type="checkbox" name="hidden"/>
-          <span className="checkbox-text">
-            Jeg ønsker at ferdighetene mine skal holdes private, 
-            og kun skal deles med prosjekteier hvis jeg søker om å delta på et prosjekt.
-          </span>
-       </label>
-        <br />
-        <button type="submit">Lagre Endringer</button>
-      </form>
-    </div>
-  ) : (
-    <p>Loading...</p>
-  )}
-</div>
-);
+    <div className="profile-form-container">
+      {user ? (
+        <div className="form-container">
+          <h3>Din profil</h3>
+          <form onSubmit={handleSubmit}>
+            <label>
+              Fornavn:
+              <input type="text" name="f_name" value={firstName} onChange={handleInputChange} />
+            </label>
+            <br />
+            <label>
+              Etternavn:
+              <input type="text" name="l_name" value={lastName} onChange={handleInputChange} />
+            </label>
+            <br />
+            <label>
+            Beskrivelse:
+            <Input.TextArea rows={4} name="description" value={description} onChange={handleInputChange} />
+            </label>
+            <br />
+            <label>
+            Ferdigheter:
+            <div className="skill-tags">
+            {skills.map((skill, index) => (
+            <Tag key={index} closable onClose={() => setSkills(skills.filter((s, i) => i !== index))}>
+            {skill}
+            </Tag>
+            ))}
+            </div>
+            <Input placeholder="Legg til en ferdighet og trykk Enter" onPressEnter={(event) => {
+            event.preventDefault();
+            const newSkill = event.target.value;
+            if (newSkill !== '') {
+            setSkills([...skills, newSkill]);
+            event.target.value = '';
+            }
+            }} />
+            </label>
+            <br />
+            <label>
+            Skjul profil for andre brukere:
+            <input type="checkbox" name="hidden" />
+            </label>
+            <br />
+            <button type="primary" htmlType="submit">OPPDATER PROFIL</button>
+            <br/>
+            <button className='tilbakeBtn' onClick={()=>navigate(-1)} style={{left:"43%"}}>Tilbake</button>
+            </form>
+            </div>
+            ) : (
+            <div>Laster inn profil...</div>
+            )}
+            </div>
+    );
 };
+
 export default withAuth(Profile);

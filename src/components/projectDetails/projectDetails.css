@@ -1,6 +1,6 @@
 .detailsCard {
     width: 100%;
-    min-height: 570px;
+    height: 570px;
 }
 .detailsCard .ant-card {
     width: 100%;
@@ -252,9 +252,3 @@
      max-width: 100%;
        
    }
-
-.applyForm {
-    position: relative;
-    top: 20px;
-    
-}
