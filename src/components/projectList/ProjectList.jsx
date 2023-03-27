@@ -62,7 +62,7 @@ const { data, isSearching } = useSelector(state => state.projects);
                     </Col>
                     <Col xs={24} sm={12} md={10} lg={10} style={{paddingLeft: '0px',
                         paddingRight: '0px'}}>
-                      <img alt="project cover" src={musicImg /* project.img_url */} style={{ width: '100%',maxWidth: '100%',height:'100%', maxHeight: '100%', objectFit: 'cover'}} />
+                      <img alt="project cover" src={project.img_url} style={{ width: '100%',maxWidth: '100%',height:'100%', maxHeight: '100%', objectFit: 'cover'}} />
                     </Col> 
                   </Row>
                 </Link>

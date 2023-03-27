@@ -8,7 +8,7 @@ import { Link, Route, Routes } from 'react-router-dom';
 import LandingView from '../../Views/LandingView';
 import ProfileView from '../../Views/ProfileView';
 import { useNavigate } from "react-router-dom";
-
+import ProjectAdmin from './ProjectAdmin';
 
 
 const apiUrl = "http://localhost:8080";
@@ -39,6 +39,7 @@ const YourProjects = () => {
   const handleCardClick = (project) => {
     // set the selected project to the one that was clicked
     setSelectedProject(project);
+    console.log(project.description)
   };
 
   const handlePageChange = (page) => {
@@ -78,7 +79,8 @@ const YourProjects = () => {
           style={{ marginTop: 100 }}
         />
       </Col>
-      {selectedProject && routeChange(`/ProjectAdmin/${selectedProject.id}`)}
+    
+      {selectedProject && <ProjectAdmin selectedProject={selectedProject} /> && routeChange(`/ProjectAdmin/${selectedProject.id}`)}
     </Row>
   );
 };

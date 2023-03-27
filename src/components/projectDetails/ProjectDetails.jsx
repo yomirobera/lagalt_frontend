@@ -6,6 +6,7 @@ import { Card, Col, Row,Tag,Button} from 'antd';
 import './projectDetails.css';
 import keycloak from '../keycloak/keycloak';
 import musicImg from "../../assets/img/musicImg.png";
+import Comment from '../Comment/Comment';
 
 const ProjectDetails = () => {
     const { id } = useParams();
@@ -20,7 +21,6 @@ const ProjectDetails = () => {
       }, [id]);
 //const project = useSelector(state => state.projects.data.find(project => project.id === id));
 //find(project => project.id === id));
-console.log(project);
 
   return (
     <div className='detailsCard'>
@@ -68,6 +68,12 @@ console.log(project);
                     paddingRight: '0px'}}>
                 <img alt="project cover" src={musicImg /* project.img_url */} style={{ width: '100%',maxWidth: '100%',height:'100%', maxHeight: '100%', objectFit: 'cover'}} />
                 </Col> 
+            </Row>
+            <h3 className='commentHeaders'>Nyeste kommentarer</h3>
+            <Row className='comments' gutter={100} style={{marginLeft: '0px', marginRight: '0px', paddingLeft: '25px'}}>
+                
+                <Comment projectId={id} />
+                
             </Row>
          </Card>
       )}

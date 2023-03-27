@@ -32,11 +32,15 @@ const getProjects = async () => {
       throw new Error(`Error adding project: ${error.message}`);
     }
   };
+  
   const updateProject = async (projectId, updatedProject) => {
+    console.log("a");
+    console.log(updatedProject)
     try {
       for await (const skill of updatedProject.skillsRequired) {
         await createSkill(skill);
       }
+      console.log("b");
       const response = await fetch(`${API_URL}/${projectId}`, {
         method: "PUT",
         headers: {
@@ -45,6 +49,7 @@ const getProjects = async () => {
         body: JSON.stringify(updatedProject),
       });
       //const data = await response.json();
+      console.log(response);
       return response;
     } catch (error) {
       throw new Error(`Error updating project: ${error.message}`);

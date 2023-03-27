@@ -53,13 +53,22 @@ let navigate = useNavigate();
                         <Tag className='skills' style={{ borderRadius: 20, margin: '5px' }}>{skill}</Tag>
                     ))}
                 </div>
-                <button onClick={() => {routeChange(`/EditProject/${project.id}`)}}>ENDRE Projekt</button>
+                <button onClick={() => {
+                    console.log(project.title);
+                    routeChange(`/EditProject/${project.id}`, { project })}} >ENDRE Projekt</button>
                 </Col>
                 <Col xs={24} sm={12} md={10} lg={10} style={{paddingLeft: '0px',
                     paddingRight: '0px'}}>
                 <img alt="project cover" src={musicImg /* project.img_url */} style={{ width: '100%',maxWidth: '100%',height:'100%', maxHeight: '100%', objectFit: 'cover'}} />
                 </Col> 
-                <Comment/>
+                
+                
+            </Row>
+            <h3 className='commentHeaders'>Nyeste kommentarer</h3>
+            <Row className='comments' gutter={100} style={{marginLeft: '0px', marginRight: '0px', paddingLeft: '25px'}}>
+                
+                
+                <Comment projectId={id} />
                 
             </Row>
          </Card>
