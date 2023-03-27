@@ -2,7 +2,7 @@ import { useEffect, useState, useCallback } from 'react';
 import withAuth from '../../hoc/withAuth';
 import keycloak from '../keycloak/keycloak';
 import { apiUrl } from '../../api/user';
-import './Profile.css';
+import './YourProfile.css';
 import YourProjects from '../editProject/YourProjects';
 import {Tag, Button} from 'antd';
 import { useNavigate } from "react-router-dom";
@@ -51,26 +51,29 @@ const YourProfile = () => {
 
             console.log(typeof skills)
     return ( 
-        <div>
+        <div className='YourProfileContainer'>
 
             <h2 className='min-profil'>Min profil</h2>
-            <p>{firstName} {lastName}</p>
-            <p>{description}</p>
+            <p className='fullNavn'>{firstName} {lastName}</p>
+            <p className='Disc'>{description}</p>
+
+            <h3 className='skillsOverskrift'>Mine ferdigheter</h3>
     
-            <ul className='Skills'>
-            <h3 className='ferdigheterTittel'>Mine ferdigheter</h3>
-            { <Tag className='ferdigheter' style={{ borderRadius: 20, margin: '5px' }}></Tag> && skills.map((skill, index) => (
-             <li key={index}>{skill}</li>
-                ))}
+            <ul className='skills-list'>
+              {skills.map((skill, index) => (
+                <li key={index} className='skill-item'>{skill}</li>
+              ))}
             </ul>
-    
+
             <YourProjects/>
-            <Button type="primary" htmlType="submit"
+    
+            <button className='EndreProfilBtn' type="primary" htmlType="submit"
              onClick={() => {routeChange('/Profile')}}>ENDRE PROFIL
-            </Button>
+            </button>
+
             
         </div>
-
+        
     )
         
 }

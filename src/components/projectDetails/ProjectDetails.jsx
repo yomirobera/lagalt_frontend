@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams, Link} from 'react-router-dom';
+import { useParams, Link, NavLink, useNavigate} from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { API_URL } from '../../api/projects';
 import { Card, Col, Row,Tag,Button} from 'antd';
@@ -11,7 +11,7 @@ import musicImg from "../../assets/img/musicImg.png";
 const ProjectDetails = () => {
     const { id } = useParams();
     const [project, setProject] = useState(null);
-    
+    const navigate = useNavigate();
     useEffect(() => {
         // Make an API call to get the project data
         fetch(`${API_URL}/${id}`)
@@ -64,10 +64,11 @@ if (!project) {
                 {!keycloak.authenticated && (
                 <div className='card-loginLink'>
                     <p><strong>Vil du bli på dette prosjektet? </strong>
-                    <a href="#" onClick={() => keycloak.login()}>Logg inn, </a>eller 
-                    <a href="#" onClick={() => keycloak.register()}> register bruker</a></p>
+                    <NavLink to="/" onClick={() => {keycloak.login(); navigate('/');}}>Logg inn, </NavLink>eller 
+                    <NavLink to="/" onClick={() => {keycloak.register(); navigate('/');}}> register bruker</NavLink></p>
                 </div>
                 )}
+
                 </Col>
                 <Col xs={24} sm={12} md={10} lg={10} style={{paddingLeft: '0px',
                     paddingRight: '0px'}}>
