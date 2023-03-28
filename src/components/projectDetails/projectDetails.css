@@ -30,11 +30,11 @@
        background-color: #a07ce4;
    }
    
-.detailsCard .web-utvikling{
+.detailsCard .webutvikling{
        background-color: #e87c7c;
    
    }
-.detailsCard .spill-utvikling{
+.detailsCard .spillutvikling{
        background-color: #f8ac74;
    
    }
@@ -95,6 +95,30 @@
        font-family: 'Times New Roman', Times, serif;
        color: black;
      }
+
+  
+.detailsCard .reqSkills .skills.matching {
+        position: relative;
+        bottom:12px;
+        border: 2px solid black;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight:bold;
+        font-family: 'Times New Roman', Times, serif;
+        color: black;
+ }
+        
+.detailsCard .reqSkills .skills.non-matching {
+        position: relative;
+        bottom:12px;
+        border: 0.5px solid rgb(130, 126, 126);
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight:200;
+        font-family: 'Times New Roman', Times, serif;
+        color: rgb(100, 97, 97);
+        
+ }
 .detailsCard .projMedlemer li:first-child {
         font-size: 12px;
         font-weight: bold;
@@ -260,7 +284,7 @@
        padding-right: 0px;
        box-shadow: -25px 0px 0px 0px #a07ce4;
    }
-.detailsCard .ant-col.web-utvikling.ant-col-xs-24.ant-col-sm-12.ant-col-md-14.ant-col-lg-14.css-dev-only-do-not-override-ph9edi{
+.detailsCard .ant-col.webutvikling.ant-col-xs-24.ant-col-sm-12.ant-col-md-14.ant-col-lg-14.css-dev-only-do-not-override-ph9edi{
        background-color: #ffff;
        max-height: 100%;               
        max-width: 100%;
@@ -268,7 +292,7 @@
        padding-right: 0px;
        box-shadow: -25px 0px 0px 0px #e87c7c;
    }
-.detailsCard .ant-col.spill-utvikling.ant-col-xs-24.ant-col-sm-12.ant-col-md-14.ant-col-lg-14.css-dev-only-do-not-override-ph9edi{
+.detailsCard .ant-col.spillutvikling.ant-col-xs-24.ant-col-sm-12.ant-col-md-14.ant-col-lg-14.css-dev-only-do-not-override-ph9edi{
        background-color: #ffff;
        max-height: 100%;               
        max-width: 100%;

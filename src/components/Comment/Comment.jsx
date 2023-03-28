@@ -123,6 +123,7 @@ function Comment({ projectId }) {
 
       return (
         <div className="comment-box">
+           <h3 className='commentHeaders'>Nyeste kommentarer</h3>
           <p>{comments.length} kommentarer</p>
           {comments.map((comment) => (
             <div key={comment.id}>

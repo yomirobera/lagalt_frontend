@@ -1,6 +1,7 @@
 import React from 'react';
 import { useParams, Link} from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { API_URL } from '../../api/projects';
 import { apiUrl } from '../../api/user';
 import { Card, Col, Row,Tag,Button} from 'antd';
@@ -14,7 +15,20 @@ const ProjectDetails = () => {
     const { id } = useParams();
     const [project, setProject] = useState(null);
     const [userData, setUserData] = useState(null);
-    console.log('I am Id', id)
+    const { skills, isLoading } = useSelector(state => state.projects);
+    
+    const matchingSkillNames =  (project) => {
+        return project.skillsRequired
+           .filter(skill => skills.some(skills => skills.title === skill))
+           .map(skill => skill.toLowerCase());}
+    
+      const getMatchingSkillsCount = (project) => {
+        const matchingSkills = matchingSkillNames(project);
+        const totalSkills = project.skillsRequired.length;
+        const matchingCount = matchingSkills.length;
+        const nonMatchingCount = totalSkills - matchingCount;
+        return `${matchingCount}/${totalSkills}`;
+      }
 
     useEffect(() => {
         const fetchData = async () => {
@@ -60,12 +74,18 @@ const ProjectDetails = () => {
                 </div>
                 <p><strong>Beskrivelse av prosjektet: </strong>{project.description}
                 </p>
-                <p><strong>Ønskede ferdighter </strong></p>
+                <p><strong>Beskrivelse av prosjektet: </strong>{project.description}</p>
+                <p><strong>{getMatchingSkillsCount(project)} ferdigheter matcher din profil </strong></p>                         
                 <div className='reqSkills'>
                     {project.skillsRequired.map(skill => (
-                        <Tag className='skills' style={{ borderRadius: 20, margin: '5px' }}>{skill}</Tag>
+                    <Tag
+                    className={`skills ${matchingSkillNames(project).includes(skill.toLowerCase()) ? 'matching' : 'non-matching'}`}
+                    key={skill}
+                    >
+                        {skill}
+                    </Tag>
                     ))}
-                </div>
+                </div>     
                 <div className='projMembers'>
                   <div className='porjOwner' style={{ display: "flex", alignItems: "center" }}>
                          <span style={{marginRight:"8px" }} ><strong>Prosjekt eier : </strong></span>
@@ -75,11 +95,21 @@ const ProjectDetails = () => {
                     </div>
 {/*this is for members*/}<ul className='projMedlemer'>
                            <li><strong>Prosjekt medlemer : </strong></li>
-                           {project.members.map(member => (
+                            {project.members.map(member => {
+                                let Username = '';
+                                for (const key in userData) {
+                                    if (userData[key].id === member) {
+                                    Username = userData[key].name;
+                                    console.log('I am username', {Username, member})
+                                    break;
+                                    }
+                                }
                              <li key={member}>
-                               <Link to={`/UserProfile/${member}`}>{member}</Link>
+                               <Link to={`/UserProfile/${member}`}>
+                               {Username || member}
+                               </Link>
                              </li>
-                            ))}
+                            })}
                         </ul>
                 </div>
                 <div className='applyForm'>
@@ -99,7 +129,7 @@ const ProjectDetails = () => {
                 <img alt="project cover" src={project.img_url} style={{ width: '100%',maxWidth: '100%',height:'100%', maxHeight: '100%', objectFit: 'cover'}} />
                 </Col> 
             </Row>
-            <h3 className='commentHeaders'>Nyeste kommentarer</h3>
+           
             <Row className='comments' gutter={100} style={{marginLeft: '0px', marginRight: '0px', paddingLeft: '25px'}}>
                 <Comment projectId={id} />
             </Row>

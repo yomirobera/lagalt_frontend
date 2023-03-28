@@ -1,6 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { API_URL } from '../../api/projects';
 import { Card, Col, Row,Tag,Button, Divider} from 'antd';
 import './projectAdmin.css';
@@ -13,6 +14,25 @@ import { Components } from 'antd/es/date-picker/generatePicker';
 const ProjectAdmin = () => {
     const { id } = useParams();
     const [project, setProject] = useState(null);
+    
+    const { skills, isLoading } = useSelector(state => state.projects);
+    
+    const matchingSkillNames =  (project) => {
+        return project.skillsRequired
+           .filter(skill => skills.some(skills => skills.title === skill))
+           .map(skill => skill.toLowerCase());}
+    
+      const getMatchingSkillsCount = (project) => {
+        const matchingSkills = matchingSkillNames(project);
+        const totalSkills = project.skillsRequired.length;
+        const matchingCount = matchingSkills.length;
+        const nonMatchingCount = totalSkills - matchingCount;
+        return `${matchingCount}/${totalSkills}`;
+      }
+
+
+
+
     useEffect(() => {
         // Make an API call to get the project data
         fetch(`${API_URL}/${id}`)
@@ -45,12 +65,17 @@ let navigate = useNavigate();
                     <strong>Prosjektets progresjon: </strong>
                     <h6 style={{display: 'inline-block', margin: '0'}}>{project.status}</h6>
                 </span>
-                <h4>Ønskede ferdighter: </h4>
+                <h5><strong>{getMatchingSkillsCount(project)} ferdigheter matcher din profil </strong></h5>                         
                 <div className='reqSkills'>
                     {project.skillsRequired.map(skill => (
-                        <Tag className='skills' style={{ borderRadius: 20, margin: '5px' }}>{skill}</Tag>
+                    <Tag
+                    className={`skills ${matchingSkillNames(project).includes(skill.toLowerCase()) ? 'matching' : 'non-matching'}`}
+                    key={skill}
+                    >
+                        {skill}
+                    </Tag>
                     ))}
-                </div>
+                </div>    
                 <div className='redigerbtn'>
                    <button className="btn-primary" onClick={() => {routeChange(`/EditProject/${project.id}`)}}>ENDRE Projekt</button>
                 </div>

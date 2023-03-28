@@ -4,7 +4,9 @@ import { Card, Col, Row,Tag,Button} from 'antd';
 import './projectList.css';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchProjectList } from '../../redux/actions'
+import { fetchProjectList } from '../../redux/actions';
+import { fetchUserSkills } from '../../redux/actions';
+import { fetchSkills } from '../../redux/projectsReducer';
 import keycloak from '../keycloak/keycloak';
 import musicImg from "../../assets/img/musicImg.png";
 
@@ -13,18 +15,46 @@ const ProjectList = () => {
 const [error, setError] = useState(null);  
 const dispatch = useDispatch();
 const { data, isSearching } = useSelector(state => state.projects);
+const { skills, isLoading } = useSelector(state => state.projects);
+
 
   const handleCommentsClick = () => {
     alert(`Comments button clicked.`);
   };
+   
+  const matchingSkillNames =  (project) => {
+    return project.skillsRequired
+       .filter(skill => skills.some(skills => skills.title === skill))
+       .map(skill => skill.toLowerCase());}
+
+  const getMatchingSkillsCount = (project) => {
+    const matchingSkills = matchingSkillNames(project);
+    const totalSkills = project.skillsRequired.length;
+    const matchingCount = matchingSkills.length;
+    const nonMatchingCount = totalSkills - matchingCount;
+    return `${matchingCount}/${totalSkills}`;
+  }
+
+
+  console.log('iam skills in plist',skills);
+  
 
   useEffect(() => {
     dispatch(fetchProjectList())
   }, []);
 
+  useEffect(() => {
+    if (keycloak && keycloak.authenticated) {
+      dispatch(fetchUserSkills());
+    } else {
+      console.log("User not authenticated, setting default skills");
+      dispatch(fetchSkills([]));
+    }
+  }, []);
+
   if (error) { // display an error message
     return <div>Error: {error.message}</div>;
-  } else if (isSearching) { // display a loading message, if it loading 
+  } else if (isSearching || isLoading) { // display a loading message, if it loading 
     return <div>Loading...</div>;
   } else { 
     return (
@@ -46,13 +76,17 @@ const { data, isSearching } = useSelector(state => state.projects);
                                 ))}
                             </div>
                             <p><strong>Beskrivelse av prosjektet: </strong>{project.description}</p>
-                            <p><strong>Ønskede ferdighter </strong></p>
+                            <p><strong>{getMatchingSkillsCount(project)} ferdigheter matcher din profil </strong></p>                         
                             <div className='reqSkills'>
-                                {project.skillsRequired.map(skill => (
-                                  <Tag className='skills' style={{ borderRadius: 20, margin: '5px' }}>{skill}</Tag>
-                                ))}
-                            </div>
-
+                              {project.skillsRequired.map(skill => (
+                                <Tag
+                                className={`skills ${matchingSkillNames(project).includes(skill.toLowerCase()) ? 'matching' : 'non-matching'}`}
+                                key={skill}
+                                >
+                                  {skill}
+                                </Tag>
+                              ))}
+                            </div>                             
                           </Col>
                           <Col xs={24} sm={12} md={10} lg={10} style={{paddingLeft: '0px',
                               paddingRight: '0px'}}>

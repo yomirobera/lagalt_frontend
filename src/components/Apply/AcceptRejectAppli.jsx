@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams, Link} from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { Card,Divider,Meta, Col, Row,Tag,Button,Space, Avatar,Typography } from 'antd';
+import { Card,Divider,Meta,message,Col, Row,Tag,Button,Space, Avatar,Typography } from 'antd';
 import './AcceptReject.css';
 import keycloak from '../keycloak/keycloak';
 
@@ -28,6 +28,7 @@ const AcceptRejectAppli = (props) => {
         };
     //gets application id from eventhandlers in the form proj.id
     const handleAccept = async (id) => {
+       message.success('Søknad akseptert!');
         try{
         const response = await fetch(`${API_URL_APPLI}/api/v1/application/${id}`, {
             method: "PUT",
@@ -42,13 +43,16 @@ const AcceptRejectAppli = (props) => {
               }),
           });
           //const data = await response.json();
+          setProject(project.filter((project) => project.id !== id));
           return response;
         } catch (error) {
           throw new Error(`Error updating project: ${error.message}`);
         }
+       
     };
         //gets application id from eventhandlers in the form proj.id
     const handleReject = async (id) => {
+        message.error('Søknad avslått!');
         try{
             const response = await fetch(`${API_URL_APPLI}/api/v1/application/${id}`, {
                 method: "PUT",
@@ -63,6 +67,7 @@ const AcceptRejectAppli = (props) => {
                 }),
               });
               //const data = await response.json();
+              setProject(project.filter((project) => project.id !== id));
               return response;
             } catch (error) {
               throw new Error(`Error updating project: ${error.message}`);
@@ -70,16 +75,22 @@ const AcceptRejectAppli = (props) => {
       };
     
     return (
-      <div className='card-container'>
+    <div className='card-container'>
       <h3 className='card-title'>Nye søkere på prosjektet</h3>
-      <Card hoverable className='card-body'>
+      <Card className='card-body'>
         {project.map((proj) => (
-          <Divider className='card-divider'>
-            <p className='card-motivation'>{proj.motivation}</p>
-            <br/>
-            <Button type="primary" /* className={proj.category.replace(' ', '-').toLowerCase()} */  onClick={() => handleAccept(proj.id)}>Accept</Button>
-            <Button type="danger" className='card-button' onClick={() => handleReject(proj.id)}>Reject</Button>
-          </Divider>
+          <Row gutter={[16, 16]} style={{ marginLeft: '0px', marginRight: '0px', paddingLeft: '25px', display: 'flex', justifyContent: 'space-between' }}>         
+            <Col xs={20} sm={8} md={10} lg={10}>
+                <p className='card-motivation'>{proj.motivation}</p>
+            </Col>
+                <br/>
+            <Col xs={4} sm={4} md={4} lg={4} style={{marginRight: '-160px'}}>
+                <Button className={proj.category} type="primary" onClick={() => handleAccept(proj.id)}>Accept</Button>
+            </Col>
+            <Col xs={4} sm={4} md={4} lg={4}>
+                <Button type="danger"  onClick={() => handleReject(proj.id)}>Reject</Button>
+            </Col>
+          </Row>
         ))}
       </Card>
      </div>

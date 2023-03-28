@@ -86,6 +86,30 @@
        font-family: 'Times New Roman', Times, serif;
        color: black;
      }
+
+.reqSkills .skills.matching {
+        position: relative;
+        bottom:-7px;
+        border: 2px solid black;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight:bold;
+        font-family: 'Times New Roman', Times, serif;
+        color: black;
+ }
+        
+.reqSkills .skills.non-matching {
+        position: relative;
+        bottom:-7px;
+        border: 0.5px solid rgb(130, 126, 126);
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight:200;
+        font-family: 'Times New Roman', Times, serif;
+        color: rgb(100, 97, 97);
+        
+ }
+ 
 .detailsCard .projMedlemer li:first-child {
         font-size: 12px;
         font-weight: bold;

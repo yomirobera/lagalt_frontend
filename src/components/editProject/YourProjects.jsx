@@ -97,6 +97,7 @@ const YourProjects = () => {
               </tr>
             ))}
           </tbody>
+          <br/>
           <tbody>
             <tr class="first-row2">
             <th>Prosjekter du deltar i</th>

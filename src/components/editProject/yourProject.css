@@ -1,27 +1,32 @@
 .yourProjCard {
+  position: relative;
+  top:50px;
   padding: 100px;
+  padding-top: 56px;
   max-width: 1000px;
   margin: 0 auto;
   text-align: center;
+  background-color: #f8f4f4;
+  border-radius: 20px;
 }
-table {
+.yourProjCard table {
   position: relative;
   border-collapse: collapse;
   width: 100%;
   }
-.first-row th {
-    background-color: #fff;
+.yourProjCard .first-row th {
+    background-color:none;
     font-weight:600;
     font-size: 14px;
     font-family: Helvetica, Verdana,sans-serif;
   }
-  th, td {
+.yourProjCard th, td {
     text-align: left;
     padding: 8px;
     font-size: 12px;
     font-family: Helvetica, Verdana,sans-serif;
   }
-   a {
+.yourProjCard a {
     text-align: left;
     padding: 8px;
     font-size: 12px;
@@ -29,15 +34,15 @@ table {
     text-decoration: underline;
     color: #000;
   }
-  th {
+.yourProjCard th {
     font-weight:600;
     font-size: 12px;
     font-family: Helvetica, Verdana,sans-serif;
   }
-  tr:nth-child(even) {
-    background-color: #F2F2F2;
+.yourProjCard tr:nth-child(even) {
+    background-color: none;
   }
-  .applicationNr {
+.yourProjCard .applicationNr {
     display: inline-block;
     width: 20px;
     height: 20px;
@@ -48,7 +53,7 @@ table {
     line-height: 20px;
     cursor: pointer;
   }
-  .yourProjCard ul .ant-pagination.css-dev-only-do-not-override-ph9edi {
+.yourProjCard ul .ant-pagination.css-dev-only-do-not-override-ph9edi {
    text-align: left;
   }
 

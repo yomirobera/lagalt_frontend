@@ -63,7 +63,7 @@ const ApplyForm =  (props) => {
   }
 
   return (
-    <div>
+    <div className='applyForm'>
       <form onSubmit={handleSubmit}>
         <label>
           <span style={{fontSize: "12px", fontWeight: "bold", fontFamily: "'Times New Roman', Times, serif", color:"#000"}}>
@@ -81,8 +81,8 @@ const ApplyForm =  (props) => {
         </div>
         <br/>
         {/* set control if user is submited but not agreed to terms (not selected checkbox) then give red error message */}
-        {isSubmitted && !isChecked && <div style={{ color: 'red' }}>Du må gi samtykker først før du sender brevet!</div>}
-        {isChecked && isSubmitted && <div style={{ color: 'green' }}>Takk for at du sendte inn skjemaet!</div>}
+        {isSubmitted && !isChecked && <div className='greenMessage' style={{ color: 'red' }}>Du må gi samtykker først før du sender brevet!</div>}
+        {isChecked && isSubmitted && <div className='redMessage' style={{ color: 'green' }}>Takk for at du sendte inn skjemaet!</div>}
         
         <button type="submit">SØK OM Å BLI MED PÅ PROSJEKTET</button>
       </form>
