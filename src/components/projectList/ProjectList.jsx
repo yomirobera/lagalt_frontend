@@ -53,9 +53,9 @@ const { skills, isLoading } = useSelector(state => state.projects);
   }, []);
 
     // Render the project and user data once they have been fetched
-   if (!data || !skills) {
-    return <div>Loading...</div>;
-} 
+    if (!Array.isArray(data) || !Array.isArray(skills)) {
+      return <div>Loading...</div>;
+  }
 
   if (error) { // display an error message
     return <div>Error: {error.message}</div>;

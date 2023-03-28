@@ -78,7 +78,7 @@
     
 .detailsCard .reqSkills .skills{
        position: relative;
-       bottom:12px;
+       bottom:8px;
        border: 2px solid black;
        border-radius: 20px;
        font-size: 12px;
@@ -89,7 +89,7 @@
 
 .reqSkills .skills.matching {
         position: relative;
-        bottom:-7px;
+        bottom:8px;
         border: 2px solid black;
         border-radius: 20px;
         font-size: 12px;
@@ -100,7 +100,7 @@
         
 .reqSkills .skills.non-matching {
         position: relative;
-        bottom:-7px;
+        bottom: 8px;
         border: 0.5px solid rgb(130, 126, 126);
         border-radius: 20px;
         font-size: 12px;
