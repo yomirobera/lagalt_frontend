@@ -40,8 +40,9 @@ const ProjectDetails = () => {
     
                 // Make an API call to get the user data
                 const userResponse = await fetch(`${apiUrl}/${project.owner}`);
-                const userData = await userResponse.json();
-                setUserData(userData);
+                const userData1 = await userResponse.json();
+                setUserData(userData1);
+                console.log(userData1)
     
                 // Set the user ID
                // setUserId(project.owner);
@@ -56,6 +57,7 @@ const ProjectDetails = () => {
     if (!project || !userData) {
         return <div>Loading...</div>;
     }
+    console.log("DATA",userData)
     
   return (
     <div className='detailsCard'>
@@ -97,13 +99,12 @@ const ProjectDetails = () => {
                            <li><strong>Prosjekt medlemer : </strong></li>
                             {project.members.map(member => {
                                 let Username = '';
-                                for (const key in userData) {
-                                    if (userData[key].id === member) {
-                                    Username = userData[key].name;
+                               
+                                if (userData.id === member) {
+                                    Username = userData.f_name;
                                     console.log('I am username', {Username, member})
-                                    break;
-                                    }
                                 }
+                            
                              <li key={member}>
                                <Link to={`/UserProfile/${member}`}>
                                {Username || member}
