@@ -65,7 +65,7 @@ const ProjectDetails = () => {
          <Card>
             <Row gutter={16} style={{marginLeft: '0px', marginRight: '0px', paddingLeft: '25px'}}>
                 <Col xs={24} sm={12} md={14} lg={14} className={project.category.replace(' ', '-').toLowerCase()}
-                    style={{ paddingLeft: '50px',paddingTop:'25px', paddingRight: '0px'}}
+                    style={{ paddingLeft: '50px',paddingTop:'25px', paddingRight: '0px',paddingBottom:'20px'}}
                 >
                 <h2 className='categoryText'>{project.category} <span id='musicIcon' className={project.category.replace(' ', '-').toLowerCase()}></span></h2>
                 <h3 className='projTitle'>{project.title}</h3>

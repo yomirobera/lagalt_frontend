@@ -28,7 +28,6 @@ const NavBar = () => {
         if (!result) {
           console.log("POST")
           addUsers();
-          navigate("/")
         } else {
           // do nothing
           console.log("DONT")
