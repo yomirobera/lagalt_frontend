@@ -52,6 +52,9 @@ const { skills, isLoading } = useSelector(state => state.projects);
     }
   }, []);
 
+  if (!data || !skills) {
+    return <div>Loading...</div>;
+  }
   if (error) { // display an error message
     return <div>Error: {error.message}</div>;
   } else if (isSearching || isLoading) { // display a loading message, if it loading 

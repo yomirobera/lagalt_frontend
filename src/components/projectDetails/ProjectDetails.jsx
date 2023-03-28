@@ -39,7 +39,7 @@ const ProjectDetails = () => {
                 setProject(project);
     
                 // Make an API call to get the user data
-                const userResponse = await fetch(`${apiUrl}/${project.owner}`);
+                const userResponse = await fetch(`${apiUrl}`);
                 const userData = await userResponse.json();
                 setUserData(userData);
     
@@ -92,25 +92,28 @@ const ProjectDetails = () => {
                          <Link to={`/UserProfile/${project.owner}`} style={{textDecoration: "underline", textDecorationThickness: "2px"}}>
                              {<p>{userData.f_name} {userData.l_name}</p>}
                          </Link>
-                    </div>
-{/*this is for members*/}<ul className='projMedlemer'>
-                           <li><strong>Prosjekt medlemer : </strong></li>
+                  </div>
+                        <ul className='projMedlemer'>
+                            <li><strong>Prosjekt medlemer : </strong></li>
                             {project.members.map(member => {
-                                let Username = '';
-                                for (const key in userData) {
-                                    if (userData[key].id === member) {
-                                    Username = userData[key].name;
-                                    console.log('I am username', {Username, member})
-                                    break;
-                                    }
+                                let memberName = '';
+                                const userDataKeys = Object.keys(userData);
+                                for (let i = 0; i < userDataKeys.length; i++) {
+                                const user = userData[userDataKeys[i]];
+                                if (user.id === member) {
+                                    memberName = `${user['f_name']} ${user['l_name']}`;
+                                    break; 
                                 }
-                             <li key={member}>
-                               <Link to={`/UserProfile/${member}`}>
-                               {Username || member}
-                               </Link>
-                             </li>
+                                }
+                                return ( 
+                                <li key={member}>
+                                    <Link to={`/UserProfile/${member}`}>
+                                    {memberName || member}
+                                    </Link>
+                                </li>
+                                );
                             })}
-                        </ul>
+                     </ul>
                 </div>
                 <div className='applyForm'>
                    <ApplyToProject projectId ={{id}}/>
