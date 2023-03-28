@@ -5,7 +5,9 @@ import withAuth from '../../hoc/withAuth';
 import { updateProject } from '../../api/projects';
 import axios from 'axios';
 import { useParams } from 'react-router';
+
 import './editProject.css';
+
 const { Option } = Select;
 const EditProject = () => {  // Component function taking in project as propz
   const { projectId } = useParams();
@@ -122,13 +124,18 @@ const EditProject = () => {  // Component function taking in project as propz
             </Select>
           </Form.Item>
           <b>Bilde</b>
-          <Form.Item name="image">
-            <input type="file" accept="image/*" onChange={handleImageChange} />
-          </Form.Item>
+          <Form.Item  name="image"> 
+           {img_url ? (  
+           <img src={img_url} alt="" style={{ maxWidth: '50%', paddingLeft: '80px'}} />       
+            ) : (          
+            <div>Ingen bilde ble valgt </div>        )}        
+            <input type="file" accept="image/*" onChange={handleImageChange} />      
+            </Form.Item>
           <b>Legg til eller fjern ferdigheter som er ønsket i prosjektet</b>
           <Form.Item
             name="skillsRequired"
             >
+
             <Input
               placeholder="Endre ferdigheter (atskilt med komma)"
               value={skillsRequired.join(",")}

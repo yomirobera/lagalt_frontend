@@ -58,8 +58,7 @@ let navigate = useNavigate();
                 <h3 className='projTitle'>{project.title}</h3>
                 <div className='descrtext'>
                 <p><strong>Beskrivelse av prosjektet: </strong>{project.description}
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut </p>
+                 </p>
                 </div>
                 <span style={{display: 'inline-block'}}>
                     <strong>Prosjektets progresjon: </strong>
@@ -82,7 +81,7 @@ let navigate = useNavigate();
                 </Col>
                 <Col xs={24} sm={12} md={10} lg={10} style={{paddingLeft: '0px',
                     paddingRight: '0px'}}>
-                <img alt="project cover" src={musicImg /* project.img_url */} style={{ width: '100%',maxWidth: '100%',height:'100%', maxHeight: '100%', objectFit: 'cover'}} />
+                <img alt="project cover" src={ project.img_url} style={{ width: '100%',maxWidth: '100%',height:'100%', maxHeight: '100%', objectFit: 'cover'}} />
                 </Col>
                 <Divider/>
                 <AcceptRejectAppli projID={id}/>
