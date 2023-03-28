@@ -1,79 +1,124 @@
-.profile-form {
-  font-size: 16px;
-}
-
 .form-container {
-  padding: 100px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-
-label {
-  display: block;
-  margin-bottom: 10px;
-}
-
-input,
-textarea {
-  width: 100%;
-  padding: 5px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-}
-
-.checkbox-text {
-  font-size: 12px;
-}
-
-button[type='submit'] {
-  background-color: #99CCFF;
-  border: none;
-  color: white;
-  padding: 10px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 10px 0;
-  cursor: pointer;
-  border-radius: 10px;
-  text-align: center;
-}
-
-/* New CSS rule for aligning the checkbox input and the text */
-label.checkbox-label input[type="checkbox"] {
-  display: inline-block;
-  vertical-align: middle;
-  margin-right: 5px;
-}
-
-label.checkbox-label span.checkbox-text {
-  display: inline-block;
-  vertical-align: middle;
-}
-
-.min-profil {
-  padding-top: 100px;
-  text-align: center;
-
-}
-.navn {
-  font-weight: bold;
-}
-
-.Skills .ferdigheter{
   position: relative;
-  bottom:12px;
-  border: 2px solid black;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight:bold;
-  font-family: 'Times New Roman', Times, serif;
-  color: black;
+    max-width: 500px;
+    border-radius: 20px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+    background-color: #F8F4F4;
+    background-color: #F8F4F4;
+    padding: 0px;
+    top:5px;
+    margin: 0 auto;
+ }
+ form {
+  width: 80%;
+  margin: 0 auto;
 }
-.ferdigheterTittel {
-  font-weight: bold;
+ .profile-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 58px;
+    padding-bottom: 10px;;
+    height: 100vh;
+  }
+  .form {
+    position: relative;
+    max-width: 500px;
+    border-radius: 20px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+    background-color: #F8F4F4;
+    background-color: #F8F4F4;
+    padding: 24px;
+    top:5px;
+    margin: 0 auto;
+  }
+  .form-container .card-body {
+    width: 500px;
+    margin: 0 auto;
 }
+ .form-container .card-body {
+    display: flex;
+    flex-direction: column;
+}
+  .card-header {
+    border-bottom: 1px solid #E5E5E5;
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+  }
+  .card-header h3 {
+    margin-top: 0;
+    text-align: center;
+    font-size: 14px;
+    font-family: 'Times New Roman', Times, serif;
+    color:#000;
+  }
+  .card-body {
+    display: flex;
+    flex-direction: column;
+  }
+  .profile-form{
+    height: 100%;
+  }
+  .form-group {
+    margin-bottom: 20px;
+  }
+  .form-group label {
+    display: block;
+    margin-bottom: 20px;
+    font-size: 12px;
+    font-family: 'Times New Roman', Times, serif;
+    color:#000;
+  }
+  .form-group input[type="text"],
+  .form-group textarea,
+  .form-group input[type="email"],
+  .form-group input[type="password"] {
+    width: 100%;
+    border: 1px solid #E5E5E5;
+    border-radius: 20px;
+    padding: 10px;
+    font-size: 16px;
+    color: #555555;
+    box-sizing: border-box;
+  }
+  .form-group input[type="checkbox"] {
+    position: relative;
+    right:12px;
+  }
+  .checkbox-text {
+    position: relative;
+    bottom:2px;
+    right:6px;
+    font-size: 10px;
+    margin-left: -5px;;
+    color: #555555;
+  }
+  .form-group button[type='submit'] {
+    position: relative;
+    display: inline-block;
+    bottom: 0px;
+    top: 5px;
+    width: 100%;
+    background-color: #7393B0;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 12px;
+    cursor: pointer;
+    border-radius: 20px;
+    text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+

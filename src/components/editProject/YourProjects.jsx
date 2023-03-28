@@ -8,7 +8,8 @@ import { Link, Route, Routes } from 'react-router-dom';
 import LandingView from '../../Views/LandingView';
 import ProfileView from '../../Views/ProfileView';
 import { useNavigate } from "react-router-dom";
-import '../../css/yourProjects.css';
+//import '../../css/yourProjects.css';
+import './yourProject.css';
 
 
 
@@ -22,7 +23,9 @@ const YourProjects = () => {
   const [data,setData] = useState([]);
   const [selectedProject, setSelectedProject] = useState(null); // state for the currently selected project
   const [currentPage, setCurrentPage] = useState(1); // state for the current page number
- 
+  const [delatakerIproj, setDelatakerIproj] = useState([]);
+  const userID = keycloak.tokenParsed.sub;
+  
 
   useEffect(() => {
     fetch(`${apiUrl}/api/v1/users/${keycloak.tokenParsed.sub}/getProjectsOwned`)
@@ -30,6 +33,15 @@ const YourProjects = () => {
     .then(data => setData(data))
     .catch(error => console.log(error))
   },[])
+//To be tested when user is approved for a project
+  useEffect(() => {
+    fetch(`${apiUrl}/api/v1/users/${userID}/getProjectParticipated`)
+    .then(response => response.json())
+    .then(data => setDelatakerIproj(data))
+    .catch(error => console.log(error))
+    
+  },[])
+
 
   // console.log(data,"JEG VIL HA DEN")
   // // useEffect(() => {
@@ -60,33 +72,64 @@ const YourProjects = () => {
     navigate(path);}
 
   return (
-    <div id='yourProj'>
-      <Row>
-        <Col xs={24} sm={16} md={12} lg={8}>
-          <h3>Dine prosjekter</h3>
-        
-          {pageData.filter((project) => project.owner === keycloak.tokenParsed.sub).map((project) => (
-            <Card key={project.id} style={{ marginBottom: 10 }} onClick={() => handleCardClick(project)}>
-              <h3 style={{cursor: 'pointer'}}>{project.title}<span className="applicationNr" style={{marginLeft:"50%",color:"white"}}>{project.applications.length}</span></h3>
-            </Card>
-          ))}
-        
+    <div className='yourProjCard'>
+      <table>
+          <thead>
+          <tr class="first-row">
+           <th>Prosjekter du eier</th>
+          </tr>
+          <tr>
+            <th>Navn på prosjekt</th>
+            <th>Nye søkere</th>
+          </tr>
+          </thead>
+          <tbody>
+            {pageData.filter((project) => project.owner === keycloak.tokenParsed.sub).map((project) => (
+              <tr key={project.id} style={{ marginBottom: 10 }} onClick={() => handleCardClick(project)}>
+                <td>
+                  <a href="#" onClick={() => routeChange(`/ProjectAdmin/${project.id}`)}>
+                  {project.title} #{project.id}
+                  </a>
+                </td>            
+                <td>
+                  <span className="applicationNr">{project.applications.length}</span>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+          <br/>
+          <tbody>
+            <tr class="first-row2">
+            <th>Prosjekter du deltar i</th>
+            </tr>
+            <tr>
+              <th>Prosjekt</th>
+            </tr>
+            {delatakerIproj.filter((project) => project.members === keycloak.tokenParsed.sub).map((project) => (
+              <tr key={project.id} style={{ marginBottom: 10 }} onClick={() => handleCardClick(project)}>
+                <td>
+                  <a href="#" onClick={() => routeChange(`/ProjectDetails/${project.id}`)}>
+                  {project.title} #{project.id}
+                  </a> 
+                </td>            
+              </tr>
+            ))}
+          </tbody>
+        </table>
           <Pagination
-            current={currentPage}
-            pageSize={PAGE_SIZE}
-            total={data.length}
-            onChange={handlePageChange}
-            style={{ marginTop: 100 }}
-          />
-        </Col>
-      
-        {/* <React.Fragment key={project.id}>
-                <Link to={`/ProjectDetails/${project.id}`}></Link> */}
-        {selectedProject && routeChange(`/ProjectAdmin/${selectedProject.id}`)}
-
-      </Row>
-
+              current={currentPage}
+              pageSize={PAGE_SIZE}
+              total={data.length}
+              onChange={handlePageChange}
+              style={{ marginTop: 50, display: 'flex', justifyContent: 'flex-end' }}
+          />   
+         {selectedProject && routeChange(`/ProjectAdmin/${selectedProject.id}`)}
     </div>
+  
+ 
+  
+
+  
   );
 };
 

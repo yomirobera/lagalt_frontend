@@ -91,8 +91,9 @@ strong{
 }
 
 .checkbox-item:nth-child(2)::after {
-  background-color: #a8e484;
-  left: 80px;
+  background-color:#e87c7c;
+  left: 148px;
+  top: 38%;
 }
 
 .checkbox-item:nth-child(2):after:nth-child(2) {

@@ -1,104 +1,106 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import { Form, Input, Button, Select, Tag } from 'antd';
 import withAuth from '../../hoc/withAuth';
 import { updateProject } from '../../api/projects';
-import { useNavigate, useParams } from "react-router-dom";
-import { API_URL } from '../../api/projects';
-import '../../css/editProject.css';
-
-
+import axios from 'axios';
+import { useParams } from 'react-router';
+import './editProject.css';
 const { Option } = Select;
-const EditProject = () => {  // Component function taking in project as prop
-  const navigate = useNavigate();
-  // const location = useLocation();   
-  const { projectId } = useParams()
-  // let project = state;
+const EditProject = () => {  // Component function taking in project as propz
+  const { projectId } = useParams();
   const [project, setProject] = useState(null);
-  console.log(`${API_URL}/${projectId}`)
-  const [title, setTitle] = useState();
-  const [description, setDescription] = useState();
-  const [category, setCategory] = useState();
-  const [img_url, setImg_url] = useState();
-  const [status, setStatus] = useState();
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+  const [category, setCategory] = useState(null);
+  const [img_url, setImg_url] = useState('');
+  const [status, setStatus] = useState('');
   const [tags, setTags] = useState ([]);
   const [skillsRequired, setSkillsRequired] = useState ([]);
-    
-  useEffect(() => {
-      // Make an API call to get the project data
-      fetch(`${API_URL}/${projectId}`)
-        .then(response => response.json())
-        .then(data => {console.log("PENGER",data);
-        setProject(data)})
-        .catch(error => console.log("ERROR: ",error));
-    }, []);
-
-  console.log("JAAAAAAAAAA",project)
-  if(project != null){
-    // setTitle(project.title)
-    // setDescription(project.description)
-    // setCategory(project.category)
-    // setImg_url(project.img_url)
-    // setStatus(project.status)
-    // setTags(project.tags)
-    // setSkillsRequired(project.skillsRequired)
-    const handleTitleChange = (event) => {  // Handler function for title change
-      setTitle(event.target.value);  // Update title state value
-    };
-    const handleStatusChange = (value) => {  // Handler function for status change
-      setStatus(value);  // Update status state value
-    };
-    const handleDescriptionChange = (event) => {  // Handler function for description change
-      setDescription(event.target.value);  // Update description state value
-    };
-    const handleCategoryChange = (value) => {  // Handler function for category change
-      setCategory(value);  // Update category state value
-    };
-    const handleImageChange = (event) => {
-      if (event.target.files && event.target.files[0]) { // Check if files are present
-        const reader = new FileReader();
-        reader.onload = () => {
-          setImg_url(reader.result); // Set the state to the selected file
-        };
-        reader.readAsDataURL(event.target.files[0]); // Read the selected file as a data URL
-      } else {
-        setImg_url(null); // If no file is selected, set the state to null
-      }
-    };
-    const handleSubmit = async (event) => {  // Handler function for form submission
-      console.log("Submitting form..")
-      alert(`img_url ${img_url}`);
-      alert(`skillsRequired ${skillsRequired}`);
-      const updatedProject = {  // Create updated project object with new values
-        ...project,
-        title,
-        description,
-        category,
-        status,
-        img_url,
-        tags,
-        skillsRequired
+  const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
+  const handleTitleChange = (event) => {  // Handler function for title change
+    setTitle(event.target.value);  // Update title state value
+  };
+  const handleStatusChange = (value) => {  // Handler function for status change
+    setStatus(value);  // Update status state value
+  };
+  const handleDescriptionChange = (event) => {  // Handler function for description change
+    setDescription(event.target.value);  // Update description state value
+  };
+  const handleCategoryChange = (value) => {  // Handler function for category change
+    setCategory(value);  // Update category state value
+  };
+  const handleImageChange = (event) => {
+    if (event.target.files && event.target.files[0]) { // Check if files are present
+      const reader = new FileReader();
+      reader.onload = () => {
+        setImg_url(reader.result); // Set the state to the selected file
       };
-      console.log(updatedProject);
-      try {
-        const response = await updateProject(project.id, updatedProject);  // Call API function to update project
-        console.log("Project updated YAY!")
-        alert("Project updated YAY!");
-        // Handle successful response
-      } catch (error) {
-        alert(error);
-        console.error("Error:", error);  // Log error message to console
-      }
+      reader.readAsDataURL(event.target.files[0]); // Read the selected file as a data URL
+    } else {
+      setImg_url(null); // If no file is selected, set the state to null
+    }
+  };
+  useEffect(() => {
+    axios.get(`http://localhost:8080/api/v1/project/${projectId}`)
+      .then(response => {
+        setProject(response.data);
+        setTitle(response.data.title);
+        setDescription(response.data.description);
+        setCategory(response.data.category);
+        setImg_url(response.data.img_url);
+        setStatus(response.data.status);
+        setTags(response.data.tags);
+        setSkillsRequired(response.data.skillsRequired);
+        setIsLoading(false);
+        console.log(title);
+        console.log(status);
+        console.log(description);
+      })
+      .catch(error => {
+        console.log(error);
+        setIsLoading(false);
+      });
+  }, [projectId]);
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+  const onFinish = async (values) => {
+    const projectData = {
+      ...values,
+      id: project.id,
+      title: title,
+      description: description,
+      category: category,
+      img_url: img_url,
+      status: status,
+      skillsRequired: skillsRequired,
+      tags: tags
     };
-    return (
-      <div id='form'>
-
-        <Form onFinish={handleSubmit} initialValues={{title: project.title, status: project.status, description: project.description, category: project.category}}>
-        <b>* Navn på prosjektet</b>
-          <Form.Item name="title" rules={[{ required: true, message: 'Please input the title of the project!' }]}>
+    updateProject(project.id, projectData)
+      .then(response => {
+        console.log(response);
+        // Redirect to project page
+      })
+      .catch(error => {
+        console.log(error);
+      });
+      alert("Prosjektet er oppdatert");
+  };
+  console.log(`description: ${description}`)
+    console.log(`tags: ${tags}`)
+    console.log(`skillsReq: ${skillsRequired}`)
+  return (
+    <div className='form-cont'>
+        <Form className='RedigerForm' onFinish={onFinish} initialValues={{title: title, status: status, description:
+          description, category: category, img_url: img_url, tags: tags, skillsRequired: skillsRequired}}>
+            <b> Navn på prosjektet</b>
+          <Form.Item  name="title" rules={[{ required: true, message: 'Please input the title of the project!' }]}>
             <Input onChange={handleTitleChange} />
           </Form.Item>
           <b>Progresjon</b>
-          <Form.Item  name="status">
+          <Form.Item name="status">
             <Select onChange={handleStatusChange}>
               <Option value="Ikke påbegynt">Ikke påbegynt</Option>
               <Option value="I startfasen">I startfasen</Option>
@@ -106,12 +108,12 @@ const EditProject = () => {  // Component function taking in project as prop
               <Option value="I avslutningsfasen">I avslutningsfasen</Option>
             </Select>
           </Form.Item>
-          <b>* Beskrivelse</b>
+          <b>Beskrivelse</b>
           <Form.Item name="description" rules={[{ required: true, message: 'Please input the description of the project!' }]}>
             <Input.TextArea onChange={handleDescriptionChange} />
           </Form.Item>
-          <b>* Kategori</b>
-          <Form.Item  name="category" rules={[{ required: true, message: 'Please select the creative field!' }]}>
+          <b> Kategori</b>
+          <Form.Item name="category" rules={[{ required: true, message: 'Please select the creative field!' }]}>
             <Select onChange={handleCategoryChange}>
               <Option value="Musikk">Musikk</Option>
               <Option value="Film">Film</Option>
@@ -119,28 +121,31 @@ const EditProject = () => {  // Component function taking in project as prop
               <Option value="Webutvikling">Webutvikling</Option>
             </Select>
           </Form.Item>
-          <Form.Item label="Image" name="image">
+          <b>Bilde</b>
+          <Form.Item name="image">
             <input type="file" accept="image/*" onChange={handleImageChange} />
           </Form.Item>
-          <b>Legg til- eller fjern ferdigheter som er ønsket i prosjektet</b>
+          <b>Legg til eller fjern ferdigheter som er ønsket i prosjektet</b>
           <Form.Item
-            name="skills"
+            name="skillsRequired"
             >
             <Input
               placeholder="Endre ferdigheter (atskilt med komma)"
               value={skillsRequired.join(",")}
               onChange={(e) => setSkillsRequired(e.target.value.split(",").map(tag => tag.trim()))}
-              />
+            />
             {skillsRequired.map((tag, index) => (
               <Tag key={index} closable onClose={() => {
                 const newTags = [...skillsRequired];
                 newTags.splice(index, 1);
                 setSkillsRequired(newTags);
               }}>{tag}</Tag>
-              ))}
+            ))}
           </Form.Item>
-          <b>Legg til- eller fjern tags som beskriver prosjektet</b>
-          <Form.Item name="tags">
+          <b>Legg til eller fjern tags som beskriver prosjektet</b>
+          <Form.Item
+            name="tags"
+            >
             <Input
               placeholder="Endre tags (atskilt med komma)"
               value={tags.join(",")}
@@ -154,14 +159,10 @@ const EditProject = () => {  // Component function taking in project as prop
               }}>{tag}</Tag>
             ))}
           </Form.Item>
-          <Form.Item style={{textAlign: "center"}}>
-            <Button type="primary" htmlType="submit" style={{padding: "1px 20px"}}>Lagre endringer</Button>
-          </Form.Item>
+          <Button type="primary" htmlType="submit" style={{margin: "8%", width: "100%"}}>Lagre endringer</Button>
+          <Button onClick={()=>navigate(-2)} style={{display: "block"}}>Tilbake</Button>
         </Form>
-          <Button onClick={()=>navigate(-2)} style={{left:"43%"}}>BACK</Button>
-      </div>
-    );
-  }
-
+    </div>
+  );
 };
 export default withAuth(EditProject);

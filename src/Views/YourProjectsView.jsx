@@ -1,13 +1,12 @@
 import YourProjects from "../components/editProject/YourProjects"
 
 
-const YourProjectView = () => {
+const YourProjectsView = () => {
     return (
         <>
         <YourProjects/>
         </>
     )
-        
 }
 
-export default YourProjectView  
+export default YourProjectsView

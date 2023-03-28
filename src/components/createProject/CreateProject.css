@@ -1,9 +1,162 @@
-.add-project {
-    max-width: 50%;
-    position: center;
+.ant-card .ant-card-body .creatProject-Container {
+    position: relative;
+    padding:0px;
+    padding-top: 0px;
+    left: 0%;
+    right: 0%;
+    background-color:#fff;
+    display: flex;
+    max-width: 100%;
+    flex-direction: column;
+    justify-items: center; 
 }
 
-.project-item {
+
+.creatProject-Container{
+    display: flex; 
+    justify-content: center
+}
+.creatProject-Container h3 {
+    padding: 20px;
+    display: flex; 
+    justify-content: center;
+    font-size: 16px;
+    font-family: 'Times New Roman', Times, serif;
+    color:#000; 
+
+}
+.creatProject-Container label{
+    font-size: 14px;
+    font-family: 'Times New Roman', Times, serif;
+    color:#000; 
+}
+
+
+.wrapper-card {
+    border: 1px solid #d9d9d9; 
+    padding: 24px;
+    border-radius: 2px;
+    width: 50%;
+}
+
+
+.ant-form.ant-form-horizontal.css-dev-only-do-not-override-ph9edi.newProject-card {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f8f4f4;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+  }
+  
+.newProject-card h1 {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+.newProject-card .ant-form-item-label {
+    font-weight: bold;
+  }
+  
+.newProject-card .ant-form-item {
+    margin-bottom: 16px;
+  }
+  
+.newProject-card .ant-input {
+    border-radius: 4px;
+  }
+  
+.newProject-card .ant-tag {
+    margin-right: 8px;
+    margin-bottom: 8px;
+  }
+  
+.newProject-card .ant-select {
+    width: 100%;
+  }
+  
+.newProject-card .ant-btn {
+    margin-top: 16px;
+  }
+  
+.newProject-card {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 6px;
+}
+
+.newProject-card .ant-form-item {
+    margin-bottom: 16px;
+}
+
+.ant-row.css-dev-only-do-not-override-ph9edi .creatProject-Container {
+    background-color: #ffff;
+    max-width: 100%;
+    min-height: 100%;
+    overflow: hidden;
+    border-radius: 20px;
+    margin-bottom: 25px;
+    box-shadow: 0px 2px 2px 1px #aaaa;
+} 
+
+.ant-form-item .ant-form-item-label >label .creatProject-Container {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    max-width: 100%;
+    height: 32px;
+    color: rgba(0, 0, 0, 0.88);
+    font-size: 14px;
+}
+
+.newProject-card .ant-row.css-dev-only-do-not-override-ph9edi  {
+    background-color: #ffff;
+    max-width: 100%;
+    min-height: 100%;
+    overflow: hidden;
+    border-radius: 20px;
+    margin-bottom: 25px;
+    box-shadow: 0px 0px 2px 1px #aaaa;
+}
+.newProject-card .ant-form-item-control-input-content textarea{
+    min-width: 462px;
+    border-radius: 20px;
+    border: none;
+
+}
+.newProject-card .ant-input {
+    min-width: 563px;
+    border-radius: 20px;
     
 }
-    
+.newProject-card .ant-form-item-control-input-content .ant-btn.ant-btn-primary{
+    position: relative;
+    display: inline-block;
+    bottom: 0px;
+    right:97px;
+    min-width: 578px;
+    padding: 10px;
+    background-color: #7393B0;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 12px;
+    cursor: pointer;
+    border-radius: 20px;
+    text-align: center;
+    margin: 0px;
+   
+
+}
+
+.newProject-card .ant-select.ant-select-in-form-item.css-dev-only-do-not-override-ph9edi.ant-select-single.ant-select-show-arrow{
+    min-width: 462px;
+    border-radius: 20px;
+    border: none;
+}

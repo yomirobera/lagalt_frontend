@@ -30,6 +30,10 @@ const Filtering = () => {
       <h2>Filter</h2>
       <Checkbox className='checkbox-item' checked={selectedFilters.length === 1 && selectedFilters.includes('')}  onClick={fetchAllProjects}>
         <span>Vis populære</span>
+        <span style={{ display: 'inline-block', width: 12, height: 12, borderRadius: '50%', marginLeft: 5, backgroundColor: '#a8e484' }}></span>
+        <span style={{ display: 'inline-block', width: 12, height: 12, borderRadius: '50%', marginLeft: 5, backgroundColor: '#a8e484' }}></span>
+        <span style={{ display: 'inline-block', width: 12, height: 12, borderRadius: '50%', marginLeft: 5, backgroundColor: '#a07ce4' }}></span>
+        <span style={{ display: 'inline-block', width: 12, height: 12, borderRadius: '50%', marginLeft: 5, backgroundColor: '#e87c7c' }}></span>
       </Checkbox>
       <Checkbox className='checkbox-item' value='Musikk' checked={selectedFilters.includes('Musikk')}  onClick={() => filterSelectedproject('Musikk')}>
         <span>Musikk</span>

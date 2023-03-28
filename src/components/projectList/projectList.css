@@ -1,8 +1,8 @@
-.ant-card {
+.projectList-container .ant-card {
     width: 100%;
      overflow-x: hidden;
    }
-   .ant-card .ant-card-body {
+.projectList-container .ant-card .ant-card-body {
        position:relative;
        padding-top: 60px;
        left: 20%;
@@ -14,42 +14,42 @@
        justify-items: center;
    }
    
-   .musikk{
+.musikk{
        background-color: #a8e484;
        
    }
    
-   .film{
+.film{
        background-color: #a07ce4;
    }
    
-   .web-utvikling{
+.webutvikling{
        background-color: #e87c7c;
    
    }
-   .spill-utvikling{
+.spillutvikling{
        background-color: #f8ac74;
    
    }
    
-   .ant-card .ant-card-body{
+.projectList-container .ant-card .ant-card-body{
        max-width: 80%;
    }
    
-   .cardHeader{
+.cardHeader{
        margin-bottom:8px;
        font-size: 16px;
        font-family: 'Times New Roman', Times, serif;
        color:#8B8B8B; 
    }
    
-   .categoryText{
+.categoryText{
        font-size: 16px;
        font-family: 'Times New Roman', Times, serif;
        color:#8B8B8B; 
    }
    
-   .projTitle{
+.projTitle{
        position: relative;
        bottom:8px;
        font-size: 32px;
@@ -58,13 +58,17 @@
        color:black; 
    }
    
-   .projTags{
+.projTags{
        position: relative;
        bottom:15px;
        margin-bottom: 10px;
+       font-size: 12px;
+       font-family:'Times New Roman', Times, serif;
+       font-weight: 500;
+       color: black;
      }
     
-   .ant-card .ant-card-body p{
+.projectList-container .ant-card .ant-card-body p{
        position: relative;
        bottom: 15px;
        font-size: 12px;
@@ -74,7 +78,7 @@
      
     }
     
-   .reqSkills .skills{
+.reqSkills .skills{
        position: relative;
        bottom:12px;
        border: 2px solid black;
@@ -84,16 +88,39 @@
        font-family: 'Times New Roman', Times, serif;
        color: black;
      }
-   .card-loginLink{
+.reqSkills .skills.matching {
+       position: relative;
+       bottom:12px;
+       border: 2px solid black;
+       border-radius: 20px;
+       font-size: 12px;
+       font-weight:bold;
+       font-family: 'Times New Roman', Times, serif;
+       color: black;
+}
+       
+.reqSkills .skills.non-matching {
+       position: relative;
+       bottom:12px;
+       border: 0.5px solid rgb(130, 126, 126);
+       border-radius: 20px;
+       font-size: 12px;
+       font-weight:200;
+       font-family: 'Times New Roman', Times, serif;
+       color: rgb(100, 97, 97);
+       
+}
+
+.card-loginLink{
        position: relative;
        bottom: 10px;
    }
-   .card-loginLink a{
+.card-loginLink a{
        color: black;
        text-decoration: underline;
    }
    
-   .musikk#musicIcon{
+.musikk#musicIcon{
        position: relative;
        display: inline-block;
        top:5px;
@@ -105,7 +132,8 @@
        background-size: 100% 100%;
        background-color: transparent;
    }
-   .film#musicIcon{
+
+.film#musicIcon{
        position: relative;
        display: inline-block;
        top:5px;
@@ -117,7 +145,7 @@
        background-size: 100% 100%;
        background-color: transparent;
    }
-   .spill-utvikling#musicIcon{
+.spillutvikling#musicIcon{
        position: relative;
        display: inline-block;
        top:5px;
@@ -129,7 +157,7 @@
        background-size: 100% 100%;
        background-color: transparent;
    }
-   .web-utvikling#musicIcon{
+.webutvikling#musicIcon{
        position: relative;
        display: inline-block;
        top:5px;
@@ -142,7 +170,7 @@
        background-color: transparent;
    }
    
-   .arrowIcon{
+.arrowIcon{
        position: relative;
        display: inline-block;
        top:7px;
@@ -155,7 +183,7 @@
        background-color: transparent;
      }
    
-   .ant-row.css-dev-only-do-not-override-ph9edi {
+.ant-row.css-dev-only-do-not-override-ph9edi {
        background-color: #ffff;
        max-width: 100%;
        min-height: 100%;
@@ -165,7 +193,7 @@
        box-shadow: 0px 2px 2px 1px #aaaa;
    }
    
-   .ant-col.musikk.ant-col-xs-24.ant-col-sm-12.ant-col-md-14.ant-col-lg-14.css-dev-only-do-not-override-ph9edi{
+.ant-col.musikk.ant-col-xs-24.ant-col-sm-12.ant-col-md-14.ant-col-lg-14.css-dev-only-do-not-override-ph9edi{
        background-color: #ffff;
        max-height: 100%;               
        max-width: 100%;
@@ -174,7 +202,7 @@
        box-shadow: -25px 0px 0px 0px #a8e484;
    }
    
-   .ant-col.film.ant-col-xs-24.ant-col-sm-12.ant-col-md-14.ant-col-lg-14.css-dev-only-do-not-override-ph9edi{
+.ant-col.film.ant-col-xs-24.ant-col-sm-12.ant-col-md-14.ant-col-lg-14.css-dev-only-do-not-override-ph9edi{
        background-color: #ffff;
        max-height: 100%;               
        max-width: 100%;
@@ -182,7 +210,7 @@
        padding-right: 0px;
        box-shadow: -25px 0px 0px 0px #a07ce4;
    }
-   .ant-col.web-utvikling.ant-col-xs-24.ant-col-sm-12.ant-col-md-14.ant-col-lg-14.css-dev-only-do-not-override-ph9edi{
+.ant-col.webutvikling.ant-col-xs-24.ant-col-sm-12.ant-col-md-14.ant-col-lg-14.css-dev-only-do-not-override-ph9edi{
        background-color: #ffff;
        max-height: 100%;               
        max-width: 100%;
@@ -190,7 +218,7 @@
        padding-right: 0px;
        box-shadow: -25px 0px 0px 0px #e87c7c;
    }
-   .ant-col.spill-utvikling.ant-col-xs-24.ant-col-sm-12.ant-col-md-14.ant-col-lg-14.css-dev-only-do-not-override-ph9edi{
+.ant-col.spillutvikling.ant-col-xs-24.ant-col-sm-12.ant-col-md-14.ant-col-lg-14.css-dev-only-do-not-override-ph9edi{
        background-color: #ffff;
        max-height: 100%;               
        max-width: 100%;
@@ -198,7 +226,7 @@
        padding-right: 0px;
        box-shadow: -25px 0px 0px 0px #f8ac74;
    }
-   .ant-col.ant-col-xs-24.ant-col-sm-12.ant-col-md-10.ant-col-lg-10.css-dev-only-do-not-override-ph9edi{
+.ant-col.ant-col-xs-24.ant-col-sm-12.ant-col-md-10.ant-col-lg-10.css-dev-only-do-not-override-ph9edi{
      max-height: 100%;               
      max-width: 100%;
        

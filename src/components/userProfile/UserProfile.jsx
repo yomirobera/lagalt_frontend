@@ -33,31 +33,25 @@ if (!userInfo) {
 
 return (
     <div className='userProfileInfo'>
-     <Card>
-       {/* <img src={github} alt={`avatar`}/> */}
-       <Space wrap size={70}><Avatar size={180} icon={<UserOutlined />}/></Space>
-      <h1>{userInfo.f_name} {userInfo.l_name}</h1> 
-      <Divider />     
-      <Text>{userInfo.description} Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-       sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
-       quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequatLorem ipsum dolor sit amet, consectetur adipiscing elit,
-       sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
-       quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</Text>
-      <Divider />
-      <ul className='userProfilSkills'>
-         <li><strong>Ferdigheter : </strong></li>
-         <li><strong>Java </strong></li>
-         <li><strong>React </strong></li>
-            {userInfo.skills.map(skill => (
-                <li key={skill}>{skill}</li>
-            ))}
-      </ul>
-      <Divider />
-      <div className="userProfileLinks">
-        <a href={`https://github.com/${userInfo.github}`}>{<img src={github} alt={`github`}/>}</a>
-        <a href={`https://www.linkedin.com/in/${userInfo.linkedin}`}>{<img src={linkedin} alt={`linkedIn`}/>}</a>
+      <div className='cardContainer'>
+          {/* <img src={github} alt={`avatar`}/> */}
+          <Space wrap size={70}><Avatar size={180} icon={<UserOutlined />}/></Space>
+          <h1>{userInfo.f_name} {userInfo.l_name}</h1> 
+          <Divider />     
+          <Text>{userInfo.description} </Text>
+          <Divider />
+          <ul className='userProfilSkills'>
+            <li><strong>Ferdigheter : </strong></li>
+                {userInfo.skills.map(skill => (
+                    <li key={skill}>{skill}</li>
+                ))}
+          </ul>
+          <Divider />
+          <div className="userProfileLinks">
+            <a href={`https://github.com/${userInfo.github}`}>{<img src={github} alt={`github`}/>}</a>
+            <a href={`https://www.linkedin.com/in/${userInfo.linkedin}`}>{<img src={linkedin} alt={`linkedIn`}/>}</a>
+          </div>
       </div>
-    </Card>
   </div>
   );
 };

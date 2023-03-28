@@ -75,13 +75,12 @@ const NavBar = () => {
             <Menu.Item key="YourProfile" icon={<UserOutlined />}>
               <NavLink to="/YourProfile">Profile</NavLink>
             </Menu.Item>
-
             <Menu.Item key="create" icon={<PlusOutlined />}>
               <NavLink to="/CreateProject">New project</NavLink>
             </Menu.Item>
 
             <Menu.Item key="edit" icon={<EditOutlined />}>
-              <NavLink to="/YourProject">Endre project</NavLink>
+              <NavLink to="/YourProjects">Your project</NavLink>
             </Menu.Item>
           </SubMenu>
         )}
