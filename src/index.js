@@ -12,7 +12,8 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 
 // Display a loading screen when connecting to Keycloak
  // Display a loading screen when connecting to Keycloak
-root.render(<Loading message="Connecting to Keycloak..." />)
+// root.render(<Loading message="Connecting to Keycloak..." />)
+root.render(<div className='loader'></div>)
 
 // Initialize Keycloak
 initialize()

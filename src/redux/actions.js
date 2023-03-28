@@ -43,11 +43,9 @@ export const fetchProjectList = () => {
 }
 
 export const fetchUserSkills = () => {
-    console.log('what is happening here: reaching here?')
     if(keycloak.authenticated){
         const API_URL_SKILL = `https://superproapiavkennylu.azurewebsites.net/api/v1/users/${keycloak.tokenParsed.sub}/getAllSkills`;
       
-    console.log(API_URL_SKILL);
     return (dispatch, getState) => {
         fetch(API_URL_SKILL) // make a GET request to the API
             .then(res =>res.json()) 
@@ -55,7 +53,6 @@ export const fetchUserSkills = () => {
                 result => { 
                     if (result){
                         dispatch(fetchSkills(result))
-                        console.log(result)
                    } else {
                     console.log('Empty response from API')
                    // dispatch(fetchSkills([]))

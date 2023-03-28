@@ -28,9 +28,10 @@ const NavBar = () => {
         if (!result) {
           console.log("POST")
           addUsers();
+          window.location.reload();
         } else {
           // do nothing
-          console.log("DONT")
+          console.log("User exists, NO POST")
         }
       })
       .catch(error => {
@@ -38,14 +39,6 @@ const NavBar = () => {
       });
     }
 
-
-  // if (keycloak.authenticated && !(getUser(keycloak.tokenParsed.sub))) {
-  //   console.log("POST")
-  //   addUsers();
-  // } else {
-  //   // do nothing
-  //   console.log("DONT")
-  // }
 
 
 

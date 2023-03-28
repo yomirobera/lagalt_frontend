@@ -13,7 +13,7 @@ import './yourProject.css';
 
 
 
-const apiUrl = "http://localhost:8080";
+const apiUrl = "https://superproapiavkennylu.azurewebsites.net";
 
 
 //The number of projects to display per page
@@ -102,11 +102,10 @@ const YourProjects = () => {
             <tr class="first-row2">
             <th>Prosjekter du deltar i</th>
             </tr>
-            <tr>
-              <th>Prosjekt</th>
-            </tr>
-            {delatakerIproj.filter((project) => project.members === keycloak.tokenParsed.sub).map((project) => (
+            {console.log(delatakerIproj)}
+            {delatakerIproj.map((project) => (
               <tr key={project.id} style={{ marginBottom: 10 }} onClick={() => handleCardClick(project)}>
+                {console.log("YES")}
                 <td>
                   <a href="#" onClick={() => routeChange(`/ProjectDetails/${project.id}`)}>
                   {project.title} #{project.id}

@@ -42,7 +42,6 @@ const ProjectDetails = () => {
                 const userResponse = await fetch(`${apiUrl}/${project.owner}`);
                 const userData1 = await userResponse.json();
                 setUserData(userData1);
-                console.log(userData1)
     
                 // Set the user ID
                // setUserId(project.owner);
@@ -57,7 +56,6 @@ const ProjectDetails = () => {
     if (!project || !userData) {
         return <div>Loading...</div>;
     }
-    console.log("DATA",userData)
     
   return (
     <div className='detailsCard'>

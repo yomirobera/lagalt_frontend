@@ -36,7 +36,6 @@ const { skills, isLoading } = useSelector(state => state.projects);
   }
 
 
-  console.log('iam skills in plist',skills);
   
 
   useEffect(() => {
