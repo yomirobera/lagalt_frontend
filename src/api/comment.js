@@ -1,4 +1,4 @@
-const COMMENT_API_URL = "http://localhost:8080/api/v1/comment";
+const COMMENT_API_URL = "https://superproapiavkennylu.azurewebsites.net/api/v1/comment";
 const createComment = async (newComment) => {
     try {
       const response = await fetch(COMMENT_API_URL, {

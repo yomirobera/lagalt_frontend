@@ -10,7 +10,7 @@ const AcceptRejectAppli = (props) => {
     const [project, setProject] = useState('');
     const { Text } = Typography;
     const { Meta } = Card;
-    const API_URL_APPLI = "http://localhost:8080";
+    const API_URL_APPLI = "https://superproapiavkennylu.azurewebsites.net";
     const projectID = props.projID;
     //const userId = keycloak.tokenParsed.sub;
     

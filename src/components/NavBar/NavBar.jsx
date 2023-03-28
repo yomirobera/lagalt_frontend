@@ -67,20 +67,20 @@ const NavBar = () => {
       <Menu mode="horizontal" className="navMenu" theme="light">
       {keycloak.authenticated && (
         <Menu.Item key="home" icon={<HomeOutlined />}>
-          <NavLink to="/">Home</NavLink>
+          <NavLink to="/">Hjem</NavLink>
        </Menu.Item>
         )}
         {keycloak.authenticated && (
-          <SubMenu key="SubMenu" icon={<UserOutlined />} title="Profile">
+          <SubMenu key="SubMenu" icon={<UserOutlined />} title="Profil">
             <Menu.Item key="YourProfile" icon={<UserOutlined />}>
-              <NavLink to="/YourProfile">Profile</NavLink>
+              <NavLink to="/YourProfile">Profil</NavLink>
             </Menu.Item>
             <Menu.Item key="create" icon={<PlusOutlined />}>
-              <NavLink to="/CreateProject">New project</NavLink>
+              <NavLink to="/CreateProject">Nytt prosjekt</NavLink>
             </Menu.Item>
 
             <Menu.Item key="edit" icon={<EditOutlined />}>
-              <NavLink to="/YourProjects">Your project</NavLink>
+              <NavLink to="/YourProjects">Prosjektet ditt</NavLink>
             </Menu.Item>
           </SubMenu>
         )}
@@ -89,7 +89,7 @@ const NavBar = () => {
             keycloak.logout();
             navigate("/");
           }}>
-            Logout
+            Logg ut{String.fromCodePoint(0x1F621)}
           </Menu.Item>
             )}
             

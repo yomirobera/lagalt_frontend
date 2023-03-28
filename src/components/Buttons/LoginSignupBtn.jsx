@@ -15,7 +15,7 @@ const LoginSignupBtn = () => (
    {!keycloak.authenticated && (
                  <>
                     <Button className='btnLogin'  type="primary" ghost onClick={() => keycloak.login()}>
-                        LOG INN
+                        LOGG INN
                     </Button>
 
                     <Button className='btnSignup' type="primary" ghost onClick={() => keycloak.register()}>

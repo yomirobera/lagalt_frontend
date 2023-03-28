@@ -1,6 +1,6 @@
 import keycloak from "../components/keycloak/keycloak";
 
-const apiUrl = "http://localhost:8080/api/v1/users";
+const apiUrl = "https://superproapiavkennylu.azurewebsites.net/api/v1/users";
 
 export const registerUser = async (userData) => {
   try {
