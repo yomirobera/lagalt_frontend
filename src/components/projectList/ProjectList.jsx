@@ -52,9 +52,17 @@ const { skills, isLoading } = useSelector(state => state.projects);
     }
   }, []);
 
+<<<<<<< HEAD
   if (!data || !skills) {
     return <div>Loading...</div>;
   }
+=======
+    // Render the project and user data once they have been fetched
+   if (!data || !skills) {
+    return <div>Loading...</div>;
+} 
+
+>>>>>>> 84500d8417be6e5e987eb694b76264725e3fb89d
   if (error) { // display an error message
     return <div>Error: {error.message}</div>;
   } else if (isSearching || isLoading) { // display a loading message, if it loading 
