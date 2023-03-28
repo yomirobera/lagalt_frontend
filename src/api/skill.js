@@ -1,4 +1,4 @@
-const SKILL_API_URL = "http://localhost:8080/api/v1/skill";
+const SKILL_API_URL = "https://superproapiavkennylu.azurewebsites.net/api/v1/skill";
 
 const createSkill = async (skill) => {
     try {

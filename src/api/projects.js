@@ -1,6 +1,6 @@
 import { createSkill } from "./skill";
 
-const API_URL = "http://localhost:8080/api/v1/project";
+const API_URL = "https://superproapiavkennylu.azurewebsites.net/api/v1/project";
 
 
 const getProjects = async () => {

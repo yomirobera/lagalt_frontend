@@ -43,7 +43,7 @@ const EditProject = () => {  // Component function taking in project as propz
     }
   };
   useEffect(() => {
-    axios.get(`http://localhost:8080/api/v1/project/${projectId}`)
+    axios.get(`https://superproapiavkennylu.azurewebsites.net/api/v1/project/${projectId}`)
       .then(response => {
         setProject(response.data);
         setTitle(response.data.title);

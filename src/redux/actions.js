@@ -26,7 +26,7 @@ export const clearallFilter = (clear) => ({
 export const fetchProjectList = () => {
     let url = API_URL;
     if(keycloak.authenticated){
-        url = `http://localhost:8080/api/v1/users/${keycloak.tokenParsed.sub}/getRecommendedProjects`;
+        url = `https://superproapiavkennylu.azurewebsites.net/api/v1/users/${keycloak.tokenParsed.sub}/getRecommendedProjects`;
     }
     return (dispatch, getState) => {
         fetch(url) // make a GET request to the API
@@ -45,7 +45,7 @@ export const fetchProjectList = () => {
 export const fetchUserSkills = () => {
     console.log('what is happening here: reaching here?')
     if(keycloak.authenticated){
-        const API_URL_SKILL = `http://localhost:8080/api/v1/users/${keycloak.tokenParsed.sub}/getAllSkills`;
+        const API_URL_SKILL = `https://superproapiavkennylu.azurewebsites.net/api/v1/users/${keycloak.tokenParsed.sub}/getAllSkills`;
       
     console.log(API_URL_SKILL);
     return (dispatch, getState) => {

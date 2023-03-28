@@ -59,9 +59,8 @@ const YourProfile = () => {
             <Space wrap size={36}><Avatar size={140} icon={<UserOutlined />} /></Space>
             <Typography.Title level={3}>{firstName} {lastName}</Typography.Title>
             <Divider />
-            <Typography.Paragraph>{description}Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
-            quis nostrud exercitation ullamco laboris nisi ut 
-            aliquip ex ea commodo consequat.</Typography.Paragraph>
+            <Typography.Paragraph>{description}
+            </Typography.Paragraph>
             <Divider />
             <Typography.Paragraph>
               <strong>Mine ferdigheter</strong>
