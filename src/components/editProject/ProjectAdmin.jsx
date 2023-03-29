@@ -64,7 +64,7 @@ let navigate = useNavigate();
                     <strong>Prosjektets progresjon: </strong>
                     <h6 style={{display: 'inline-block', margin: '0'}}>{project.status}</h6>
                 </span>
-                <h5><strong>{getMatchingSkillsCount(project)} ferdigheter matcher din profil </strong></h5>                         
+                <h5 style={{paddingBottom:"10px"}}><strong>{getMatchingSkillsCount(project)} ferdigheter matcher din profil </strong></h5>                         
                 <div className='reqSkills'>
                     {project.skillsRequired.map(skill => (
                     <Tag
@@ -88,8 +88,8 @@ let navigate = useNavigate();
                 <Divider/>
             </Row>
             <h3 className='commentHeaders'>Nyeste kommentarer</h3>
-            <Row className='comments' gutter={100} style={{marginLeft: '0px', marginRight: '0px', paddingLeft: '25px'}}>
-                <Comment projectId={id} />
+            <Row className='comments' gutter={100} style={{marginLeft: '10px', marginRight: '0px', paddingLeft: '25px',marginTop:"10px"}}>
+                <Comment projectId={id}/>
             </Row>
          </Card>
       )}

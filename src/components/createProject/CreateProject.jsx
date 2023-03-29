@@ -28,6 +28,7 @@ const CreateProject = (project) => {
   const [img_url, setImg_url] = useState(null);
   const [tags, setTags] = useState ([]);
   const [skillsRequired, setSkillsRequired] = useState ([]);
+  const [category,setCategory] = useState("")
 
   //Defining an async function 
   const onFinish = async (values) => {
@@ -39,10 +40,10 @@ const CreateProject = (project) => {
         img_url: img_url,
         tags: tags,
         status: "Ikke påbegynt",
-        skillsRequired: skillsRequired
+        skillsRequired: skillsRequired,
+        category:category
       });
       form.resetFields(); //Reset the form fields 
-      alert(`Project added successfully. Image: ${img_url}`);
     } catch (error) {
       console.error(error); //Logs any errors to the console
       alert(`Error adding project: ${error.message}`);
@@ -78,29 +79,35 @@ const CreateProject = (project) => {
               name="add-project"
               onFinish={onFinish}
               onFinishFailed={onFinishFailed}
+              required
             > 
               <h3>Nytt prosjekt</h3> 
               <label htmlFor="title-input">*Navn på prosjektet</label>
               <Form.Item
                 name="title"
                 rules={[{ required: true, message: 'Skriv inn prosjekttittel!' }]}
+                required
               >
                 <Input
+                required
                 placeholder="Utvikle plante-app"
                 />
               </Form.Item>
               <label htmlFor="description-input">*Beskrivelse av prosjektet</label>
               <Form.Item
+                required
                 name="description"
                 rules={[{ required: true, message: 'Vennligst skriv inn prosjektbeskrivelse!' }]}
               >
                 <Input.TextArea 
+                required
                 placeholder="Hva går prosjektet ut på? Hvem står bak prosjektet?"
                 />
               </Form.Item>
               <label htmlFor="skills-input">Legg til eller fjern ferdigheter som er ønsket i prosjektet</label>
               <Form.Item
                 name="skills"
+                required
                 >
                 <Input
                   placeholder="Endre ferdigheter (atskilt med komma)"
@@ -118,11 +125,13 @@ const CreateProject = (project) => {
               <label htmlFor="skills-input">Legg til eller fjern tags som beskriver prosjektet</label>
               <Form.Item
                 name="tags"
+                required
                 >
                 <Input
                   placeholder="Endre tags (atskilt med komma)"
                   value={tags.join(",")}
                   onChange={(e) => setTags(e.target.value.split(","))}
+                  required
                 />
                 {tags.map((tag, index) => (
                   <Tag key={index} closable onClose={() => {
@@ -133,8 +142,8 @@ const CreateProject = (project) => {
                 ))}
               </Form.Item>
               <label htmlFor="Kategori-input">Kategori</label>
-              <Form.Item name="category">
-                <Select>
+              <Form.Item name="category" required>
+                <Select required defaultValue={"Musikk"} onChange={(e) => setCategory(e)}>
                   <Select.Option value="Musikk">Musikk</Select.Option>
                   <Select.Option value="Film">Film</Select.Option>
                   <Select.Option value="Spillutvikling">Spillutvikling</Select.Option>

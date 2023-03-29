@@ -127,7 +127,7 @@ function Comment({ projectId }) {
         <p>{comments.length} kommentarer</p>
         {comments.map((comment) => (
           <div key={comment.id}>
-            <p className='name'>
+            <p className='name' style={{margin:"10px",marginRight:"0px"}}>
               {users[comment.user] && users[comment.user].f_name} {' '}
               {users[comment.user] && users[comment.user].l_name}
             </p>
@@ -176,7 +176,7 @@ function Comment({ projectId }) {
             onChange={handleCommentChange}
             style={{ width: '600px', marginRight: '10px', padding: '10px' }}
           />
-          <button type="submit" style={{ marginLeft: '282px', width: '50%', padding: '10px' }} onClick={() => setReplyToComment('')}>Publiser kommentar</button>
+          <button type="submit" style={{ marginLeft: '350px', width: '50%', padding: '10px' }} onClick={() => setReplyToComment('')}>Publiser kommentar</button>
         </form>
       </div>
     

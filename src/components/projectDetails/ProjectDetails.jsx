@@ -39,7 +39,7 @@ const ProjectDetails = () => {
                 setProject(project);
     
                 // Make an API call to get the user data
-                const userResponse = await fetch(`${apiUrl}/${project.owner}`);
+                const userResponse = await fetch(`${apiUrl}`);
                 const userData1 = await userResponse.json();
                 setUserData(userData1);
     
@@ -74,7 +74,6 @@ const ProjectDetails = () => {
                 </div>
                 <p><strong>Beskrivelse av prosjektet: </strong>{project.description}
                 </p>
-                <p><strong>Beskrivelse av prosjektet: </strong>{project.description}</p>
                 <p><strong>{getMatchingSkillsCount(project)} ferdigheter matcher din profil </strong></p>                         
                 <div className='reqSkills'>
                     {project.skillsRequired.map(skill => (
@@ -89,27 +88,38 @@ const ProjectDetails = () => {
                 <div className='projMembers'>
                   <div className='porjOwner' style={{ display: "flex", alignItems: "center" }}>
                          <span style={{marginRight:"8px" }} ><strong>Prosjekt eier : </strong></span>
-                         <Link to={`/UserProfile/${project.owner}`} style={{textDecoration: "underline", textDecorationThickness: "2px"}}>
-                             {<p>{userData.f_name} {userData.l_name}</p>}
-                         </Link>
+                         {userData.map(user =>{
+                            if(user.id === project.owner){   
+                                return(
+                                <Link to={`/UserProfile/${user.id}`} style={{textDecoration: "underline", textDecorationThickness: "2px"}}>
+                                    {<p>{user.f_name} {user.l_name}</p>}
+                                </Link>)
+                            }
+                         })}
                     </div>
 {/*this is for members*/}<ul className='projMedlemer'>
-                           <li><strong>Prosjekt medlemer : </strong></li>
+<li><strong>Prosjekt medlemer : </strong></li>
                             {project.members.map(member => {
-                                let Username = '';
-                               
-                                if (userData.id === member) {
-                                    Username = userData.f_name;
-                                    console.log('I am username', {Username, member})
+                                let memberName = '';
+                                const userDataKeys = Object.keys(userData);
+                                for (let i = 0; i < userDataKeys.length; i++) {
+                                const user = userData[userDataKeys[i]];
+                                console.log("DATA:m",userData)
+                                if (user.id === member) {
+                                    memberName = `${user['f_name']} ${user['l_name']}`;
+                                    break;
                                 }
-                            
-                             <li key={member}>
-                               <Link to={`/UserProfile/${member}`}>
-                               {Username || member}
-                               </Link>
-                             </li>
+                                console.log("Name: ",user.f_name)
+                                }
+                                return (
+                                <li key={member}>
+                                    <Link to={`/UserProfile/${member}`}>
+                                    {memberName || member}
+                                    </Link>
+                                </li>
+                                );
                             })}
-                        </ul>
+                     </ul>
                 </div>
                 <div className='applyForm'>
                    <ApplyToProject projectId ={{id}}/>
