@@ -124,7 +124,7 @@ function Comment({ projectId }) {
         <p>{comments.length} kommentarer</p>
         {comments.map((comment) => (
           <div key={comment.id}>
-            <p className='name' style={{margin:"10px",marginRight:"0px"}}>
+            <p className='name' style={{marginTop:"15px", marginBottom:"5px"}}>
               {users[comment.user] && users[comment.user].f_name} {' '}
               {users[comment.user] && users[comment.user].l_name}
             </p>
