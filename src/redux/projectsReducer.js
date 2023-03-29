@@ -4,7 +4,6 @@ export const projectSlice = createSlice({
   name: 'projects',
   initialState: {
     data: [],
-    skills: [],
     error: null,
     searchQuery: '',
     isSearching: true,
@@ -18,20 +17,10 @@ export const projectSlice = createSlice({
         state.filteredData = action.payload
         
     },
-    fetchSkills: (state, action) => {
-      state.isLoading = false
-      state.skills = action.payload     
-   },
-   searchProjects: (state, action) => {
-    const filteredProjects = state.data.filter((project) =>
-      project.title.includes(action.payload)
-    );
-    return {
-      ...state,
-      data: filteredProjects,
-    };
-  }
-  ,
+    searchProjects: (state, action) => {
+        const currentProjects  = state.data;
+        state.data = currentProjects.filter((project) => project.title.includes(action.payload));
+    },
 
     selectFilter: (state, action) => {
       state.selectedFilters.push(action.payload);
@@ -54,10 +43,9 @@ export const projectSlice = createSlice({
     }
     
   },
-
 })
 
 // Action creators are generated for each case reducer function
-export const { fetchProjects,fetchSkills, searchProjects, selectFilter, deselectFilter,clearFilter } = projectSlice.actions
+export const { fetchProjects, searchProjects, selectFilter, deselectFilter,clearFilter } = projectSlice.actions
 
 export default projectSlice.reducer;
