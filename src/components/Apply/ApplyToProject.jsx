@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { useParams, Link} from 'react-router-dom';
 import { apiUrl_apply } from '../../api/user';
 import { Card, Col, Row,Tag,Button} from 'antd';
@@ -11,6 +11,15 @@ const ApplyForm =  (props) => {
   const [motivationLetter, setMotivationLetter] = useState('');
   const [isChecked, setIsChecked] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false); 
+
+  useEffect(() => {
+    if (isSubmitted && isChecked) {
+      setMotivationLetter('');
+   
+    }
+  }, [isSubmitted]);
+
+
 
     if (keycloak.authenticated){
 
@@ -42,6 +51,7 @@ const ApplyForm =  (props) => {
               if (!response.ok){
                   throw new Error('Error: Could not create application ')
               }
+              
               const data = await response.json()
               return [null,data]
               
@@ -54,12 +64,8 @@ const ApplyForm =  (props) => {
       }
      
     
-    } else{
-      
-       
-      }
-    
-  setIsChecked(false);
+    } else{ }
+    setIsChecked(false);
   }
 
   return (
@@ -81,7 +87,7 @@ const ApplyForm =  (props) => {
         </div>
         <br/>
         {/* set control if user is submited but not agreed to terms (not selected checkbox) then give red error message */}
-        {isSubmitted && !isChecked && <div className='greenMessage' style={{ color: 'red' }}>Du må gi samtykker først før du sender brevet!</div>}
+        {isSubmitted && !isChecked  && <div className='greenMessage' style={{ color: 'red' }}>Du må gi samtykker først før du sender brevet!</div>}
         {isChecked && isSubmitted && <div className='redMessage' style={{ color: 'green' }}>Takk for at du sendte inn skjemaet!</div>}
         
         <button type="submit">SØK OM Å BLI MED PÅ PROSJEKTET</button>
