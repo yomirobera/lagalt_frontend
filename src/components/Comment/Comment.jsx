@@ -155,9 +155,9 @@ function Comment({ projectId }) {
                     placeholder="Svar på kommentar ..."
                     value={replyComment}
                     onChange={handleReplyCommentChange}
-                    style={{ width: '600px', marginRight: '10px', padding: '10px' }}
+                    style={{ width: '800px', marginRight: '10px', padding: '10px' }}
                   />
-                  <button type="submit" style={{ marginLeft: '282px', width: '50%', padding: '10px' }} onClick={() => setReplyToComment(comment)}>Svar</button>
+                  <button type="submit" className='replyButton' onClick={() => setReplyToComment(comment)}>Svar</button>
                 </form>
               </div>
             )}
@@ -167,13 +167,14 @@ function Comment({ projectId }) {
           handleSubmit}>
           <h3>Skriv en kommentar</h3>
           <input
+            className='submitComment'
             type="text"
             placeholder="Hva har du på hjertet?"
             value={comment}
             onChange={handleCommentChange}
-            style={{ width: '600px', marginRight: '10px', padding: '10px' }}
+            style={{ width: '850px', marginRight: '10px', padding: '10px' }}
           />
-          <button type="submit" style={{ marginLeft: '350px', width: '50%', padding: '10px' }} onClick={() => setReplyToComment('')}>Publiser kommentar</button>
+          <button type="submit" className='commentButton' onClick={() => setReplyToComment('')}>Publiser kommentar</button>
         </form>
       </div>
     

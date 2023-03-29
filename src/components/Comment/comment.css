@@ -18,12 +18,12 @@
     border: 1px solid black;
     border-radius: 20px;
   }
-  .comment-box button[type="submit"] {
+  .comment-box .commentButton, .replyButton {
     position: relative;
     display: inline-block;
     bottom: -10px;
-    right: 30%;
-    width: 90%;
+
+    width: 250px;
     margin-bottom: 20px;
     background-color: #7393B0;
     border: none;
@@ -34,9 +34,16 @@
     font-size: 12px;
     cursor: pointer;
     border-radius: 20px;
-    text-align: center;
-    cursor: pointer;
   }
+
+  .replyButton {
+    left: 66%;
+  }
+  .commentButton {
+    left: 68%;
+  }
+
+
   .comment-box button[type="submit"]:hover {
     background-color: #3367D6;
   }
