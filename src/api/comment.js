@@ -20,7 +20,6 @@ const getComments = async (projectId) => {
       const response = await fetch(COMMENT_API_URL);
       const data = await response.json();
       const filteredData = data.filter(comment => comment.repliedTo === -1 && comment.project.toString() === projectId.toString());
-      console.log(filteredData)
       return filteredData;
     } catch (error) {
       throw new Error(`Error fetching comments: ${error.message}`);

@@ -22,10 +22,16 @@ export const projectSlice = createSlice({
       state.isLoading = false
       state.skills = action.payload     
    },
-    searchProjects: (state, action) => {
-        const currentProjects  = state.data;
-        state.data = currentProjects.filter((project) => project.title.includes(action.payload));
-    },
+   searchProjects: (state, action) => {
+    const filteredProjects = state.data.filter((project) =>
+      project.title.includes(action.payload)
+    );
+    return {
+      ...state,
+      data: filteredProjects,
+    };
+  }
+  ,
 
     selectFilter: (state, action) => {
       state.selectedFilters.push(action.payload);

@@ -91,6 +91,7 @@ const EditProject = () => {  // Component function taking in project as propz
   console.log(`description: ${description}`)
     console.log(`tags: ${tags}`)
     console.log(`skillsReq: ${skillsRequired}`)
+    console.log(img_url,"IMG")
   return (
     <div className='form-cont'>
         <Form className='RedigerForm' onFinish={onFinish} initialValues={{title: title, status: status, description:

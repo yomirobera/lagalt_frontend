@@ -10,6 +10,21 @@ import ApplyToProject from '../../components/Apply/ApplyToProject'
 import keycloak from '../keycloak/keycloak';
 import musicImg from "../../assets/img/musicImg.png";
 import Comment from '../Comment/Comment';
+const func = (project,id) => {
+    if (!(keycloak.tokenParsed.sub === project.owner)) {
+        for (const member of project.members) {
+            if (member === keycloak.tokenParsed.sub) {
+                return null;
+            }
+        }
+        return (
+        <div className='applyForm'>
+            <ApplyToProject projectId={id} />
+        </div>
+        );
+    }
+    return null;
+  };
 
 const ProjectDetails = () => {
     const { id } = useParams();
@@ -56,6 +71,8 @@ const ProjectDetails = () => {
     if (!project || !userData) {
         return <div>Loading...</div>;
     }
+    
+      
     
   return (
     <div className='detailsCard'>
@@ -104,12 +121,10 @@ const ProjectDetails = () => {
                                 const userDataKeys = Object.keys(userData);
                                 for (let i = 0; i < userDataKeys.length; i++) {
                                 const user = userData[userDataKeys[i]];
-                                console.log("DATA:m",userData)
                                 if (user.id === member) {
                                     memberName = `${user['f_name']} ${user['l_name']}`;
                                     break;
                                 }
-                                console.log("Name: ",user.f_name)
                                 }
                                 return (
                                 <li key={member}>
@@ -121,9 +136,7 @@ const ProjectDetails = () => {
                             })}
                      </ul>
                 </div>
-                <div className='applyForm'>
-                   <ApplyToProject projectId ={{id}}/>
-                </div>
+                {keycloak.authenticated ? <>{func(project,id)}</>:null}
                 
                 {!keycloak.authenticated && (
                 <div className='card-loginLink'>

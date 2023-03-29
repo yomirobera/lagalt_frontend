@@ -76,9 +76,7 @@ function Comment({ projectId }) {
   useEffect(() => {
     const fetchComments = async () => {
       try {
-        console.log(projectId);
         const data = await getComments(projectId);
-        console.log(data);
         setComments(data);
       } catch (error) {
         console.error(error);
@@ -91,7 +89,6 @@ function Comment({ projectId }) {
     if (selectedCommentId !== null) {
       try {
         const data = await getReplies(selectedCommentId);
-        console.log(data);
         setReplies(data);
       } catch (error) {
         console.error(error);

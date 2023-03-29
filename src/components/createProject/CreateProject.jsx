@@ -41,7 +41,6 @@ const CreateProject = (project) => {
         tags: tags,
         status: "Ikke påbegynt",
         skillsRequired: skillsRequired,
-        category:category
       });
       form.resetFields(); //Reset the form fields 
     } catch (error) {
@@ -150,7 +149,7 @@ const CreateProject = (project) => {
                   <Select.Option value="Webutvikling">Webutvikling</Select.Option>
                 </Select>
               </Form.Item>
-              <label htmlFor="Image-input">Lastopp prosjekt cover</label>
+              <label htmlFor="Image-input">Last opp prosjekt cover</label>
               <Form.Item label="" name="image">
                 <Input type="file" accept="image/*"  onChange={handleImageChange} />
               </Form.Item>
