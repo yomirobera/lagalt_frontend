@@ -183,7 +183,7 @@
        background-color: transparent;
      }
    
-.ant-row.css-dev-only-do-not-override-ph9edi {
+.projectListCard #PlistRow {
        background-color: #ffff;
        max-width: 100%;
        min-height: 100%;

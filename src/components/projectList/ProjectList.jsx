@@ -63,12 +63,20 @@ const { skills, isLoading } = useSelector(state => state.projects);
   } else { 
     return (
          <div className='projectList-container'> 
-            <Card>
+            <Card className= 'projectListCard'>
               <h2 className='cardHeader'>Populære prosjekter</h2>
                 {data.map(project => (
                   <React.Fragment key={project.id}>
                     <Link to={`/ProjectDetails/${project.id}`}>
-                        <Row className='PlistRow' gutter={16} style={{marginLeft: '0px', marginRight: '0px', paddingLeft: '25px'}}>
+                        <Row id='PlistRow' gutter={16} style={{
+                                      backgroundColor: '#ffff',
+                                      maxMidth: '100%',
+                                      minHeight: '100%',
+                                      overflow: 'hidden',
+                                      borderRadius:'20px',
+                                      marginBottom:'25px',
+                                      boxShadow: '0px 2px 2px 1px #aaaa',
+                                      marginLeft: '0px', marginRight: '0px', paddingLeft: '25px'}}>
                           <Col xs={24} sm={12} md={14} lg={14} id='cardstyles' className={project.category.replace(' ', '-').toLowerCase()}
                               style={{ paddingLeft: '50px',paddingTop:'25px', paddingRight: '0px'}}
                             >
