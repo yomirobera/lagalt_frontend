@@ -18,9 +18,12 @@ const ProjectAdmin = () => {
     const { skills, isLoading } = useSelector(state => state.projects);
     
     const matchingSkillNames =  (project) => {
+      if (skills != null){
         return project.skillsRequired
            .filter(skill => skills.some(skills => skills.title === skill))
-           .map(skill => skill.toLowerCase());}
+           .map(skill => skill.toLowerCase());
+        } else return [];
+      } 
     
       const getMatchingSkillsCount = (project) => {
         const matchingSkills = matchingSkillNames(project);
