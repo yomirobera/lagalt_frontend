@@ -68,8 +68,8 @@ const { skills, isLoading } = useSelector(state => state.projects);
                 {data.map(project => (
                   <React.Fragment key={project.id}>
                     <Link to={`/ProjectDetails/${project.id}`}>
-                        <Row gutter={16} style={{marginLeft: '0px', marginRight: '0px', paddingLeft: '25px'}}>
-                          <Col xs={24} sm={12} md={14} lg={14} className={project.category.replace(' ', '-').toLowerCase()}
+                        <Row className='PlistRow' gutter={16} style={{marginLeft: '0px', marginRight: '0px', paddingLeft: '25px'}}>
+                          <Col xs={24} sm={12} md={14} lg={14} id='cardstyles' className={project.category.replace(' ', '-').toLowerCase()}
                               style={{ paddingLeft: '50px',paddingTop:'25px', paddingRight: '0px'}}
                             >
                             <h2 className='categoryText'>{project.category} <span id='musicIcon' className={project.category.replace(' ', '-').toLowerCase()}></span></h2>
