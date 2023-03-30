@@ -14,11 +14,23 @@ const LoginSignupBtn = () => (
   <Space className="site-button-ghost-wrapper" wrap>
    {!keycloak.authenticated && (
                  <>
-                    <Button className='btnLogin'  type="primary" ghost onClick={() => keycloak.login()}>
-                        LOGG INN
+                    <Button className='btnLogin' style={{width: '105%',
+                                                marginRight: '20px',
+                                                color:' #ffff',
+                                                backgroundColor: 'hsl(212, 43%, 59%)',
+                                                boxSizing: 'border-box',
+                                                borderColor: 'rgb(112, 136, 243)'}} 
+                                                 type="primary" ghost onClick={() => keycloak.login()}>
+                                                                      LOGG INN
                     </Button>
 
-                    <Button className='btnSignup' type="primary" ghost onClick={() => keycloak.register()}>
+                    <Button className='btnSignup' STYLE={{
+                      color: 'hsl(212, 43%, 59%)',
+                      backgroundColor:'#ffff',
+                      width: '100%',
+                      boxSizing: 'border-box',
+                      borderColor: 'rgb(112, 136, 243)',
+                    }} type="primary" ghost onClick={() => keycloak.register()}>
                         NY BRUKER
                     </Button>
                   </>)}</Space>)
