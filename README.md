@@ -1,4 +1,13 @@
-# Getting Started with Create React App
+# Lagalt   
+We made a website called Lagalt, for creative people to collaborate on projects in fields such as music, film, web development, and game development. This website is both for people who want to create projects, and for people who want to participate in such creative projects.
+
+The purpose and objectives of the project were to design and develop a website that encourages collaboration and creativity among people in various fields. Additionally, another important goal of this project was to enhance our communication skills when working in a team. This project was a valuable opportunity for us to learn how to collaborate efficiently with team members with different backgrounds.
+
+## Author
+- [@Kenny](https://github.com/kennylu-user)
+- [@Mebratu](https://github.com/MebzerIT)
+- [@Simen](https://github.com/simen12345)
+- [@Yomiyu](https://github.com/yomirobera)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
