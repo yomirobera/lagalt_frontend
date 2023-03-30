@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { API_URL } from '../../api/projects';
@@ -14,17 +14,18 @@ import { Components } from 'antd/es/date-picker/generatePicker';
 const ProjectAdmin = () => {
     const { id } = useParams();
     const [project, setProject] = useState(null);
-    
+    const [userData, setUserData] = useState(null);
+   
     const { skills, isLoading } = useSelector(state => state.projects);
-    
+   
     const matchingSkillNames =  (project) => {
       if (skills != null){
         return project.skillsRequired
            .filter(skill => skills.some(skills => skills.title === skill))
            .map(skill => skill.toLowerCase());
         } else return [];
-      } 
-    
+      }
+   
       const getMatchingSkillsCount = (project) => {
         const matchingSkills = matchingSkillNames(project);
         const totalSkills = project.skillsRequired.length;
@@ -75,7 +76,7 @@ let navigate = useNavigate();
                     <strong>Prosjektets progresjon: </strong>
                     <h6 style={{display: 'inline-block', margin: '0'}}>{project.status}</h6>
                 </span>
-                <h5 style={{paddingBottom:"10px"}}><strong>{getMatchingSkillsCount(project)} ferdigheter matcher din profil </strong></h5>                         
+                <h5 style={{paddingBottom:"10px"}}><strong>{getMatchingSkillsCount(project)} ferdigheter matcher din profil </strong></h5>                        
                 <div className='reqSkills'>
                     {project.skillsRequired.map(skill => (
                     <Tag
@@ -85,6 +86,27 @@ let navigate = useNavigate();
                         {skill}
                     </Tag>
                     ))}
+                    <ul className='projMedlemer'>
+<li><strong>Prosjekt medlemer : </strong></li>
+                            {project.members.map(member => {
+                                let memberName = '';
+                                const userDataKeys = Object.keys(userData);
+                                for (let i = 0; i < userDataKeys.length; i++) {
+                                const user = userData[userDataKeys[i]];
+                                if (user.id === member) {
+                                    memberName = `${user['f_name']} ${user['l_name']}`;
+                                    break;
+                                }
+                                }
+                                return (
+                                <li key={member}>
+                                    <Link to={`/UserProfile/${member}`}>
+                                    {memberName || member}
+                                    </Link>
+                                </li>
+                                );
+                            })}
+                     </ul>
                 </div>    
                 <div className='redigerbtn'>
                    <button className="btn-primary" onClick={() => {routeChange(`/EditProject/${project.id}`)}}>ENDRE Projekt</button>
@@ -108,12 +130,3 @@ let navigate = useNavigate();
   );
 };
 export default ProjectAdmin
-
-
-
-
-
-
-
-
-
