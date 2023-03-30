@@ -28,6 +28,7 @@ const LoginSignupBtn = () => (
                      color: 'hsl(212, 43%, 59%)',
                      backgroundColor:'#ffff',
                      width: '100%',
+                     hight:'50%',
                      boxSizing: 'border-box',
                      borderColor: 'rgb(112, 136, 243)',
                     }} ghost onClick={() => keycloak.register()}>
