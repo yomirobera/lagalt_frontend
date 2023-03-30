@@ -142,7 +142,7 @@ const CreateProject = (project) => {
               </Form.Item>
               <label htmlFor="Kategori-input">Kategori</label>
               <Form.Item name="category" required>
-                <Select required defaultValue={"Musikk"} onChange={(e) => setCategory(e)}>
+                <Select required onChange={(e) => setCategory(e)}>
                   <Select.Option value="Musikk">Musikk</Select.Option>
                   <Select.Option value="Film">Film</Select.Option>
                   <Select.Option value="Spillutvikling">Spillutvikling</Select.Option>

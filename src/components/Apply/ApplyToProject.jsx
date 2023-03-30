@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, Link} from 'react-router-dom';
 import { apiUrl_apply } from '../../api/user';
 import { Card, Col, Row,Tag,Button} from 'antd';
@@ -11,6 +11,12 @@ const ApplyForm =  (props) => {
   const [motivationLetter, setMotivationLetter] = useState('');
   const [isChecked, setIsChecked] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false); 
+
+    useEffect(() => {
+      if (isSubmitted && isChecked) {
+        setMotivationLetter('');
+      }
+    }, [isSubmitted]);
 
     if (keycloak.authenticated){
 

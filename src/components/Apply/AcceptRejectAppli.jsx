@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { Card,Divider,Meta,message,Col, Row,Tag,Button,Space, Avatar,Typography } from 'antd';
 import './AcceptReject.css';
 import keycloak from '../keycloak/keycloak';
+import { getUser } from '../../api/user';
 
 const AcceptRejectAppli = (props) => {
     //get project id from the url
@@ -12,6 +13,7 @@ const AcceptRejectAppli = (props) => {
     const { Meta } = Card;
     const API_URL_APPLI = "https://superproapiavkennylu.azurewebsites.net";
     const projectID = props.projID;
+    const [users, setUsers] = useState({});
     //const userId = keycloak.tokenParsed.sub;
     
     useEffect(() => {
@@ -22,6 +24,25 @@ const AcceptRejectAppli = (props) => {
           .then(data => setProject(data))
           .catch(error => console.log(error));
       }, [projectID]);
+
+      useEffect(() => {
+        const fetchUsers = async () => {
+          try {
+            const userIds = new Set([
+              ...project.map((p) => p.user),
+            ]);
+            const userArray = await Promise.all(Array.from(userIds).map((id) => getUser(id)));
+            const userObject = {};
+            userArray.forEach((user) => {
+              userObject[user.id] = user;
+            });
+            setUsers(userObject);
+          } catch (error) {
+            console.error(error);
+          }
+        };
+        fetchUsers();
+      }, [project]);
 
     if (!project) {
         return <div>Loading...</div>;
@@ -81,14 +102,18 @@ const AcceptRejectAppli = (props) => {
         {project.map((proj) => (
           <Row gutter={[16, 16]} style={{ marginLeft: '0px', marginRight: '0px', paddingLeft: '25px', display: 'flex', justifyContent: 'space-between' }}>         
             <Col xs={20} sm={8} md={10} lg={10}>
+                <p className='name' style={{marginTop:"15px", marginBottom:"5px"}}>                
+                  {users[proj.user] && <Link to={`/UserProfile/${users[proj.user].id}`}>{users[proj.user].f_name} {users[proj.user].l_name}</Link>}
+                                
+                </p>
                 <p className='card-motivation'>{proj.motivation}</p>
             </Col>
                 <br/>
             <Col xs={4} sm={4} md={4} lg={4} style={{marginRight: '-160px'}}>
-                <Button className={proj.category} type="primary" onClick={() => handleAccept(proj.id)}>Accept</Button>
+                <Button className={proj.category} type="primary" onClick={() => handleAccept(proj.id)}>Aksepter</Button>
             </Col>
             <Col xs={4} sm={4} md={4} lg={4}>
-                <Button type="danger"  onClick={() => handleReject(proj.id)}>Reject</Button>
+                <Button type="danger"  onClick={() => handleReject(proj.id)}>Avslå</Button>
             </Col>
           </Row>
         ))}
