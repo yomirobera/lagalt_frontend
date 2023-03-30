@@ -53,8 +53,16 @@ let navigate = useNavigate();
     <div className='detailsCardAdmin'>
       { project && (
          <Card>
-            <Row id="borderColor" gutter={16} style={{marginLeft: '0px', marginRight: '0px', paddingLeft: '25px'}} className={project.category.replace(' ', '-').toLowerCase()}>
-                <Col xs={24} sm={12} md={14} lg={14}
+            <Row id="borderColor" gutter={16} style={{
+              backgroundColor: '#ffff',
+              maxMidth: '100%',
+              minHeight: '100%',
+              overflow: 'hidden',
+              borderRadius:'20px',
+              marginBottom:'25px',
+              boxShadow: '0px 2px 2px 1px #aaaa',
+              marginLeft: '0px', marginRight: '0px', paddingLeft: '25px'}} className={project.category.replace(' ', '-').toLowerCase()}>
+                <Col xs={24} sm={12} md={14} lg={14} id='cardstyles'
                     style={{ paddingLeft: '50px',paddingTop:'25px', paddingRight: '0px'}}
                 >
                 <h2 className='categoryText'>{project.category} <span id='musicIcon' className={project.category.replace(' ', '-').toLowerCase()}></span></h2>

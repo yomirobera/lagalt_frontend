@@ -108,7 +108,7 @@ body {
 }
 
 
-.ant-btn.css-dev-only-do-not-override-ph9edi.ant-btn-primary.ant-btn-background-ghost.btnLogin {
+.btnLogin {
   width: 105%;
   margin-right: 20px;
   color:#ffff;
@@ -117,7 +117,7 @@ body {
   border-color:rgb(112, 136, 243);
 }
 
-.ant-btn.css-dev-only-do-not-override-ph9edi.ant-btn-primary.ant-btn-background-ghost.btnSignup {
+.btnSignup {
   color:hsl(212, 43%, 59%);
   background-color:#ffff;
   width: 100%;
