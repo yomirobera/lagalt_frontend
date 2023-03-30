@@ -4,7 +4,7 @@
     padding-top: 0px;
     left: 0%;
     right: 0%;
-    background-color:#f8f4f4;
+    background-color:#fff;
     display: flex;
     max-width: 100%;
     flex-direction: column;
@@ -48,7 +48,9 @@
     box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
     border-radius: 20px;
   }
-  
+  .newProject-card{
+    background-color:#f8f4f4;
+  }
 .newProject-card h1 {
     font-size: 24px;
     text-align: center;

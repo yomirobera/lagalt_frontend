@@ -62,7 +62,6 @@ function Comment({ projectId }) {
         console.log(newComment);
         const response = await createComment(newComment);
         console.log("Comment updated YAY!");
-        alert("Comment updated YAY!");
         const updatedComments = await getComments(projectId);
         setComments(updatedComments);
         const updatedReplies = await getReplies(selectedCommentId);
