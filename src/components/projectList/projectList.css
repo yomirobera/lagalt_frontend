@@ -14,20 +14,20 @@
        justify-items: center;
    }
    
-.musikk{
+#tagstyles.musikk{
        background-color: #a8e484;
        
    }
    
-.film{
+#tagstyles.film{
        background-color: #a07ce4;
    }
    
-.webutvikling{
+#tagstyles.webutvikling{
        background-color: #e87c7c;
    
    }
-.spillutvikling{
+#tagstyles.spillutvikling{
        background-color: #f8ac74;
    
    }

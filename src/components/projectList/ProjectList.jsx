@@ -76,7 +76,7 @@ const { skills, isLoading } = useSelector(state => state.projects);
                             <h3 className='projTitle'>{project.title}<span className='arrowIcon'></span></h3>
                             <div className='projTags'>
                                 {project.tags.map(skill => (
-                                  <Tag className={project.category.replace(' ', '-').toLowerCase()} style={{ borderRadius: 20, margin: '5px', color:'#000' }}>{skill}</Tag>
+                                  <Tag id='tagstyles' className={project.category.replace(' ', '-').toLowerCase() } style={{ borderRadius: 20, margin: '5px', color:'#000' }}>{skill}</Tag>
                                 ))}
                             </div>
                             <p><strong>Beskrivelse av prosjektet: </strong>{project.description}</p>

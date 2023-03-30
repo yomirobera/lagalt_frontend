@@ -75,7 +75,7 @@ const YourProjects = () => {
     <div className='yourProjCard'>
       <table>
           <thead>
-          <tr class="first-row">
+          <tr className="first-row">
            <th>Prosjekter du eier</th>
           </tr>
           <tr>
@@ -99,7 +99,7 @@ const YourProjects = () => {
           </tbody>
           <br/>
           <tbody>
-            <tr class="first-row2">
+            <tr className="first-row2">
             <th>Prosjekter du deltar i</th>
             </tr>
             {console.log(delatakerIproj)}
