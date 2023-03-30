@@ -28,7 +28,7 @@
     background-color: #fff;
     display: flex;
     min-width: 100%;
-    height: 100%;
+    height: 60%;
     flex-direction: column;
     justify-items: center
   }
@@ -51,14 +51,26 @@
     flex: 1;
   }
   
-  .card-buttons .ant-btn {
+  .card-container .Applyername a{
+    display: flex;
+    align-items: flex-start;
+    font-size: 14px;
+    color: #000;
+
+  }
+  .card-container .Applyername a:hover{
+    font-size: 14px;
+    color: rgb(114, 114, 232);
+}
+
+.card-container .card-buttons .ant-btn {
     display: flex;
     flex-direction: row;
     align-items:end;
     margin-left: 20px;
   }
   
-  .card-button {
+  .card-container .card-button {
     height: 30px;
     padding: 0 10px;
     border-radius: 4px;
@@ -68,9 +80,9 @@
 
   
   
-  .card-button .ant-btn-primary {
+  .card-container .card-button .ant-btn-primary {
     color: #fff;
-    background-color: #1677ff;
+    background-color: #679dea;
     box-shadow: 0 2px 0 rgba(5, 145, 255, 0.1);
 }
 

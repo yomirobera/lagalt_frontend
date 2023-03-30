@@ -102,18 +102,18 @@ const AcceptRejectAppli = (props) => {
         {project.map((proj) => (
           <Row gutter={[16, 16]} style={{ marginLeft: '0px', marginRight: '0px', paddingLeft: '25px', display: 'flex', justifyContent: 'space-between' }}>         
             <Col xs={20} sm={8} md={10} lg={10}>
-                <p className='name' style={{marginTop:"15px", marginBottom:"5px"}}>                
+                <h5 className='Applyername' style={{marginTop:"15px", marginBottom:"5px"}}>                
                   {users[proj.user] && <Link to={`/UserProfile/${users[proj.user].id}`}>{users[proj.user].f_name} {users[proj.user].l_name}</Link>}
                                 
-                </p>
+                </h5>
                 <p className='card-motivation'>{proj.motivation}</p>
             </Col>
                 <br/>
-            <Col xs={4} sm={4} md={4} lg={4} style={{marginRight: '-160px'}}>
+            <Col xs={4} sm={4} md={4} lg={4} style={{marginTop: "50px", marginRight: '-140px'}}>
                 <Button className={proj.category} type="primary" onClick={() => handleAccept(proj.id)}>Aksepter</Button>
             </Col>
-            <Col xs={4} sm={4} md={4} lg={4}>
-                <Button type="danger"  onClick={() => handleReject(proj.id)}>Avslå</Button>
+            <Col xs={4} sm={4} md={4} lg={4} style={{marginTop: "50px"}}>
+                <Button type="primary" danger  onClick={() => handleReject(proj.id)}>Avslå</Button>
             </Col>
           </Row>
         ))}
