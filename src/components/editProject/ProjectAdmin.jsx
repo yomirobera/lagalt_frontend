@@ -52,7 +52,7 @@ let navigate = useNavigate();
   return (
     <div className='detailsCardAdmin'>
       { project && (
-         <Card>
+         <Card className= 'projectAdminCard'>
             <Row id="borderColor" gutter={16} style={{
               backgroundColor: '#ffff',
               maxMidth: '100%',
@@ -62,7 +62,7 @@ let navigate = useNavigate();
               marginBottom:'25px',
               boxShadow: '0px 2px 2px 1px #aaaa',
               marginLeft: '0px', marginRight: '0px', paddingLeft: '25px'}} className={project.category.replace(' ', '-').toLowerCase()}>
-                <Col xs={24} sm={12} md={14} lg={14} id='cardstyles'
+                <Col xs={24} sm={12} md={14} lg={14} className='AdmincardCol'
                     style={{ paddingLeft: '50px',paddingTop:'25px', paddingRight: '0px'}}
                 >
                 <h2 className='categoryText'>{project.category} <span id='musicIcon' className={project.category.replace(' ', '-').toLowerCase()}></span></h2>

@@ -234,7 +234,7 @@
        box-shadow: 0px 2px 2px 1px #aaaa;
    }
    
-#borderColor.musikk{ 
+.projectAdminCard #borderColor.musikk{ 
        background-color: #ffff;
        max-height: 100%;               
        max-width: 100%;
@@ -243,7 +243,7 @@
        box-shadow: -25px 0px 0px 0px #a8e484;
    }
    
-#borderColor.film{
+.projectAdminCard #borderColor.film{
        background-color: #ffff;
        max-height: 100%;               
        max-width: 100%;
@@ -251,7 +251,7 @@
        padding-right: 0px;
        box-shadow: -25px 0px 0px 0px #a07ce4;
    }
-#borderColor.webutvikling{
+.projectAdminCard #borderColor.webutvikling{
        background-color: #ffff;
        max-height: 100%;               
        max-width: 100%;
@@ -259,7 +259,7 @@
        padding-right: 0px;
        box-shadow: -25px 0px 0px 0px #e87c7c;
    }
-#borderColor.spillutvikling{
+.projectAdminCard #borderColor.spillutvikling{
        background-color: #ffff;
        max-height: 100%;               
        max-width: 100%;
@@ -267,14 +267,14 @@
        padding-right: 0px;
        box-shadow: -25px 0px 0px 0px #f8ac74;
    }
-.detailsCard   .ant-col.ant-col-xs-24.ant-col-sm-12.ant-col-md-14.ant-col-lg-14.css-dev-only-do-not-override-ph9edi{
+.detailsCard .AdmincardCol{
     background-color: #ffff;
     max-height: 100%;               
     max-width: 100%;
     padding-left: 0px;
     padding-right: 0px;
 }
-.detailsCard .ant-col.ant-col-xs-24.ant-col-sm-12.ant-col-md-10.ant-col-lg-10.css-dev-only-do-not-override-ph9edi{
+.detailsCard .AdmincardCol{
      max-height: 100%;               
      max-width: 100%;
     }
