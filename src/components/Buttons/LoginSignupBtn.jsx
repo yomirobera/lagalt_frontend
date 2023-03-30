@@ -14,26 +14,41 @@ const LoginSignupBtn = () => (
   <Space className="site-button-ghost-wrapper" wrap>
    {!keycloak.authenticated && (
                  <>
-                    <Button className='btnLogin'style={{width: '105%',
-                                                marginRight: '20px',
-                                                color:' #ffff',
-                                                backgroundColor: 'hsl(212, 43%, 59%)',
-                                                boxSizing: 'border-box',
-                                                borderColor: 'rgb(112, 136, 243)'}}  
-                                                 type="primary" ghost onClick={() => keycloak.login()}>
-                                                                      LOGG INN
+                   <Button
+                       className='btnLogin'
+                       style={{
+                       width: '105%',
+                       marginRight: '20px',
+                       color: '#ffff',
+                       backgroundColor: 'hsl(212, 43%, 59%)',
+                       boxSizing: 'border-box',
+                       borderColor: 'rgb(112, 136, 243)',
+                       height: 'auto !important' // add !important to force the style
+                       }}
+                       type="primary"
+                       ghost
+                       onClick={() => keycloak.login()}
+                                                          >
+                       LOGG INN
                     </Button>
 
-                    <Button className='btnSignup' style={{
-                     color: 'hsl(212, 43%, 59%)',
-                     backgroundColor:'#ffff',
-                     width: '100%',
-                     hight:'50%',
-                     boxSizing: 'border-box',
-                     borderColor: 'rgb(112, 136, 243)',
-                    }} ghost onClick={() => keycloak.register()}>
-                        NY BRUKER
-                    </Button>
+
+
+                      <Button
+                       className='btnSignup'
+                       style={{
+                       color: 'hsl(212, 43%, 59%)',
+                       backgroundColor: '#ffff',
+                       width: '100%',
+                       height: '50% !important', // add !important to force the style
+                       boxSizing: 'border-box',
+                       borderColor: 'rgb(112, 136, 243)',
+                       }}
+                       ghost
+                       onClick={() => keycloak.register()}
+                      >
+                      NY BRUKER
+                      </Button>
                   </>)}</Space>)  
 
  export default LoginSignupBtn;
