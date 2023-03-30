@@ -140,7 +140,7 @@ function Comment({ projectId }) {
               <div className='replies'>
                 {replies.map((reply) => (
                   <div key={reply.id}>
-                    <p className='name'>
+                    <p className='name' style={{marginTop:"15px", marginBottom:"5px"}}>
                       {users[reply.user] && users[reply.user].f_name} {' '}
                       {users[reply.user] && users[reply.user].l_name}
                     </p>
