@@ -25,12 +25,12 @@ const LoginSignupBtn = () => (
                     </button>
 
                     <button className='btnSignup' STYLE={{
-                      color: 'hsl(212, 43%, 59%)',
-                      backgroundColor:'#ffff',
-                      width: '100%',
-                      boxSizing: 'border-box',
-                      borderColor: 'rgb(112, 136, 243)',
-                    }} type="primary" ghost onClick={() => keycloak.register()}>
+                     color: 'hsl(212, 43%, 59%)',
+                     backgroundColor:'#ffff',
+                     width: '100%',
+                     boxSizing: 'border-box',
+                     borderColor: 'rgb(112, 136, 243)',
+                    }} ghost onClick={() => keycloak.register()}>
                         NY BRUKER
                     </button>
                   </>)}</Space>)
