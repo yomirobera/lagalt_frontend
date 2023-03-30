@@ -1,7 +1,7 @@
 import { Button,Space,AudioOutlined } from "antd";
 import { useHistory } from 'react-router-dom';
 import keycloak from "../keycloak/keycloak";
-
+import './../../../src/index.css';
 /* const suffix = (
   <AudioOutlined
     style={{
@@ -14,17 +14,17 @@ const LoginSignupBtn = () => (
   <Space className="site-button-ghost-wrapper" wrap>
    {!keycloak.authenticated && (
                  <>
-                    <button className='btnLogin' style={{width: '105%',
+                    <button className='btnLogin'style={{width: '105%',
                                                 marginRight: '20px',
                                                 color:' #ffff',
                                                 backgroundColor: 'hsl(212, 43%, 59%)',
                                                 boxSizing: 'border-box',
-                                                borderColor: 'rgb(112, 136, 243)'}} 
+                                                borderColor: 'rgb(112, 136, 243)'}}  
                                                  type="primary" ghost onClick={() => keycloak.login()}>
                                                                       LOGG INN
                     </button>
 
-                    <button className='btnSignup' STYLE={{
+                    <button className='btnSignup' style={{
                      color: 'hsl(212, 43%, 59%)',
                      backgroundColor:'#ffff',
                      width: '100%',
@@ -34,6 +34,6 @@ const LoginSignupBtn = () => (
                     }} ghost onClick={() => keycloak.register()}>
                         NY BRUKER
                     </button>
-                  </>)}</Space>)
+                  </>)}</Space>)  
 
  export default LoginSignupBtn;
