@@ -27,17 +27,18 @@ const ApplyForm =  (props) => {
          console.log(motivationLetter)
          console.log(userId)
          console.log("project: ",props.projectId)
-  
+          console.log(apiUrl_apply)
           try {
-              const response = await fetch (apiUrl_apply , {
-                  method: 'POST',
-                  headers: {'Content-Type': 'application/json',
-                           },
-                  body: JSON.stringify({
-                          motivation:motivationLetter,
-                          user: userId,
-                          project: props.projectId.id,
-                      })
+              const response = await fetch (apiUrl_apply, {
+                method: "post",
+                headers: {
+                'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    motivation:motivationLetter,
+                    user: userId,
+                    project: props.projectId,
+                })
               })
               if (!response.ok){
                   throw new Error('Error: Could not create application ')

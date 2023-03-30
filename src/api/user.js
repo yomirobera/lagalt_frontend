@@ -1,7 +1,7 @@
  import keycloak from "../components/keycloak/keycloak";
 
 const apiUrl = "https://superproapiavkennylu.azurewebsites.net/api/v1/users";
-const apiUrl_apply = "https://superproapiavkennylu.azurewebsites.net/api/v1/users/applications";
+const apiUrl_apply = "https://superproapiavkennylu.azurewebsites.net/api/v1/application";
 
 
 

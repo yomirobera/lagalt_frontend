@@ -21,7 +21,6 @@ export const projectSlice = createSlice({
     fetchSkills: (state, action) => {
       state.isLoading = false
       state.skills = action.payload     
-      console.log('I am skillin actin',state.skills);
    },
     searchProjects: (state, action) => {
         const currentProjects  = state.data;
