@@ -234,7 +234,7 @@
        box-shadow: 0px 2px 2px 1px #aaaa;
    }
    
-.projectAdminCard #borderColor.musikk{ 
+.projectAdminCard #borderColor.musikk Row { 
        background-color: #ffff;
        max-height: 100%;               
        max-width: 100%;
