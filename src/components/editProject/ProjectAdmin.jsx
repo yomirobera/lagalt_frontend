@@ -86,9 +86,10 @@ let navigate = useNavigate();
                         {skill}
                     </Tag>
                     ))}
+                  </div> 
                     <ul className='projMedlemer'>
 <li><strong>Prosjekt medlemer : </strong></li>
-                            {project.members.map(member => {
+                            {project.members && project.members.map(member => {
                                 let memberName = '';
                                 const userDataKeys = Object.keys(userData);
                                 for (let i = 0; i < userDataKeys.length; i++) {
@@ -107,7 +108,7 @@ let navigate = useNavigate();
                                 );
                             })}
                      </ul>
-                </div>    
+                   
                 <div className='redigerbtn'>
                    <button className="btn-primary" onClick={() => {routeChange(`/EditProject/${project.id}`)}}>ENDRE Projekt</button>
                 </div>
